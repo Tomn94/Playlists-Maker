@@ -12,8 +12,6 @@ import MediaPlayer
 /// Contains all information about the current songs to sort
 class Library {
     
-//    var currentSong: Song?
-    
     
     // MARK: Status
     
@@ -34,7 +32,7 @@ class Library {
     }
     
     
-    // MARK: Content
+    // MARK: Songs
     
     /// List of the songs to sort
     var songs = [Song]()
@@ -57,10 +55,13 @@ class Library {
 }
 
 
+/// Represents a song in the user's library.
+/// Wraps MPMediaItem
 struct Song {
     
     /// Default maximum artwork size displayed
     static let artworkSize = CGSize(width: 100, height: 100)
+    
     
     let title: String
     
@@ -73,6 +74,7 @@ struct Song {
     let length: TimeInterval
     
     let artwork: UIImage?
+    
     
     /// Init Song object with a media library query result
     ///
