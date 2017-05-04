@@ -14,6 +14,7 @@
 		64547F8E1EBB245C000ED6B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64547F8C1EBB245C000ED6B3 /* LaunchScreen.storyboard */; };
 		64547F971EBB35DE000ED6B3 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F961EBB35DE000ED6B3 /* Library.swift */; };
 		64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F981EBB4D41000ED6B3 /* DataStore.swift */; };
+		64547F9B1EBB57D8000ED6B3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F9A1EBB57D8000ED6B3 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		64547F8F1EBB245C000ED6B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64547F961EBB35DE000ED6B3 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Library.swift; path = Model/Library.swift; sourceTree = "<group>"; };
 		64547F981EBB4D41000ED6B3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = Model/DataStore.swift; sourceTree = "<group>"; };
+		64547F9A1EBB57D8000ED6B3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				64547F981EBB4D41000ED6B3 /* DataStore.swift */,
+				64547F9A1EBB57D8000ED6B3 /* Player.swift */,
 				64547F961EBB35DE000ED6B3 /* Library.swift */,
 			);
 			name = Model;
@@ -154,6 +157,7 @@
 				64547F861EBB245C000ED6B3 /* ViewController.swift in Sources */,
 				64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
+				64547F9B1EBB57D8000ED6B3 /* Player.swift in Sources */,
 				64547F971EBB35DE000ED6B3 /* Library.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

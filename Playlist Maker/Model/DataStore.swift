@@ -17,11 +17,9 @@ class DataStore {
     /// Position of the song currently focused to be sorted
     var currrentIndex: Int?
     
-    /// Is the focused music currently listened
-    var isPlaying: Bool = false
     
-    /// Time elapsed for the currently playing song
-    var playbackTime: TimeInterval?
+    /// Music playback handler
+    let player = Player()
     
     
     // MARK: Singleton
