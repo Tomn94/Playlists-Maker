@@ -91,6 +91,29 @@ struct Song {
     
 }
 
+/// Represents a user's playlist in their library.
+/// MPMediaItemCollection wrapper
+struct Playlist {
+    
+    /// Name of the playlist
+    let name: String
+    
+    /// Songs contained in the playlist
+    let songs: [Song]
+    
+    /// Init Playlist object with a playlist raw type
+    ///
+    /// - Parameter collection: Playlist in library
+    init(collection: MPMediaItemCollection) {
+        
+        self.name  = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"
+        self.songs = collection.items.map({ playlistItem -> Song in
+            Song(item: playlistItem)
+        })
+    }
+    
+}
+
 struct Artist {
     
     var albums: [Album] {
