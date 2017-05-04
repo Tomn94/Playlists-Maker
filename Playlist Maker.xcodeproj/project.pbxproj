@@ -12,6 +12,7 @@
 		64547F891EBB245C000ED6B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64547F871EBB245C000ED6B3 /* Main.storyboard */; };
 		64547F8B1EBB245C000ED6B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64547F8A1EBB245C000ED6B3 /* Assets.xcassets */; };
 		64547F8E1EBB245C000ED6B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64547F8C1EBB245C000ED6B3 /* LaunchScreen.storyboard */; };
+		64547F971EBB35DE000ED6B3 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F961EBB35DE000ED6B3 /* Library.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		64547F8A1EBB245C000ED6B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64547F8D1EBB245C000ED6B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64547F8F1EBB245C000ED6B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64547F961EBB35DE000ED6B3 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Library.swift; path = Model/Library.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		64547F821EBB245C000ED6B3 /* Playlist Maker */ = {
 			isa = PBXGroup;
 			children = (
+				64547F951EBB35AF000ED6B3 /* Model */,
 				64547F831EBB245C000ED6B3 /* AppDelegate.swift */,
 				64547F851EBB245C000ED6B3 /* ViewController.swift */,
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				64547F8F1EBB245C000ED6B3 /* Info.plist */,
 			);
 			path = "Playlist Maker";
+			sourceTree = "<group>";
+		};
+		64547F951EBB35AF000ED6B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64547F961EBB35DE000ED6B3 /* Library.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			files = (
 				64547F861EBB245C000ED6B3 /* ViewController.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
+				64547F971EBB35DE000ED6B3 /* Library.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
