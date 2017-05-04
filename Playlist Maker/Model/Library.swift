@@ -37,19 +37,35 @@ class Library {
     /// List of the songs to sort
     var songs = [Song]()
     
+    /// List of the destination playlists
+    var playlists = [Playlist]()
+    
     /// Fill library with songs to sort
     func load() {
         
-        /* Get raw songs in library focus */
+        /* Songs */
+        // Get raw songs in library focus
         let librarySongs = MPMediaQuery.songs().items ?? []
         var songs = [Song]()
         
-        /* Create Song and add to list */
+        // Store songs
         for songItem in librarySongs {
             songs.append(Song(item: songItem))
         }
         
         self.songs = songs
+        
+        /* Playlists */
+        // Get raw playlists in library focus
+        let libraryPlaylists = MPMediaQuery.playlists().collections ?? []
+        var playlists = [Playlist]()
+        
+        // Store playlists
+        for libraryPlaylist in libraryPlaylists {
+            playlists.append(Playlist(collection: libraryPlaylist))
+        }
+        
+        self.playlists = playlists
     }
     
 }
