@@ -29,6 +29,13 @@ class SongOrganizer: UIViewController {
         DataStore.shared.library.load()
         show(song: DataStore.shared.library.songs.first!)
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        artwork.layer.cornerRadius = 5
+        artwork.clipsToBounds = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
