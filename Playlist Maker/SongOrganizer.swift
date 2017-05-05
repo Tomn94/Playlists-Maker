@@ -21,9 +21,16 @@ class SongOrganizer: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var progressionLabel: UILabel!
     
+    @IBOutlet weak var playlistsView: UICollectionView!
+    @IBOutlet weak var playlistsLayout: UICollectionViewFlowLayout!
+    var playlistsViewController: PlaylistsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        playlistsViewController  = PlaylistsViewController(collectionViewLayout: playlistsLayout)
+        playlistsView.dataSource = playlistsViewController
+        playlistsView.delegate   = playlistsViewController
         
         DataStore.shared.library.load()
         show(song: DataStore.shared.library.songs.first!)
@@ -68,4 +75,3 @@ class SongOrganizer: UIViewController {
     }
 
 }
-
