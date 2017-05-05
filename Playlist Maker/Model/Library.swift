@@ -45,7 +45,10 @@ class Library {
         
         /* Songs */
         // Get raw songs in library focus
-        let librarySongs = MPMediaQuery.songs().items ?? []
+        let songsLibrary = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: "Asher Roth",
+                                                                                    forProperty: MPMediaItemPropertyArtist,
+                                                                                    comparisonType: .contains)])
+        let librarySongs = songsLibrary.items ?? []
         var songs = [Song]()
         
         // Store songs
@@ -55,7 +58,7 @@ class Library {
         
         self.songs = songs
         
-        /* Playlists */
+        /* Playlists
         // Get raw playlists in library focus
         let libraryPlaylists = MPMediaQuery.playlists().collections ?? []
         var playlists = [Playlist]()
@@ -65,7 +68,7 @@ class Library {
             playlists.append(Playlist(collection: libraryPlaylist))
         }
         
-        self.playlists = playlists
+        self.playlists = playlists*/
     }
     
 }
