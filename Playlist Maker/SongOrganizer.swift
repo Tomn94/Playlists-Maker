@@ -45,9 +45,6 @@ class SongOrganizer: UIViewController {
         
         scrubbar.minimumValue = 0
         scrubbar.maximumValue = Float(song.length)
-        print(song.length)
-        print(Float(song.length))
-        print(scrubbar.maximumValue)
         scrubbar.value = 0
         
         progressionLabel.text = "\(DataStore.shared.currrentIndex ?? 1)/\(DataStore.shared.library.songs.count)"
