@@ -88,7 +88,7 @@ struct Song {
     
     let album: String?//Album
     
-    let genre: String?//Genre
+    let genre: Genre?
     
     let length: TimeInterval
     
@@ -103,7 +103,11 @@ struct Song {
         self.title   = item.title ?? "Unknown title"
         self.artist  = item.artist ?? "Unknown artist"
         self.album   = item.albumTitle ?? "Unknown album"
-        self.genre   = item.genre
+        if let genre = item.genre {
+            self.genre = Genre(fromString: genre)
+        } else {
+            self.genre = nil
+        }
         self.length  = item.playbackDuration
         self.artwork = item.artwork?.image(at: Song.artworkSize)
     }
@@ -145,6 +149,143 @@ struct Album {
     
 }
 
+/// Defines principal music genres
 enum Genre: String {
-    case all
+    
+    case country = "🤠"
+    case disco = "🕺"
+    case newAge = "📻"
+    case alternative = "🔌"
+    case rap = "🎙"
+    case classical = "🎻"
+    case dance = "💃"
+    case electronic = "🎛"
+    case house = "🏠"
+    case reggae = "🇯🇲"
+    case rock = "🎸"
+    case pop = "🎤"
+    case jazz = "🎷"
+    case latin = "🇪🇸"
+    case metal = "🤘"
+    case singer = "👨‍🎤"
+    case soundtrack = "🎥"
+    case game = "🎮"
+    case gospel = "⛪️"
+    case world = "🌍"
+    case instrumental = "🎹"
+    case meditative = "💤"
+    case experimental = "⚗️"
+    case jPop = "🇯🇵"
+    case book = "📓"
+    case fantasy = "👽"
+    case kids = "👶"
+    case teens = "⭐️"
+    case sports = "⚽️"
+    case surf = "🏄"
+    case tv = "📺"
+    case britPop = "🇬🇧"
+    case variété = "🇫🇷"
+    case german = "🇩🇪"
+    case unknown = "❓"
+    
+    init?(fromString input: String) {
+        
+        /* Lowercase and without accents for comparison purposes */
+        let normalizedInput = input.lowercased().folding(options: .diacriticInsensitive, locale: .current)
+        
+        /* Find genre in input string */
+        if normalizedInput.containsAny(["country"]) {
+            self = .country
+        } else if normalizedInput.containsAny(["variete", "franc", "french"]) {
+            self = .variété
+        } else if normalizedInput.containsAny(["brit"]) {
+            self = .britPop
+        } else if normalizedInput.containsAny(["german"]) {
+            self = .german
+        } else if normalizedInput.containsAny(["disco", "funk", "wave"]) {
+            self = .disco
+        } else if normalizedInput.containsAny(["age", "old", "swing"]) {
+            self = .newAge
+        } else if normalizedInput.containsAny(["rap", "hip-hop", "hiphop", "hip hop", "soul", "r&b", "rnb", "r'n'b"]) {
+            self = .rap
+        } else if normalizedInput.containsAny(["alternati", "indie", "trip"]) {
+            self = .alternative
+        } else if normalizedInput.containsAny(["classi", "symphoni", "sonat", "chamb"]) {
+            self = .classical
+        } else if normalizedInput.containsAny(["dance", "danse"]) {
+            self = .dance
+        } else if normalizedInput.containsAny(["lectroni", "dubstep", "tech", "trance", "fusion", "acid", "club"]) {
+            self = .electronic
+        } else if normalizedInput.containsAny(["house", "lounge"]) {
+            self = .house
+        } else if normalizedInput.containsAny(["reggae", "dub", "root", "ska"]) {
+            self = .reggae
+        } else if normalizedInput.containsAny(["jazz"]) {
+            self = .jazz
+        } else if normalizedInput.containsAny(["latin", "tango", "samba", "spain", "spanish", "espagn"]) {
+            self = .latin
+        } else if normalizedInput.containsAny(["metal", "punk", "hard", "bass", "jungle"]) {
+            self = .metal
+        } else if normalizedInput.containsAny(["singer", "chant", "vocal", "auteur", "writer", "voix", "voice", "spoken", "parle", "podcast"]) {
+            self = .singer
+        } else if normalizedInput.containsAny(["soundtrack", "movie", "film", "video"]) {
+            self = .soundtrack
+        } else if normalizedInput.containsAny(["kid", "child", "enfan", "family", "famille", "christmas", "holiday", "vacance"]) {
+            self = .kids
+        } else if normalizedInput.containsAny(["gospel", "christ", "chreti", "religi", "spirit"]) {
+            self = .gospel
+        } else if normalizedInput.containsAny(["world", "monde", "folk", "europ"]) {
+            self = .world
+        } else if normalizedInput.containsAny(["instrument", "acousti", "ambient", "ambian"]) {
+            self = .instrumental
+        } else if normalizedInput.containsAny(["meditat", "down"]) {
+            self = .meditative
+        } else if normalizedInput.containsAny(["jpop", "j-pop", "j pop", "anime"]) {
+            self = .jPop
+        } else if normalizedInput.containsAny(["book"]) {
+            self = .book
+        } else if normalizedInput.containsAny(["fantas", "scifi", "sci-fi", "sci fi"]) {
+            self = .fantasy
+        } else if normalizedInput.containsAny(["surf"]) {
+            self = .surf
+        } else if normalizedInput.containsAny(["sport"]) {
+            self = .sports
+        } else if normalizedInput.containsAny(["tv", "television"]) {
+            self = .tv
+        } else if normalizedInput.containsAny(["pop"]) {
+            self = .pop
+        } else if normalizedInput.containsAny(["rock", "grunge", "drum", "blues", "guitar"]) {
+            self = .rock
+        } else if normalizedInput.containsAny(["experiment", "industrial"]) {
+            self = .experimental
+        } else if normalizedInput.containsAny(["game", "jeu"]) {
+            self = .game
+        } else if normalizedInput.containsAny(["teen", "ado"]) {
+            self = .teens
+        } else if normalizedInput.containsAny(["unknown", "other", "easy"]) {
+            self = .unknown
+        }
+        
+        return nil
+    }
+}
+
+extension String {
+    
+    /// Indicates whether the string contains any inputted substring
+    ///
+    /// - Parameter array: Substrings to locate in this larger string
+    /// - Returns: True if one or more substrings are found
+    func containsAny(_ array: [String]) -> Bool {
+        
+        /* Return true as soon as we have our 1st match */
+        for item in array {
+            if self.contains(item) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
 }
