@@ -58,7 +58,7 @@ class Library {
         
         self.songs = songs
         
-        /* Playlists
+        /* Playlists */
         // Get raw playlists in library focus
         let libraryPlaylists = MPMediaQuery.playlists().collections ?? []
         var playlists = [Playlist]()
@@ -68,7 +68,7 @@ class Library {
             playlists.append(Playlist(collection: libraryPlaylist))
         }
         
-        self.playlists = playlists*/
+        self.playlists = playlists
     }
     
 }
@@ -122,7 +122,7 @@ struct Playlist {
     let name: String
     
     /// Songs contained in the playlist
-    let songs: [Song]
+//    let songs: [Song]
     
     /// Init Playlist object with a playlist raw type
     ///
@@ -130,9 +130,9 @@ struct Playlist {
     init(collection: MPMediaItemCollection) {
         
         self.name  = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"
-        self.songs = collection.items.map({ playlistItem -> Song in
+        /*self.songs = collection.items.map({ playlistItem -> Song in
             Song(item: playlistItem)
-        })
+        })*/
     }
     
 }
