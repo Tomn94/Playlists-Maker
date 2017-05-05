@@ -48,7 +48,17 @@ class SongOrganizer: UIViewController {
         
         titleLabel.text  = song.title
         artistLabel.text = song.artist
-        detailLabel.text = song.album
+        var detailText = ""
+        if let genre = song.genre {
+            detailText = genre
+        }
+        if let album = song.album {
+            if detailText != "" {
+                detailText += " — "
+            }
+            detailText += album
+        }
+        detailLabel.text = detailText
         
         scrubbar.minimumValue = 0
         scrubbar.maximumValue = Float(song.length)
