@@ -38,8 +38,15 @@ extension PlaylistsViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlistCell",
                                                       for: indexPath) as! PlaylistCell
         
-        cell.wrapper.layer.cornerRadius = 5
+        cell.wrapper.layer.cornerRadius = 7
         cell.wrapper.clipsToBounds = true
+        
+        let contentLayer = cell.contentView.layer
+        contentLayer.shadowOpacity = 0.2
+        contentLayer.shadowRadius  = 5
+        contentLayer.shadowOffset  = CGSize(width: 0, height: 4)
+        contentLayer.shadowColor   = UIColor.black.cgColor
+        cell.clipsToBounds = false
         
         return cell
     }
@@ -48,6 +55,23 @@ extension PlaylistsViewController {
 
 // MARK: - Delegate
 extension PlaylistsViewController {
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - collectionView: <#collectionView description#>
+    ///   - indexPath: <#indexPath description#>
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didSelectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            
+            let contentLayer = cell.contentView.layer
+            contentLayer.shadowOpacity = 1
+            contentLayer.shadowOffset  = .zero
+            contentLayer.shadowColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor
+        }
+    }
     
 }
 
