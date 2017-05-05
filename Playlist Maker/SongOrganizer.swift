@@ -49,12 +49,12 @@ class SongOrganizer: UIViewController {
             detailText = genre.rawValue
         } else if let genre = song.genre.raw {
             detailText = genre
-        }
-        
-        if let album = song.album {
             if detailText != "" {
                 detailText += " — "
             }
+        }
+        
+        if let album = song.album {
             detailText += album
         }
         

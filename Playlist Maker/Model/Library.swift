@@ -264,9 +264,9 @@ enum Genre: String {
             self = .teens
         } else if normalizedInput.containsAny(["unknown", "other", "easy"]) {
             self = .unknown
+        } else {
+            return nil
         }
-        
-        return nil
     }
 }
 
