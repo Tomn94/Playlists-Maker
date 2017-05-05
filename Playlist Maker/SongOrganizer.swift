@@ -24,7 +24,6 @@ class SongOrganizer: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         DataStore.shared.library.load()
         show(song: DataStore.shared.library.songs.first!)
@@ -37,27 +36,28 @@ class SongOrganizer: UIViewController {
         artwork.clipsToBounds = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func show(song: Song) {
         
         artwork.image = song.artwork
         
         titleLabel.text  = song.title
         artistLabel.text = song.artist
+        
         var detailText = ""
-        if let genre = song.genre {
+        
+        if let genre = song.genre.category {
+            detailText = genre.rawValue
+        } else if let genre = song.genre.raw {
             detailText = genre
         }
+        
         if let album = song.album {
             if detailText != "" {
                 detailText += " — "
             }
             detailText += album
         }
+        
         detailLabel.text = detailText
         
         scrubbar.minimumValue = 0

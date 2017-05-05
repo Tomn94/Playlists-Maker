@@ -88,7 +88,7 @@ struct Song {
     
     let album: String?//Album
     
-    let genre: Genre?
+    let genre: (category: Genre?, raw: String?)
     
     let length: TimeInterval
     
@@ -104,9 +104,9 @@ struct Song {
         self.artist  = item.artist ?? "Unknown artist"
         self.album   = item.albumTitle ?? "Unknown album"
         if let genre = item.genre {
-            self.genre = Genre(fromString: genre)
+            self.genre = (Genre(fromString: genre), genre)
         } else {
-            self.genre = nil
+            self.genre = (nil, item.genre)
         }
         self.length  = item.playbackDuration
         self.artwork = item.artwork?.image(at: Song.artworkSize)
