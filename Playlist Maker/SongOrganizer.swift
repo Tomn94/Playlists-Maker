@@ -10,11 +10,24 @@ import UIKit
 
 class SongOrganizer: UIViewController {
 
+    @IBOutlet weak var artwork: UIImageView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    
+    @IBOutlet weak var scrubbar: UISlider!
+    
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var progressionLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         DataStore.shared.library.load()
+        show(song: DataStore.shared.library.songs.first!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,8 +35,22 @@ class SongOrganizer: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func showSong() {
+    func show(song: Song) {
         
+        artwork.image = song.artwork
+        
+        titleLabel.text  = song.title
+        artistLabel.text = song.artist
+        detailLabel.text = song.album
+        
+        scrubbar.minimumValue = 0
+        scrubbar.maximumValue = Float(song.length)
+        print(song.length)
+        print(Float(song.length))
+        print(scrubbar.maximumValue)
+        scrubbar.value = 0
+        
+        progressionLabel.text = "\(DataStore.shared.currrentIndex ?? 1)/\(DataStore.shared.library.songs.count)"
     }
 
 }
