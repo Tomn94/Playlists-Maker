@@ -38,6 +38,9 @@ extension PlaylistsViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlistCell",
                                                       for: indexPath) as! PlaylistCell
         
+        let playlist = DataStore.shared.library.playlists[indexPath.item]
+        cell.name.text = playlist.name
+        
         cell.wrapper.layer.cornerRadius = 7
         cell.wrapper.clipsToBounds = true
         
