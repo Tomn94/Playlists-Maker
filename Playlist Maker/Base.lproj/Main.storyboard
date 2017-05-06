@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6el-UH-dyW">
-                                <rect key="frame" x="0.0" y="64" width="375" height="140"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="135"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ln9-QS-KNe">
                                         <rect key="frame" x="18" y="18" width="339" height="104"/>
@@ -74,15 +74,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Ln9-QS-KNe" secondAttribute="bottom" constant="18" id="AMR-Yi-Ihf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ln9-QS-KNe" secondAttribute="bottom" constant="13" id="AMR-Yi-Ihf"/>
                                     <constraint firstAttribute="trailing" secondItem="Ln9-QS-KNe" secondAttribute="trailing" constant="18" id="KIN-Tx-WDZ"/>
                                     <constraint firstItem="Ln9-QS-KNe" firstAttribute="top" secondItem="6el-UH-dyW" secondAttribute="top" constant="18" id="LPn-GD-bVE"/>
                                     <constraint firstItem="Ln9-QS-KNe" firstAttribute="leading" secondItem="6el-UH-dyW" secondAttribute="leading" constant="18" id="cyo-32-Do4"/>
-                                    <constraint firstAttribute="height" constant="140" id="ta6-XM-uGx"/>
+                                    <constraint firstAttribute="height" constant="135" id="ta6-XM-uGx"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qbt-iP-iKU">
-                                <rect key="frame" x="0.0" y="204" width="375" height="393.5"/>
+                                <rect key="frame" x="0.0" y="199" width="375" height="398.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="ytj-JQ-scO">
                                     <size key="itemSize" width="100" height="100"/>
