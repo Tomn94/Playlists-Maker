@@ -10,6 +10,10 @@ import UIKit
 
 class PlaylistsViewController: UICollectionViewController {
     
+    var organizer: SongOrganizer?
+    
+    var indexPathsForPlaylistsAlreadyContaining = [IndexPath]()
+    
 }
 
 // MARK: - Data Source
@@ -73,6 +77,30 @@ extension PlaylistsViewController {
             cell.animateSelectionStyle(before: PlaylistCell.unselectedShadowStyle,
                                        after:  PlaylistCell.selectedShadowStyle)
         }
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - collectionView: <#collectionView description#>
+    ///   - indexPath: <#indexPath description#>
+    /// - Returns: <#return value description#>
+    override func collectionView(_ collectionView: UICollectionView,
+                                 shouldDeselectItemAt indexPath: IndexPath) -> Bool {
+        
+        if let organizer = organizer,
+           indexPathsForPlaylistsAlreadyContaining.contains(indexPath) {
+            
+            let alert = UIAlertController(title: "“\(DataStore.shared.currentSong?.title ?? "Unknown track")” is already in this playlist",
+                                          message: "The playlist cannot be deselected, since the app is not allowed to remove songs from your playlists.\n\nPlease go in Music app to manually remove it.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Got it!", style: .cancel))
+            organizer.present(alert, animated: true)
+            
+            return false
+        }
+        
+        return true
     }
     
     /// <#Description#>

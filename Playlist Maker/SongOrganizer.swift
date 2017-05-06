@@ -29,6 +29,7 @@ class SongOrganizer: UIViewController {
         super.viewDidLoad()
         
         playlistsViewController  = PlaylistsViewController(collectionViewLayout: playlistsLayout)
+        playlistsViewController.organizer = self
         playlistsView.dataSource = playlistsViewController
         playlistsView.delegate   = playlistsViewController
         playlistsView.allowsMultipleSelection = true
@@ -49,11 +50,14 @@ class SongOrganizer: UIViewController {
         DataStore.shared.currentIndex = 0
         
         let playlists = DataStore.shared.library.playlists
+        var indexes = [IndexPath]()
         for (index, playlist) in playlists.enumerated() {
             if playlist.contains(song: song) {
+                indexes.append(IndexPath(item: index, section: 0))
                 playlistsView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: .top)
             }
         }
+        playlistsViewController.indexPathsForPlaylistsAlreadyContaining = indexes
         playlistsView.contentOffset = .zero // reset scroll occured during selection
         
         artwork.image = song.artwork
