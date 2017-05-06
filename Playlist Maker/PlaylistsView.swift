@@ -53,7 +53,7 @@ extension PlaylistsViewController {
         if let selection = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
             selected = selection
         }
-        cell.apply(style: selected ? PlaylistCell.selectedShadowStyle : PlaylistCell.unselectedShadowStyle)
+        cell.apply(style: selected ? PlaylistCell.selectedShadowStyle : PlaylistCell.deselectedShadowStyle)
         cell.clipsToBounds = false
         
         return cell
@@ -74,7 +74,7 @@ extension PlaylistsViewController {
         
         if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             
-            cell.animateSelectionStyle(before: PlaylistCell.unselectedShadowStyle,
+            cell.animateSelectionStyle(before: PlaylistCell.deselectedShadowStyle,
                                        after:  PlaylistCell.selectedShadowStyle)
         }
     }
@@ -114,7 +114,7 @@ extension PlaylistsViewController {
         if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             
             cell.animateSelectionStyle(before: PlaylistCell.selectedShadowStyle,
-                                       after:  PlaylistCell.unselectedShadowStyle)
+                                       after:  PlaylistCell.deselectedShadowStyle)
         }
     }
     
@@ -127,7 +127,7 @@ class PlaylistCell: UICollectionViewCell {
     
     typealias PlaylistCellStyle = (opacity: Float, color: CGColor, radius: CGFloat, offset: CGSize)
     
-    static let unselectedShadowStyle: PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
+    static let deselectedShadowStyle: PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
                                                            radius: 5, offset: CGSize(width: 0, height: 4))
     
     static let selectedShadowStyle:   PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
