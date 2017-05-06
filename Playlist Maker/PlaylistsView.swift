@@ -45,11 +45,11 @@ extension PlaylistsViewController {
         cell.wrapper.layer.cornerRadius = 7
         cell.wrapper.clipsToBounds = true
         
-        let contentLayer = cell.contentView.layer
-        contentLayer.shadowOpacity = PlaylistCell.shadowStyle.opacity
-        contentLayer.shadowColor   = PlaylistCell.shadowStyle.color
-        contentLayer.shadowRadius  = PlaylistCell.shadowStyle.radius
-        contentLayer.shadowOffset  = PlaylistCell.shadowStyle.offset
+        if let selected = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
+            cell.apply(style: selected ? PlaylistCell.selectedShadowStyle : PlaylistCell.unselectedShadowStyle)
+        } else {
+            cell.apply(style: PlaylistCell.unselectedShadowStyle)
+        }
         cell.clipsToBounds = false
         
         return cell
@@ -68,40 +68,25 @@ extension PlaylistsViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
         
-        if let cell = collectionView.cellForItem(at: indexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             
-            let contentLayer = cell.contentView.layer
+            cell.animateSelectionStyle(before: PlaylistCell.unselectedShadowStyle,
+                                       after:  PlaylistCell.selectedShadowStyle)
+        }
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Parameters:
+    ///   - collectionView: <#collectionView description#>
+    ///   - indexPath: <#indexPath description#>
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didDeselectItemAt indexPath: IndexPath) {
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             
-            let duration = 0.15
-            
-            let animationOpacity = CABasicAnimation(keyPath: "shadowOpacity")
-            animationOpacity.fromValue = PlaylistCell.shadowStyle.opacity
-            animationOpacity.toValue   = PlaylistCell.selectedShadowStyle.opacity - 0.2
-            animationOpacity.duration  = duration
-            contentLayer.add(animationOpacity, forKey: "shadowOpacity")
-            
-            let animationColor = CABasicAnimation(keyPath: "shadowColor")
-            animationColor.fromValue = PlaylistCell.shadowStyle.color
-            animationColor.toValue   = PlaylistCell.selectedShadowStyle.color
-            animationColor.duration  = duration
-            contentLayer.add(animationColor, forKey: "shadowColor")
-            
-            let animationRadius = CABasicAnimation(keyPath: "shadowRadius")
-            animationRadius.fromValue = PlaylistCell.shadowStyle.radius
-            animationRadius.toValue   = PlaylistCell.selectedShadowStyle.radius
-            animationRadius.duration  = duration
-            contentLayer.add(animationRadius, forKey: "shadowRadius")
-            
-            let animationOffset = CABasicAnimation(keyPath: "shadowOffset")
-            animationOffset.fromValue = PlaylistCell.shadowStyle.offset
-            animationOffset.toValue   = PlaylistCell.selectedShadowStyle.offset
-            animationOffset.duration  = duration
-            contentLayer.add(animationOffset, forKey: "shadowOffset")
-            
-            contentLayer.shadowOpacity = PlaylistCell.selectedShadowStyle.opacity
-            contentLayer.shadowColor   = PlaylistCell.selectedShadowStyle.color
-            contentLayer.shadowRadius  = PlaylistCell.selectedShadowStyle.radius
-            contentLayer.shadowOffset  = PlaylistCell.selectedShadowStyle.offset
+            cell.animateSelectionStyle(before: PlaylistCell.selectedShadowStyle,
+                                       after:  PlaylistCell.unselectedShadowStyle)
         }
     }
     
@@ -113,10 +98,12 @@ extension PlaylistsViewController {
 class PlaylistCell: UICollectionViewCell {
     
     typealias PlaylistCellStyle = (opacity: Float, color: CGColor, radius: CGFloat, offset: CGSize)
-    static let shadowStyle        : PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
-                                                         radius: 5, offset: CGSize(width: 0, height: 4))
-    static let selectedShadowStyle: PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
-                                                         radius: 8, offset: .zero)
+    
+    static let unselectedShadowStyle: PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
+                                                           radius: 5, offset: CGSize(width: 0, height: 4))
+    
+    static let selectedShadowStyle:   PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
+                                                           radius: 8, offset: .zero)
     
     
     /// Text displaying the name of the playlist
@@ -127,5 +114,46 @@ class PlaylistCell: UICollectionViewCell {
     
     /// View holding the content (name, image)
     @IBOutlet weak var wrapper: UIView!
+    
+    
+    func apply(style: PlaylistCellStyle) {
+        let contentLayer = contentView.layer
+        contentLayer.shadowOpacity = style.opacity
+        contentLayer.shadowColor   = style.color
+        contentLayer.shadowRadius  = style.radius
+        contentLayer.shadowOffset  = style.offset
+    }
+    
+    func animateSelectionStyle(before: PlaylistCellStyle, after: PlaylistCellStyle) {
+        
+        let duration = 0.15
+        let contentLayer = contentView.layer
+        
+        let animationOpacity = CABasicAnimation(keyPath: "shadowOpacity")
+        animationOpacity.fromValue = before.opacity
+        animationOpacity.toValue   = after.opacity
+        animationOpacity.duration  = duration
+        contentLayer.add(animationOpacity, forKey: "shadowOpacity")
+        
+        let animationColor = CABasicAnimation(keyPath: "shadowColor")
+        animationColor.fromValue = before.color
+        animationColor.toValue   = after.color
+        animationColor.duration  = duration
+        contentLayer.add(animationColor, forKey: "shadowColor")
+        
+        let animationRadius = CABasicAnimation(keyPath: "shadowRadius")
+        animationRadius.fromValue = before.radius
+        animationRadius.toValue   = after.radius
+        animationRadius.duration  = duration
+        contentLayer.add(animationRadius, forKey: "shadowRadius")
+        
+        let animationOffset = CABasicAnimation(keyPath: "shadowOffset")
+        animationOffset.fromValue = before.offset
+        animationOffset.toValue   = after.offset
+        animationOffset.duration  = duration
+        contentLayer.add(animationOffset, forKey: "shadowOffset")
+        
+        apply(style: after)
+    }
     
 }

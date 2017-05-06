@@ -31,6 +31,7 @@ class SongOrganizer: UIViewController {
         playlistsViewController  = PlaylistsViewController(collectionViewLayout: playlistsLayout)
         playlistsView.dataSource = playlistsViewController
         playlistsView.delegate   = playlistsViewController
+        playlistsView.allowsMultipleSelection = true
         
         DataStore.shared.library.load()
         show(song: DataStore.shared.library.songs.first!)
