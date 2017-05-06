@@ -110,33 +110,20 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
-                                                                    <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q5R-Dy-Kgf">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
-                                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="Eaf-EF-DYs">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="28"/>
-                                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                            <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.59999999999999998" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JM9-GT-vth">
-                                                                                    <rect key="frame" x="8" y="77" width="84" height="18"/>
-                                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                                    <nil key="textColor"/>
-                                                                                    <nil key="highlightedColor"/>
-                                                                                </label>
-                                                                            </subviews>
-                                                                        </view>
-                                                                        <vibrancyEffect>
-                                                                            <blurEffect style="light"/>
-                                                                        </vibrancyEffect>
-                                                                    </visualEffectView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.59999999999999998" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JM9-GT-vth">
+                                                                        <rect key="frame" x="8" y="5" width="84" height="18"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="JM9-GT-vth" firstAttribute="top" secondItem="N6q-Ge-2yI" secondAttribute="top" constant="5" id="5Uh-PQ-1Q8"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="JM9-GT-vth" secondAttribute="bottom" constant="5" id="SHa-Lt-2gP"/>
+                                                                    <constraint firstItem="JM9-GT-vth" firstAttribute="leading" secondItem="N6q-Ge-2yI" secondAttribute="leading" constant="8" id="r1U-kX-tGg"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="JM9-GT-vth" secondAttribute="trailing" constant="8" id="yFT-fe-LrD"/>
+                                                                </constraints>
                                                             </view>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="JM9-GT-vth" secondAttribute="trailing" constant="8" id="2KM-zg-59C"/>
-                                                                <constraint firstItem="JM9-GT-vth" firstAttribute="top" secondItem="8pg-iy-kN4" secondAttribute="top" constant="5" id="pa7-Ya-Szv"/>
-                                                                <constraint firstAttribute="height" constant="28" id="yy9-NU-jS0"/>
-                                                                <constraint firstItem="JM9-GT-vth" firstAttribute="leading" secondItem="8pg-iy-kN4" secondAttribute="leading" constant="8" id="zGP-ZX-Yad"/>
-                                                            </constraints>
                                                             <blurEffect style="light"/>
                                                         </visualEffectView>
                                                     </subviews>
