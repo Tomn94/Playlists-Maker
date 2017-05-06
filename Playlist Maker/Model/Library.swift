@@ -82,6 +82,8 @@ struct Song {
     static let artworkSize = CGSize(width: 100, height: 100)
     
     
+    let id: UInt64
+    
     let title: String
     
     let artist: String//Artist
@@ -100,6 +102,7 @@ struct Song {
     /// - Parameter item: Library item to wrap in Song object
     init(item: MPMediaItem) {
         
+        self.id      = item.persistentID
         self.title   = item.title ?? "Unknown title"
         self.artist  = item.artist ?? "Unknown artist"
         self.album   = item.albumTitle ?? "Unknown album"
@@ -122,6 +125,8 @@ struct Playlist {
     static let artworkSize = CGSize(width: 200, height: 200)
     
     
+    let id: NSNumber
+    
     /// Name of the playlist
     let name: String
     
@@ -130,12 +135,15 @@ struct Playlist {
     
     let artwork: UIImage?
     
+    
     /// Init Playlist object with a playlist raw type
     ///
     /// - Parameter collection: Playlist in library
     init(collection: MPMediaItemCollection) {
         
-        self.name  = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"
+        self.id   = collection.value(forProperty: MPMediaPlaylistPropertyPersistentID) as? NSNumber ?? NSNumber(value: 0)
+        
+        self.name = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"
         
         /* Fetch artworks from the 4 first tracks
            Does not use collection.items.dropLast because it's O(nbrSongs - 4) */
@@ -219,6 +227,23 @@ struct Playlist {
         } else {
             return nil
         }
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Parameter song: <#song description#>
+    /// - Returns: <#return value description#>
+    func contains(song: Song) -> Bool {
+        
+        let songPredicate = MPMediaPropertyPredicate(value: song.id,
+                                                     forProperty: MPMediaItemPropertyPersistentID,
+                                                     comparisonType: .equalTo)
+        let playlistPredicate = MPMediaPropertyPredicate(value: self.id,
+                                                         forProperty: MPMediaPlaylistPropertyPersistentID,
+                                                         comparisonType: .equalTo)
+        let results = MPMediaQuery(filterPredicates: [songPredicate, playlistPredicate])
+        
+        return results.items?.count ?? 0 > 0
     }
     
 }
