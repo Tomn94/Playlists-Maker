@@ -139,7 +139,7 @@
                                             <constraint firstItem="qD6-yN-uwP" firstAttribute="top" secondItem="ESy-Nx-wSV" secondAttribute="top" id="asi-6d-Shs"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="image" destination="P9Y-fK-Oe6" id="khR-Go-FCC"/>
+                                            <outlet property="imageView" destination="P9Y-fK-Oe6" id="BmD-NZ-fhY"/>
                                             <outlet property="name" destination="JM9-GT-vth" id="PN2-k2-Enu"/>
                                             <outlet property="wrapper" destination="qD6-yN-uwP" id="rbd-B0-jKy"/>
                                         </connections>

@@ -40,6 +40,7 @@ extension PlaylistsViewController {
         
         let playlist = DataStore.shared.library.playlists[indexPath.item]
         cell.name.text = playlist.name
+        cell.imageView.image = playlist.artwork
         
         cell.wrapper.layer.cornerRadius = 7
         cell.wrapper.clipsToBounds = true
@@ -87,7 +88,7 @@ class PlaylistCell: UICollectionViewCell {
     @IBOutlet weak var name:  UILabel!
     
     /// Background image
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     
     /// View holding the content (name, image)
     @IBOutlet weak var wrapper: UIView!

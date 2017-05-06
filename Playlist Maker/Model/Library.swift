@@ -118,11 +118,17 @@ struct Song {
 /// MPMediaItemCollection wrapper
 struct Playlist {
     
+    /// Default maximum artwork size displayed
+    static let artworkSize = CGSize(width: 200, height: 200)
+    
+    
     /// Name of the playlist
     let name: String
     
     /// Songs contained in the playlist
 //    let songs: [Song]
+    
+    let artwork: UIImage?
     
     /// Init Playlist object with a playlist raw type
     ///
@@ -130,9 +136,89 @@ struct Playlist {
     init(collection: MPMediaItemCollection) {
         
         self.name  = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"
+        
+        /* Fetch artworks from the 4 first tracks
+           Does not use collection.items.dropLast because it's O(nbrSongs - 4) */
+        var artworks = [UIImage]()
+        let nbrSongs = collection.count
+        if let firstArtwork = collection.items.first?.artwork?.image(at: Playlist.artworkSize) {
+            artworks.append(firstArtwork)
+        }
+        if nbrSongs > 1,
+           let secondArtwork = collection.items[1].artwork?.image(at: Playlist.artworkSize) {
+            artworks.append(secondArtwork)
+        }
+        if nbrSongs > 2,
+           let thirdArtwork  = collection.items[2].artwork?.image(at: Playlist.artworkSize) {
+            artworks.append(thirdArtwork)
+        }
+        if nbrSongs > 3,
+           let fourthArtwork = collection.items[3].artwork?.image(at: Playlist.artworkSize) {
+            artworks.append(fourthArtwork)
+        }
+        /* Try to find other artworks if there are not 4 enough */
+        var index = 4
+        while artworks.count < 4 && index < nbrSongs && index < 50 {
+            
+            if let otherArtwork = collection.items[index].artwork?.image(at: Playlist.artworkSize) {
+                artworks.append(otherArtwork)
+            }
+            index += 1
+        }
+        
+        /* Combine them */
+        self.artwork = Playlist.combinedArtwork(from: artworks)
+        
         /*self.songs = collection.items.map({ playlistItem -> Song in
             Song(item: playlistItem)
         })*/
+    }
+    
+    /// <#Description#>
+    ///
+    /// - Parameter artworks: <#artworks description#>
+    /// - Returns: <#return value description#>
+    private static func combinedArtwork(from artworks: [UIImage]) -> UIImage? {
+        
+        if artworks.count >= 2 {
+            let size = Playlist.artworkSize
+            
+            UIGraphicsBeginImageContextWithOptions(size, true, 0)
+            let halfWidth  = size.width  / 2
+            let halfHeight = size.height / 2
+            
+            UIColor.white.set()
+            UIRectFill(CGRect(origin: .zero, size: size))
+            
+            if artworks.count == 2 {
+                let halfSize = CGSize(width: size.width / 2, height: size.height / 2)
+                
+                artworks[0].draw(in: CGRect(origin: .zero, size: halfSize))
+                artworks[1].draw(in: CGRect(origin: CGPoint(x: halfHeight, y: 0), size: halfSize))
+                
+            } else {
+                let quarterSize = CGSize(width: size.width / 2, height: size.height / 2)
+                
+                artworks[0].draw(in: CGRect(origin: CGPoint(x: 0, y: 0), size: quarterSize))
+                artworks[1].draw(in: CGRect(origin: CGPoint(x: halfWidth, y: 0), size: quarterSize))
+                artworks[2].draw(in: CGRect(origin: CGPoint(x: 0, y: halfHeight), size: quarterSize))
+                if artworks.count >= 4 {
+                    artworks[3].draw(in: CGRect(origin: CGPoint(x: halfWidth, y: halfHeight), size: quarterSize))
+                }
+            }
+            
+            defer {
+                UIGraphicsEndImageContext()
+            }
+            
+            return UIGraphicsGetImageFromCurrentImageContext()
+            
+        } else if artworks.count == 1 {
+            return artworks.first
+            
+        } else {
+            return nil
+        }
     }
     
 }
