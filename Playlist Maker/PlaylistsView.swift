@@ -45,11 +45,11 @@ extension PlaylistsViewController {
         cell.wrapper.layer.cornerRadius = 7
         cell.wrapper.clipsToBounds = true
         
-        if let selected = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
-            cell.apply(style: selected ? PlaylistCell.selectedShadowStyle : PlaylistCell.unselectedShadowStyle)
-        } else {
-            cell.apply(style: PlaylistCell.unselectedShadowStyle)
+        var selected = false
+        if let selection = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
+            selected = selection
         }
+        cell.apply(style: selected ? PlaylistCell.selectedShadowStyle : PlaylistCell.unselectedShadowStyle)
         cell.clipsToBounds = false
         
         return cell

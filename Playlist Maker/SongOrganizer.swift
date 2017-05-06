@@ -46,6 +46,16 @@ class SongOrganizer: UIViewController {
 
     func show(song: Song) {
         
+        DataStore.shared.currentIndex = 0
+        
+        let playlists = DataStore.shared.library.playlists
+        for (index, playlist) in playlists.enumerated() {
+            if playlist.contains(song: song) {
+                playlistsView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: .top)
+            }
+        }
+        playlistsView.contentOffset = .zero // reset scroll occured during selection
+        
         artwork.image = song.artwork
         
         titleLabel.text  = song.title
@@ -72,9 +82,9 @@ class SongOrganizer: UIViewController {
         scrubbar.maximumValue = Float(song.length)
         scrubbar.value = 0
         
-        progressionLabel.text = "\((DataStore.shared.currrentIndex ?? 0) + 1)/\(DataStore.shared.library.songs.count)"
+        progressionLabel.text = "\((DataStore.shared.currentIndex ?? 0) + 1)/\(DataStore.shared.library.songs.count)"
         
-        if (DataStore.shared.currrentIndex ?? 0) + 1 == DataStore.shared.library.songs.count {
+        if (DataStore.shared.currentIndex ?? 0) + 1 == DataStore.shared.library.songs.count {
             nextButton.setTitle("Done", for: .normal)
         } else {
             nextButton.setTitle("Next", for: .normal)

@@ -15,7 +15,14 @@ class DataStore {
     let library = Library()
     
     /// Position of the song currently focused to be sorted
-    var currrentIndex: Int?
+    var currentIndex: Int?
+    
+    var currentSong: Song? {
+        if let index = currentIndex {
+            return library.songs[index]
+        }
+        return nil
+    }
     
     
     /// Music playback handler
