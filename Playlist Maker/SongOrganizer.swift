@@ -72,7 +72,13 @@ class SongOrganizer: UIViewController {
         scrubbar.maximumValue = Float(song.length)
         scrubbar.value = 0
         
-        progressionLabel.text = "\(DataStore.shared.currrentIndex ?? 1)/\(DataStore.shared.library.songs.count)"
+        progressionLabel.text = "\((DataStore.shared.currrentIndex ?? 0) + 1)/\(DataStore.shared.library.songs.count)"
+        
+        if (DataStore.shared.currrentIndex ?? 0) + 1 == DataStore.shared.library.songs.count {
+            nextButton.setTitle("Done", for: .normal)
+        } else {
+            nextButton.setTitle("Next", for: .normal)
+        }
     }
 
 }
