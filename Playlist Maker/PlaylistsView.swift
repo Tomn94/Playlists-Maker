@@ -53,7 +53,8 @@ extension PlaylistsViewController {
         if let selection = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
             selected = selection
         }
-        cell.apply(style: selected ? PlaylistCell.selectedShadowStyle : PlaylistCell.deselectedShadowStyle)
+        cell.apply(style: selected ? PlaylistCell.selectedShadowStyle
+                                   : PlaylistCell.deselectedShadowStyle)
         cell.clipsToBounds = false
         
         return cell
@@ -133,6 +134,8 @@ class PlaylistCell: UICollectionViewCell {
     static let selectedShadowStyle:   PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
                                                            radius: 8, offset: .zero)
     
+    static let shadowPath = CGPath(rect: CGRect(x: 0, y: 0, width: 100, height: 100), transform: nil)
+    
     
     /// Text displaying the name of the playlist
     @IBOutlet weak var name:  UILabel!
@@ -150,6 +153,7 @@ class PlaylistCell: UICollectionViewCell {
         contentLayer.shadowColor   = style.color
         contentLayer.shadowRadius  = style.radius
         contentLayer.shadowOffset  = style.offset
+        contentLayer.shadowPath    = PlaylistCell.shadowPath
     }
     
     func animateSelectionStyle(before: PlaylistCellStyle, after: PlaylistCellStyle) {
