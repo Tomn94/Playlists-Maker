@@ -14,8 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        let tintColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1)
+        window?.tintColor = tintColor
+        UIButton.appearance().tintColor = tintColor
+        UISlider.appearance().tintColor = tintColor
+        UINavigationBar.appearance().tintColor = tintColor
+        
         return true
     }
 

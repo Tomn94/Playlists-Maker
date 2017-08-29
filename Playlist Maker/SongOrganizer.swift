@@ -151,7 +151,7 @@ class SongOrganizer: UIViewController {
         if index + 1 == songs.count {
             nextButton.setTitle("Done", for: .normal)
         } else {
-            nextButton.setTitle("Next", for: .normal)
+            nextButton.setTitle("Next Song", for: .normal)
         }
     }
 

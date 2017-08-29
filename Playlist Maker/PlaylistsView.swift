@@ -60,6 +60,18 @@ extension PlaylistsViewController {
         return cell
     }
     
+    /// Footer (hint how to use)
+    override func collectionView(_ collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                 at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        if kind == UICollectionElementKindSectionFooter {
+            
+            return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "playlistFooter", for: indexPath)
+        }
+        return UICollectionReusableView()
+    }
+    
 }
 
 // MARK: - Delegate
