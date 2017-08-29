@@ -16,6 +16,7 @@
 		64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F981EBB4D41000ED6B3 /* DataStore.swift */; };
 		647E7BAB1EBCEE62005291A0 /* PlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */; };
 		64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */; };
+		64900CE01F562B9C00E2F09D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900CDF1F562B9C00E2F09D /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +27,11 @@
 		64547F8A1EBB245C000ED6B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64547F8D1EBB245C000ED6B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64547F8F1EBB245C000ED6B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64547F961EBB35DE000ED6B3 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Library.swift; path = Model/Library.swift; sourceTree = "<group>"; };
-		64547F981EBB4D41000ED6B3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataStore.swift; path = Model/DataStore.swift; sourceTree = "<group>"; };
+		64547F961EBB35DE000ED6B3 /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		64547F981EBB4D41000ED6B3 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
 		64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
+		64900CDF1F562B9C00E2F09D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +79,12 @@
 		64547F951EBB35AF000ED6B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				64900CDF1F562B9C00E2F09D /* Utils.swift */,
 				64547F981EBB4D41000ED6B3 /* DataStore.swift */,
 				64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */,
 				64547F961EBB35DE000ED6B3 /* Library.swift */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +163,7 @@
 				647E7BAB1EBCEE62005291A0 /* PlaylistsView.swift in Sources */,
 				64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */,
 				64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */,
+				64900CE01F562B9C00E2F09D /* Utils.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
 				64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */,
 				64547F971EBB35DE000ED6B3 /* Library.swift in Sources */,

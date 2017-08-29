@@ -24,10 +24,25 @@ class DataStore {
         return nil
     }
     
+    /// Setting whether songs should play right when a song is displayed (defaults to true)
+    static var autoplaysSong: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: UserDefaultKeys.autoplaySongs)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.autoplaySongs)
+        }
+    }
+    
     
     // MARK: Singleton
     
-    private init() {}
+    private init() {
+        
+        UserDefaults.standard.register(defaults: [
+            UserDefaultKeys.autoplaySongs : true
+        ])
+    }
     
     static let shared = DataStore()
     

@@ -93,11 +93,13 @@ class SongPlayer {
         
         musicPlayer.play()
         
-        // Create a time to update delegate's slider
-        timeUpdater = Timer(timeInterval: 0.1, target: self,
-                            selector: .playbackTimeChanged, userInfo: nil,
-                            repeats: true)
-        RunLoop.current.add(timeUpdater!, forMode: .commonModes)
+        if delegate != nil {
+            // Create a time to update delegate's slider
+            timeUpdater = Timer(timeInterval: 0.1, target: self,
+                                selector: .playbackTimeChanged, userInfo: nil,
+                                repeats: true)
+            RunLoop.current.add(timeUpdater!, forMode: .commonModes)
+        }
     }
     
     /// Pause current song

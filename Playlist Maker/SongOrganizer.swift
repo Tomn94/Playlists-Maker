@@ -164,7 +164,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         }
         detailLabel.text = detailText
         
-        // Time info & Player
+        // Time info
         scrubbar.minimumValue = 0
         scrubbar.maximumValue = Float(song.length)
         scrubbar.value = 0
@@ -174,7 +174,14 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         formatter.unitsStyle = .positional
         timeLabel.text = formatter.string(from: song.length)
         
+        // Load song in player
         songPlayer.load(songs: [song])
+        if DataStore.autoplaysSong {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                // Dispatch otherwise player UI not ready
+                self.songPlayer.resume()
+            }
+        }
         
         // Bottom bar
         progressionLabel.text = "\(index + 1)/\(songsCount)"
