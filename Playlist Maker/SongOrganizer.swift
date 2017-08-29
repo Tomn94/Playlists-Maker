@@ -34,6 +34,7 @@ class SongOrganizer: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /* Playlists collection view setup */
         playlistsViewController  = PlaylistsViewController(collectionViewLayout: playlistsLayout)
         playlistsViewController.organizer = self
         playlistsView.dataSource = playlistsViewController
@@ -45,9 +46,20 @@ class SongOrganizer: UIViewController {
         playlistsView.scrollIndicatorInsets = insetsFromBars
         playlistsView.contentInset = insetsFromBars
         
+        /* Top bar setup */
         artwork.layer.cornerRadius = 5
         artwork.clipsToBounds = true
         
+        let fontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title3)
+        if let boldFontDescriptor = fontDescriptor.withSymbolicTraits(.traitBold) {
+            titleLabel.font = UIFont(descriptor: boldFontDescriptor,
+                                     size: 0)  // keep current size
+            titleLabel.adjustsFontForContentSizeCategory = true
+        }
+        
+        nextButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        
+        /* Load content */
         DataStore.shared.library.load()
         showSong(at: 0, animated: false)
     }
