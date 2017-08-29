@@ -21,6 +21,9 @@ class SongOrganizer: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var progressionLabel: UILabel!
     
+    @IBOutlet weak var topBar: UIVisualEffectView!
+    @IBOutlet weak var bottomBar: UIVisualEffectView!
+    
     @IBOutlet weak var playlistsView: UICollectionView!
     @IBOutlet weak var playlistsLayout: UICollectionViewFlowLayout!
     var playlistsViewController: PlaylistsViewController!
@@ -34,15 +37,16 @@ class SongOrganizer: UIViewController {
         playlistsView.delegate   = playlistsViewController
         playlistsView.allowsMultipleSelection = true
         
-        DataStore.shared.library.load()
-        show(song: DataStore.shared.library.songs.first!)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+        let insetsFromBars = UIEdgeInsets(top: topBar.frame.height,        left: 0,
+                                          bottom: bottomBar.frame.height, right: 0)
+        playlistsView.scrollIndicatorInsets = insetsFromBars
+        playlistsView.contentInset = insetsFromBars
         
         artwork.layer.cornerRadius = 5
         artwork.clipsToBounds = true
+        
+        DataStore.shared.library.load()
+        show(song: DataStore.shared.library.songs.first!)
     }
 
     func show(song: Song) {

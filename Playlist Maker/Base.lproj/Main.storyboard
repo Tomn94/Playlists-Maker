@@ -212,13 +212,15 @@
                     <connections>
                         <outlet property="artistLabel" destination="oYd-g6-lfH" id="E4I-NR-Sbk"/>
                         <outlet property="artwork" destination="Plq-E2-v5L" id="Crd-Lh-2AG"/>
+                        <outlet property="bottomBar" destination="c5s-uz-ohS" id="aMO-iT-VaR"/>
                         <outlet property="detailLabel" destination="NW8-Wo-nKO" id="5a4-tM-7tb"/>
                         <outlet property="nextButton" destination="UWw-Za-4nH" id="r8P-vs-y71"/>
-                        <outlet property="playlistsLayout" destination="ytj-JQ-scO" id="gvh-kq-Jee"/>
-                        <outlet property="playlistsView" destination="qbt-iP-iKU" id="aQD-2f-aXE"/>
+                        <outlet property="playlistsLayout" destination="ytj-JQ-scO" id="bF5-RS-5as"/>
+                        <outlet property="playlistsView" destination="qbt-iP-iKU" id="gIU-Hq-CZw"/>
                         <outlet property="progressionLabel" destination="NRM-Da-AAw" id="3m6-jf-j0j"/>
                         <outlet property="scrubbar" destination="xSQ-AW-EUS" id="SUm-xb-1ut"/>
                         <outlet property="titleLabel" destination="rHq-Fm-lM4" id="yoC-bm-De8"/>
+                        <outlet property="topBar" destination="vyg-6I-dLu" id="hJb-wc-Rfd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
