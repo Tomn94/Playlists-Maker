@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SongOrganizer: UIViewController {
+class SongOrganizer: UIViewController, SongPlayerDelegate {
     
     /// Handles track playback
     let songPlayer = SongPlayer()
@@ -25,6 +25,7 @@ class SongOrganizer: UIViewController {
     @IBOutlet weak var detailLabel: UILabel!
     
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var playbackChangingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrubbar: UISlider!
     /// Total time
     @IBOutlet weak var timeLabel: UILabel!
@@ -47,6 +48,8 @@ class SongOrganizer: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        songPlayer.delegate = self
         
         /* Playlists collection view setup */
         playlistsViewController  = PlaylistsViewController(collectionViewLayout: playlistsLayout)
@@ -212,6 +215,33 @@ class SongOrganizer: UIViewController {
         /* Get time from scrub bar and apply it to player */
         let time = TimeInterval(scrubbar.value)
         songPlayer.seek(to: time)
+    }
+    
+    
+    // MARK: Media playback - Received events
+    
+    func playbackStatusDidChange(_ songPlayer: SongPlayer) {
+        
+        /* Hide unknown status indicator */
+        playbackChangingIndicator.stopAnimating()
+        playButton.isHidden = false
+        
+        /* Update play/pause button */
+        if songPlayer.isPlaying {
+            playButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+        } else {
+            playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        }
+    }
+    
+    func currentTimeChanged(_ songPlayer: SongPlayer) {
+        
+        // Don't mess with current user choice
+        guard !scrubbar.isTracking else { return }
+        
+        /* Get time from player and apply it to scrub bar */
+        let time = Float(songPlayer.currentTime)
+        self.scrubbar.value = time
     }
     
 }

@@ -8,12 +8,41 @@
 
 import MediaPlayer
 
+extension Selector {
+    /// Player successfully changed between play and pause
+    static let playbackStatusChanged = #selector(SongPlayer.playbackStatusChanged)
+    /// Music playing, advances in time
+    static let playbackTimeChanged   = #selector(SongPlayer.playbackTimeChanged)
+}
+
 /// Class handling song playback
 class SongPlayer {
     
     /// Wrapped iOS music player
     private let musicPlayer = MPMusicPlayerController.applicationQueuePlayer()
     
+    /// Timer to update elapsed time
+    private var timeUpdater: Timer?
+    
+    
+    /// Delegate receiving playback events
+    weak var delegate: SongPlayerDelegate? {
+        didSet {
+            
+            guard delegate != nil else {
+                // Unsubscribe from playback status notifications if no delegate
+                musicPlayer.endGeneratingPlaybackNotifications()
+                NotificationCenter.default.removeObserver(self)
+                return
+            }
+            
+            // Subscribe to playback status notifications to keep delegate updated
+            musicPlayer.beginGeneratingPlaybackNotifications()
+            NotificationCenter.default.addObserver(self, selector: .playbackStatusChanged,
+                                                   name: .MPMusicPlayerControllerPlaybackStateDidChange,
+                                                   object: nil)
+        }
+    }
     
     
     /// Is a song currently playing
