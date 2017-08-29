@@ -16,7 +16,9 @@ class SongOrganizer: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     
+    @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var scrubbar: UISlider!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var progressionLabel: UILabel!
