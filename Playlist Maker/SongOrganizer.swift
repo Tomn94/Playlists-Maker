@@ -9,27 +9,41 @@
 import UIKit
 
 class SongOrganizer: UIViewController {
+    
+    /// Handles track playback
+    let songPlayer = SongPlayer()
 
+    /* Song info - top bar */
+    @IBOutlet weak var topBar: UIVisualEffectView!
+    @IBOutlet weak var songInfoWrapper: UIView!
+    
     @IBOutlet weak var artwork: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
+    /// Genre & Album
     @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var songInfoWrapper: UIView!
     
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var scrubbar: UISlider!
+    /// Total time
     @IBOutlet weak var timeLabel: UILabel!
     
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var progressionLabel: UILabel!
-    
-    @IBOutlet weak var topBar: UIVisualEffectView!
+    /* Progress info - bottom bar */
     @IBOutlet weak var bottomBar: UIVisualEffectView!
     
+    @IBOutlet weak var nextButton: UIButton!
+    /// X/Y, where X is the current song index and Y the number of songs to sort
+    @IBOutlet weak var progressionLabel: UILabel!
+    
+    /* Main view & its content - collection view */
+    /// Collection view
     @IBOutlet weak var playlistsView: UICollectionView!
+    /// Collection view layout
     @IBOutlet weak var playlistsLayout: UICollectionViewFlowLayout!
+    /// Collection view controller
     var playlistsViewController: PlaylistsViewController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +75,7 @@ class SongOrganizer: UIViewController {
         
         /* Load content */
         DataStore.shared.library.load()
+        songPlayer.load(songs: DataStore.shared.library.songs)
         showSong(at: 0, animated: false)
     }
 

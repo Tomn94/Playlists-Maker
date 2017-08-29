@@ -96,6 +96,8 @@ struct Song {
     
     let artwork: UIImage?
     
+    let item: MPMediaItem
+    
     
     /// Init Song object with a media library query result
     ///
@@ -113,6 +115,7 @@ struct Song {
         }
         self.length  = item.playbackDuration
         self.artwork = item.artwork?.image(at: Song.artworkSize)
+        self.item    = item
     }
     
 }

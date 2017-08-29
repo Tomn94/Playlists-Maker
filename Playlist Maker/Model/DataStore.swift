@@ -25,10 +25,6 @@ class DataStore {
     }
     
     
-    /// Music playback handler
-    let player = Player()
-    
-    
     // MARK: Singleton
     
     private init() {}

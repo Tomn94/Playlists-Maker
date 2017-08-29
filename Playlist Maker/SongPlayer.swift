@@ -18,9 +18,12 @@ class SongPlayer {
     /// Prepare the player to play a list of songs
     ///
     /// - Parameter songs: Media Items from library
-    func load(songs: [MPMediaItem]) {
+    func load(songs: [Song]) {
         
-        let collection = MPMediaItemCollection(items: songs)
+        let songItems = songs.map { song in
+            song.item
+        }
+        let collection = MPMediaItemCollection(items: songItems)
         musicPlayer.setQueue(with: collection)
         musicPlayer.prepareToPlay()
     }
