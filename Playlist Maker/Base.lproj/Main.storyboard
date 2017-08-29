@@ -100,40 +100,51 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ln9-QS-KNe">
                                             <rect key="frame" x="18" y="18" width="339" height="104"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fHq-k7-Btr">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmH-t0-ldh">
                                                     <rect key="frame" x="0.0" y="0.0" width="339" height="69"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Plq-E2-v5L">
-                                                            <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Plq-E2-v5L" secondAttribute="height" multiplier="1:1" id="x2g-CE-N5Y"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="T59-No-FMa">
-                                                            <rect key="frame" x="84" y="0.0" width="255" height="69"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fHq-k7-Btr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="69"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHq-Fm-lM4">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="255" height="24"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYd-g6-lfH">
-                                                                    <rect key="frame" x="0.0" y="26.5" width="255" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre — Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NW8-Wo-nKO">
-                                                                    <rect key="frame" x="0.0" y="49.5" width="255" height="19.5"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Plq-E2-v5L">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="Plq-E2-v5L" secondAttribute="height" multiplier="1:1" id="x2g-CE-N5Y"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="T59-No-FMa">
+                                                                    <rect key="frame" x="84" y="0.0" width="255" height="69"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHq-Fm-lM4">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="255" height="24"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYd-g6-lfH">
+                                                                            <rect key="frame" x="0.0" y="26.5" width="255" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre — Album" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NW8-Wo-nKO">
+                                                                            <rect key="frame" x="0.0" y="49.5" width="255" height="19.5"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                </stackView>
+                                                    <constraints>
+                                                        <constraint firstItem="fHq-k7-Btr" firstAttribute="top" secondItem="vmH-t0-ldh" secondAttribute="top" id="5mU-Fg-xYZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fHq-k7-Btr" secondAttribute="trailing" id="N3l-1b-W4j"/>
+                                                        <constraint firstItem="fHq-k7-Btr" firstAttribute="leading" secondItem="vmH-t0-ldh" secondAttribute="leading" id="kjz-rc-0Lz"/>
+                                                        <constraint firstAttribute="bottom" secondItem="fHq-k7-Btr" secondAttribute="bottom" id="yT0-ZH-8xY"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9i-Ak-TMU">
                                                     <rect key="frame" x="0.0" y="79" width="339" height="25"/>
                                                     <subviews>
@@ -197,6 +208,9 @@
                                             <rect key="frame" x="8" y="2" width="359" height="36.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <state key="normal" title="Next"/>
+                                            <connections>
+                                                <action selector="nextSong" destination="BYZ-38-t0r" eventType="touchUpInside" id="NKv-ub-73q"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -241,6 +255,7 @@
                         <outlet property="playlistsView" destination="qbt-iP-iKU" id="gIU-Hq-CZw"/>
                         <outlet property="progressionLabel" destination="NRM-Da-AAw" id="3m6-jf-j0j"/>
                         <outlet property="scrubbar" destination="xSQ-AW-EUS" id="SUm-xb-1ut"/>
+                        <outlet property="songInfoWrapper" destination="vmH-t0-ldh" id="h1Z-Y1-6RE"/>
                         <outlet property="timeLabel" destination="85P-Oj-rjM" id="wBU-ES-i96"/>
                         <outlet property="titleLabel" destination="rHq-Fm-lM4" id="yoC-bm-De8"/>
                         <outlet property="topBar" destination="vyg-6I-dLu" id="hJb-wc-Rfd"/>
