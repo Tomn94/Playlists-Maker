@@ -48,12 +48,17 @@ class SongOrganizer: UIViewController {
         artwork.clipsToBounds = true
         
         DataStore.shared.library.load()
-        show(song: DataStore.shared.library.songs.first!)
+        showSong(at: 0)
     }
 
-    func show(song: Song) {
+    func showSong(at index: Int) {
         
-        DataStore.shared.currentIndex = 0
+        let songs = DataStore.shared.library.songs
+        let songsCount = songs.count
+        guard index < songsCount else { return }
+        let song = songs[index]
+        
+        DataStore.shared.currentIndex = index
         
         let playlists = DataStore.shared.library.playlists
         var indexes = [IndexPath]()
@@ -64,7 +69,6 @@ class SongOrganizer: UIViewController {
             }
         }
         playlistsViewController.indexPathsForPlaylistsAlreadyContaining = indexes
-        playlistsView.contentOffset = .zero // reset scroll occured during selection
         
         artwork.image = song.artwork
         
@@ -92,9 +96,14 @@ class SongOrganizer: UIViewController {
         scrubbar.maximumValue = Float(song.length)
         scrubbar.value = 0
         
-        progressionLabel.text = "\((DataStore.shared.currentIndex ?? 0) + 1)/\(DataStore.shared.library.songs.count)"
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.unitsStyle = .positional
+        timeLabel.text = formatter.string(from: song.length)
         
-        if (DataStore.shared.currentIndex ?? 0) + 1 == DataStore.shared.library.songs.count {
+        progressionLabel.text = "\(index + 1)/\(songsCount)"
+        
+        if index + 1 == songs.count {
             nextButton.setTitle("Done", for: .normal)
         } else {
             nextButton.setTitle("Next", for: .normal)
