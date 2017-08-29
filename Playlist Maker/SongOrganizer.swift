@@ -75,7 +75,6 @@ class SongOrganizer: UIViewController {
         
         /* Load content */
         DataStore.shared.library.load()
-        songPlayer.load(songs: DataStore.shared.library.songs)
         showSong(at: 0, animated: false)
     }
 
@@ -162,7 +161,7 @@ class SongOrganizer: UIViewController {
         }
         detailLabel.text = detailText
         
-        // Time info
+        // Time info & Player
         scrubbar.minimumValue = 0
         scrubbar.maximumValue = Float(song.length)
         scrubbar.value = 0
@@ -171,6 +170,8 @@ class SongOrganizer: UIViewController {
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
         timeLabel.text = formatter.string(from: song.length)
+        
+        songPlayer.load(songs: [song])
         
         // Bottom bar
         progressionLabel.text = "\(index + 1)/\(songsCount)"
@@ -189,6 +190,28 @@ class SongOrganizer: UIViewController {
             else { return }
         
         showSong(at: currentIndex + 1)
+    }
+    
+    
+    // MARK: Media playback - User actions
+    
+    /// Play/Pause button tapped
+    @IBAction func playPause() {
+        
+        songPlayer.playPause()
+        
+        /* iOS takes some time to change playback status,
+           we'll indicate it with an unknown status indicator */
+        playbackChangingIndicator.startAnimating()
+        playButton.isHidden = true
+    }
+    
+    /// Time changed in scrub bar
+    @IBAction func scrubbed() {
+        
+        /* Get time from scrub bar and apply it to player */
+        let time = TimeInterval(scrubbar.value)
+        songPlayer.seek(to: time)
     }
     
 }

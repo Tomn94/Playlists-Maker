@@ -118,6 +118,16 @@ The current track will be added to those highlighted playlists.
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z5e-As-VhQ">
+                                            <rect key="frame" x="0.0" y="75" width="53" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="53" id="PRd-PZ-jdc"/>
+                                                <constraint firstAttribute="height" constant="60" id="WgZ-XY-ePe"/>
+                                            </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="n3r-Fh-Yte" appends="YES" id="Rdx-3u-myN"/>
+                                            </connections>
+                                        </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ln9-QS-KNe">
                                             <rect key="frame" x="18" y="18" width="339" height="104"/>
                                             <subviews>
@@ -169,13 +179,18 @@ The current track will be added to those highlighted playlists.
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9i-Ak-TMU">
                                                     <rect key="frame" x="0.0" y="79" width="339" height="25"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWv-Qo-xwq">
-                                                            <rect key="frame" x="-3" y="0.0" width="30" height="25"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                            <state key="normal" title="▶︎"/>
+                                                        <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWv-Qo-xwq">
+                                                            <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
+                                                            <state key="normal" image="play"/>
+                                                            <connections>
+                                                                <action selector="playPause" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXT-Dp-XjE"/>
+                                                            </connections>
                                                         </button>
-                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="xSQ-AW-EUS">
-                                                            <rect key="frame" x="30" y="0.0" width="266" height="26"/>
+                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSQ-AW-EUS">
+                                                            <rect key="frame" x="32" y="0.0" width="264" height="26"/>
+                                                            <connections>
+                                                                <action selector="scrubbed" destination="BYZ-38-t0r" eventType="valueChanged" id="LoH-TS-TWi"/>
+                                                            </connections>
                                                         </slider>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85P-Oj-rjM">
                                                             <rect key="frame" x="306" y="0.0" width="33" height="25"/>
@@ -183,8 +198,14 @@ The current track will be added to those highlighted playlists.
                                                             <color key="textColor" red="0.71366435289382935" green="0.71376603841781616" blue="0.71363228559494019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ND8-6s-QNY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
+                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="xSQ-AW-EUS" firstAttribute="leading" secondItem="ND8-6s-QNY" secondAttribute="trailing" constant="5" id="212-jY-E8T"/>
+                                                        <constraint firstItem="ND8-6s-QNY" firstAttribute="leading" secondItem="I9i-Ak-TMU" secondAttribute="leading" id="2mA-by-D23"/>
+                                                        <constraint firstAttribute="bottom" secondItem="ND8-6s-QNY" secondAttribute="bottom" id="4tB-z4-d4A"/>
                                                         <constraint firstAttribute="bottom" secondItem="85P-Oj-rjM" secondAttribute="bottom" id="9Pj-UP-1py"/>
                                                         <constraint firstAttribute="trailing" secondItem="85P-Oj-rjM" secondAttribute="trailing" id="HD8-Si-t4g"/>
                                                         <constraint firstItem="eWv-Qo-xwq" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="L8M-gL-HvE"/>
@@ -192,10 +213,11 @@ The current track will be added to those highlighted playlists.
                                                         <constraint firstAttribute="height" constant="25" id="V4G-aP-Dgw"/>
                                                         <constraint firstAttribute="bottom" secondItem="eWv-Qo-xwq" secondAttribute="bottom" id="bQH-TH-64t"/>
                                                         <constraint firstItem="85P-Oj-rjM" firstAttribute="leading" secondItem="xSQ-AW-EUS" secondAttribute="trailing" constant="12" id="dGF-3W-7Yd"/>
-                                                        <constraint firstItem="eWv-Qo-xwq" firstAttribute="leading" secondItem="I9i-Ak-TMU" secondAttribute="leading" constant="-3" id="fEe-sU-o6T"/>
+                                                        <constraint firstItem="eWv-Qo-xwq" firstAttribute="leading" secondItem="I9i-Ak-TMU" secondAttribute="leading" id="fEe-sU-o6T"/>
                                                         <constraint firstAttribute="bottom" secondItem="xSQ-AW-EUS" secondAttribute="bottom" id="joX-O7-0e0"/>
                                                         <constraint firstItem="xSQ-AW-EUS" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="r0f-aX-6JC"/>
                                                         <constraint firstItem="xSQ-AW-EUS" firstAttribute="leading" secondItem="eWv-Qo-xwq" secondAttribute="trailing" constant="5" id="wEu-mD-6ti"/>
+                                                        <constraint firstItem="ND8-6s-QNY" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="y3g-YE-u30"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -203,7 +225,9 @@ The current track will be added to those highlighted playlists.
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Ln9-QS-KNe" firstAttribute="leading" secondItem="5sr-dX-YdQ" secondAttribute="leading" constant="18" id="57z-7Z-kYW"/>
+                                        <constraint firstAttribute="bottom" secondItem="Z5e-As-VhQ" secondAttribute="bottom" id="Aaw-BM-l7Z"/>
                                         <constraint firstAttribute="trailing" secondItem="Ln9-QS-KNe" secondAttribute="trailing" constant="18" id="FIR-Bx-XhO"/>
+                                        <constraint firstItem="Z5e-As-VhQ" firstAttribute="leading" secondItem="5sr-dX-YdQ" secondAttribute="leading" id="Gvc-f0-fAb"/>
                                         <constraint firstItem="Ln9-QS-KNe" firstAttribute="top" secondItem="5sr-dX-YdQ" secondAttribute="top" constant="18" id="RjK-n3-0uB"/>
                                         <constraint firstAttribute="bottom" secondItem="Ln9-QS-KNe" secondAttribute="bottom" constant="13" id="Tdk-9g-03y"/>
                                     </constraints>
@@ -272,6 +296,7 @@ The current track will be added to those highlighted playlists.
                         <outlet property="detailLabel" destination="NW8-Wo-nKO" id="5a4-tM-7tb"/>
                         <outlet property="nextButton" destination="UWw-Za-4nH" id="r8P-vs-y71"/>
                         <outlet property="playButton" destination="eWv-Qo-xwq" id="eVe-a7-zvM"/>
+                        <outlet property="playbackChangingIndicator" destination="ND8-6s-QNY" id="ivq-0T-C3W"/>
                         <outlet property="playlistsLayout" destination="ytj-JQ-scO" id="bF5-RS-5as"/>
                         <outlet property="playlistsView" destination="qbt-iP-iKU" id="gIU-Hq-CZw"/>
                         <outlet property="progressionLabel" destination="NRM-Da-AAw" id="3m6-jf-j0j"/>
@@ -283,6 +308,11 @@ The current track will be added to those highlighted playlists.
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="n3r-Fh-Yte">
+                    <connections>
+                        <action selector="playPause" destination="BYZ-38-t0r" id="lSw-Ac-2nO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="-545.57721139430294"/>
         </scene>
@@ -305,4 +335,7 @@ The current track will be added to those highlighted playlists.
             <point key="canvasLocation" x="533.60000000000002" y="-543.77811094452773"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play" width="29" height="29"/>
+    </resources>
 </document>
