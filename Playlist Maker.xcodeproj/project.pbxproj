@@ -17,6 +17,7 @@
 		647E7BAB1EBCEE62005291A0 /* PlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */; };
 		64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */; };
 		64900CE01F562B9C00E2F09D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900CDF1F562B9C00E2F09D /* Utils.swift */; };
+		64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
 		64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
 		64900CDF1F562B9C00E2F09D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNRecessedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				64547F831EBB245C000ED6B3 /* AppDelegate.swift */,
 				64547F851EBB245C000ED6B3 /* SongOrganizer.swift */,
 				647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */,
+				64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */,
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
 				64547F8A1EBB245C000ED6B3 /* Assets.xcassets */,
 				64547F8C1EBB245C000ED6B3 /* LaunchScreen.storyboard */,
@@ -165,6 +168,7 @@
 				64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */,
 				64900CE01F562B9C00E2F09D /* Utils.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
+				64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */,
 				64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */,
 				64547F971EBB35DE000ED6B3 /* Library.swift in Sources */,
 			);

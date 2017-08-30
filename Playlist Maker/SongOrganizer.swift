@@ -8,6 +8,14 @@
 
 import UIKit
 
+fileprivate extension Selector {
+    
+    /// Autoplay button tapped
+    static let toggleAutoplay = #selector(SongOrganizer.toggleAutoplay)
+    
+}
+
+
 class SongOrganizer: UIViewController, SongPlayerDelegate {
     
     /// Handles track playback
@@ -78,6 +86,20 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         /* Load content */
         DataStore.shared.library.load()
         showSong(at: 0, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpNavigationBar()
+    }
+    
+    func setUpNavigationBar() {
+        
+        let toggleButton = RecessedButton(type: .system)
+        toggleButton.setTitle("Autoplay", for: .normal)
+        toggleButton.isSelected = UserDefaults.standard.bool(forKey: UserDefaultKeys.autoplaySongs)
+        toggleButton.addTarget(self, action: .toggleAutoplay, for: .touchUpInside)
+        navigationItem.leftBarButtonItem = RecessedBarButton(button: toggleButton)
     }
 
     func showSong(at index: Int,
@@ -185,6 +207,17 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         } else {
             nextButton.setTitle("Next Song", for: .normal)
         }
+    }
+    
+    
+    // MARK: Actions
+    
+    /// Autoplay switch button tapped
+    func toggleAutoplay() {
+        
+        let userDefaults = UserDefaults.standard
+        let autoplayKey  = UserDefaultKeys.autoplaySongs
+        userDefaults.set(!userDefaults.bool(forKey: autoplayKey), forKey: autoplayKey)
     }
 
     /// Next button tapped

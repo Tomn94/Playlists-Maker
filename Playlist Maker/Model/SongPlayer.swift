@@ -8,7 +8,7 @@
 
 import MediaPlayer
 
-extension Selector {
+fileprivate extension Selector {
     
     /// Player successfully changed between play and pause
     static let playbackStatusChanged = #selector(SongPlayer.playbackStatusChanged)
