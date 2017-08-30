@@ -186,12 +186,6 @@ The current track will be added to those highlighted playlists.
                                                                 <action selector="playPause" destination="BYZ-38-t0r" eventType="touchUpInside" id="pXT-Dp-XjE"/>
                                                             </connections>
                                                         </button>
-                                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSQ-AW-EUS">
-                                                            <rect key="frame" x="32" y="0.0" width="264" height="26"/>
-                                                            <connections>
-                                                                <action selector="scrubbed" destination="BYZ-38-t0r" eventType="valueChanged" id="LoH-TS-TWi"/>
-                                                            </connections>
-                                                        </slider>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85P-Oj-rjM">
                                                             <rect key="frame" x="306" y="0.0" width="33" height="25"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -199,24 +193,20 @@ The current track will be added to those highlighted playlists.
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ND8-6s-QNY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="29" height="25"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="25"/>
                                                         </activityIndicatorView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="xSQ-AW-EUS" firstAttribute="leading" secondItem="ND8-6s-QNY" secondAttribute="trailing" constant="5" id="212-jY-E8T"/>
                                                         <constraint firstItem="ND8-6s-QNY" firstAttribute="leading" secondItem="I9i-Ak-TMU" secondAttribute="leading" id="2mA-by-D23"/>
                                                         <constraint firstAttribute="bottom" secondItem="ND8-6s-QNY" secondAttribute="bottom" id="4tB-z4-d4A"/>
                                                         <constraint firstAttribute="bottom" secondItem="85P-Oj-rjM" secondAttribute="bottom" id="9Pj-UP-1py"/>
                                                         <constraint firstAttribute="trailing" secondItem="85P-Oj-rjM" secondAttribute="trailing" id="HD8-Si-t4g"/>
                                                         <constraint firstItem="eWv-Qo-xwq" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="L8M-gL-HvE"/>
                                                         <constraint firstItem="85P-Oj-rjM" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="Mtr-FP-vCP"/>
+                                                        <constraint firstItem="85P-Oj-rjM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eWv-Qo-xwq" secondAttribute="trailing" constant="10" id="NZN-J2-EcP"/>
                                                         <constraint firstAttribute="height" constant="25" id="V4G-aP-Dgw"/>
                                                         <constraint firstAttribute="bottom" secondItem="eWv-Qo-xwq" secondAttribute="bottom" id="bQH-TH-64t"/>
-                                                        <constraint firstItem="85P-Oj-rjM" firstAttribute="leading" secondItem="xSQ-AW-EUS" secondAttribute="trailing" constant="12" id="dGF-3W-7Yd"/>
                                                         <constraint firstItem="eWv-Qo-xwq" firstAttribute="leading" secondItem="I9i-Ak-TMU" secondAttribute="leading" id="fEe-sU-o6T"/>
-                                                        <constraint firstAttribute="bottom" secondItem="xSQ-AW-EUS" secondAttribute="bottom" id="joX-O7-0e0"/>
-                                                        <constraint firstItem="xSQ-AW-EUS" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="r0f-aX-6JC"/>
-                                                        <constraint firstItem="xSQ-AW-EUS" firstAttribute="leading" secondItem="eWv-Qo-xwq" secondAttribute="trailing" constant="5" id="wEu-mD-6ti"/>
                                                         <constraint firstItem="ND8-6s-QNY" firstAttribute="top" secondItem="I9i-Ak-TMU" secondAttribute="top" id="y3g-YE-u30"/>
                                                     </constraints>
                                                 </view>
@@ -300,7 +290,6 @@ The current track will be added to those highlighted playlists.
                         <outlet property="playlistsLayout" destination="ytj-JQ-scO" id="bF5-RS-5as"/>
                         <outlet property="playlistsView" destination="qbt-iP-iKU" id="gIU-Hq-CZw"/>
                         <outlet property="progressionLabel" destination="NRM-Da-AAw" id="3m6-jf-j0j"/>
-                        <outlet property="scrubbar" destination="xSQ-AW-EUS" id="SUm-xb-1ut"/>
                         <outlet property="songInfoWrapper" destination="vmH-t0-ldh" id="h1Z-Y1-6RE"/>
                         <outlet property="timeLabel" destination="85P-Oj-rjM" id="wBU-ES-i96"/>
                         <outlet property="titleLabel" destination="rHq-Fm-lM4" id="yoC-bm-De8"/>

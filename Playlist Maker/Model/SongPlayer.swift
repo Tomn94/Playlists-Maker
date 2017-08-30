@@ -9,20 +9,18 @@
 import MediaPlayer
 
 extension Selector {
+    
     /// Player successfully changed between play and pause
     static let playbackStatusChanged = #selector(SongPlayer.playbackStatusChanged)
-    /// Music playing, advances in time
-    static let playbackTimeChanged   = #selector(SongPlayer.playbackTimeChanged)
+    
 }
+
 
 /// Class handling song playback
 class SongPlayer {
     
     /// Wrapped iOS music player
     private let musicPlayer = MPMusicPlayerController.applicationQueuePlayer()
-    
-    /// Timer to update elapsed time
-    private var timeUpdater: Timer?
     
     
     /// Delegate receiving playback events
@@ -49,15 +47,6 @@ class SongPlayer {
     var isPlaying: Bool {
         return musicPlayer.playbackState == .playing
     }
-    
-    /// Time elapsed while playing the song
-    var currentTime: TimeInterval {
-        let time = musicPlayer.currentPlaybackTime
-        if time.isNaN {
-            return 0
-        }
-        return time
-    }
 
     
     /// Prepare the player to play a list of songs
@@ -74,7 +63,6 @@ class SongPlayer {
         let collection = MPMediaItemCollection(items: songItems)
         musicPlayer.setQueue(with: collection)
         
-        playbackTimeChanged()
         playbackStatusChanged()
     }
     
@@ -92,14 +80,6 @@ class SongPlayer {
     func resume() {
         
         musicPlayer.play()
-        
-        if delegate != nil {
-            // Create a time to update delegate's slider
-            timeUpdater = Timer(timeInterval: 0.1, target: self,
-                                selector: .playbackTimeChanged, userInfo: nil,
-                                repeats: true)
-            RunLoop.current.add(timeUpdater!, forMode: .commonModes)
-        }
     }
     
     /// Pause current song
@@ -119,17 +99,6 @@ class SongPlayer {
     /// Informs the delegate.
     @objc func playbackStatusChanged() {
         delegate?.playbackStatusDidChange(self)
-        
-        // No need timeUpdater when paused
-        if !isPlaying {
-            timeUpdater?.invalidate()
-            timeUpdater = nil
-        }
-    }
-    
-    /// Called when current playback time has changed
-    @objc func playbackTimeChanged() {
-        delegate?.currentTimeChanged(self)
     }
 
 }
@@ -142,11 +111,5 @@ protocol SongPlayerDelegate: NSObjectProtocol {
     ///
     /// - Parameter songPlayer: Player handling playback
     func playbackStatusDidChange(_ songPlayer: SongPlayer)
-    
-    /// Called when the time changes during normal playback
-    /// (not called after user interaction, e.g. scrub bar
-    ///
-    /// - Parameter songPlayer: Player handling playback
-    func currentTimeChanged(_ songPlayer: SongPlayer)
     
 }

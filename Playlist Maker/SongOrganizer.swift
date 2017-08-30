@@ -26,7 +26,6 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var playbackChangingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var scrubbar: UISlider!
     /// Total time
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -112,7 +111,6 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
             fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
             playlistsView.layer.add(fadeAnimation, forKey: nil)
             timeLabel.layer.add(fadeAnimation, forKey: nil)
-            scrubbar.layer.add(fadeAnimation, forKey: nil)
         }
     
         /* We'll deselect previous selection */
@@ -165,10 +163,6 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         detailLabel.text = detailText
         
         // Time info
-        scrubbar.minimumValue = 0
-        scrubbar.maximumValue = Float(song.length)
-        scrubbar.value = 0
-        
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .positional
@@ -216,14 +210,6 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         playButton.isHidden = true
     }
     
-    /// Time changed in scrub bar
-    @IBAction func scrubbed() {
-        
-        /* Get time from scrub bar and apply it to player */
-        let time = TimeInterval(scrubbar.value)
-        songPlayer.seek(to: time)
-    }
-    
     
     // MARK: Media playback - Received events
     
@@ -239,16 +225,6 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         } else {
             playButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
         }
-    }
-    
-    func currentTimeChanged(_ songPlayer: SongPlayer) {
-        
-        // Don't mess with current user choice
-        guard !scrubbar.isTracking else { return }
-        
-        /* Get time from player and apply it to scrub bar */
-        let time = Float(songPlayer.currentTime)
-        self.scrubbar.value = time
     }
     
 }
