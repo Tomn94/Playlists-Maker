@@ -240,22 +240,36 @@ The current track will be added to those highlighted playlists.
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWw-Za-4nH">
-                                            <rect key="frame" x="8" y="2" width="359" height="36.5"/>
+                                            <rect key="frame" x="42.5" y="2" width="290" height="37"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <state key="normal" title="Next Song"/>
                                             <connections>
                                                 <action selector="nextSong" destination="BYZ-38-t0r" eventType="touchUpInside" id="NKv-ub-73q"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8H-5z-Vvh">
+                                            <rect key="frame" x="8" y="5" width="34.5" height="27"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="I8H-5z-Vvh" secondAttribute="height" multiplier="54:42" id="Kqp-ed-CkV"/>
+                                                <constraint firstAttribute="height" constant="27" id="lRp-El-kvM"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="List"/>
+                                            <connections>
+                                                <action selector="listSongs" destination="BYZ-38-t0r" eventType="touchUpInside" id="UJY-pm-bCp"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="NRM-Da-AAw" firstAttribute="top" secondItem="UWw-Za-4nH" secondAttribute="bottom" id="2mc-1i-eEb"/>
                                         <constraint firstItem="NRM-Da-AAw" firstAttribute="leading" secondItem="WwT-eK-scC" secondAttribute="leadingMargin" id="CMd-Jc-kD6"/>
-                                        <constraint firstItem="UWw-Za-4nH" firstAttribute="leading" secondItem="WwT-eK-scC" secondAttribute="leadingMargin" id="PFQ-zU-7Hv"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="I8H-5z-Vvh" secondAttribute="bottom" id="NWZ-iY-LO9"/>
                                         <constraint firstAttribute="bottom" secondItem="NRM-Da-AAw" secondAttribute="bottom" constant="8" id="PtL-xK-5tW"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="UWw-Za-4nH" secondAttribute="trailing" id="Sxr-Jh-cRR"/>
+                                        <constraint firstItem="I8H-5z-Vvh" firstAttribute="top" secondItem="UWw-Za-4nH" secondAttribute="top" constant="3" id="To9-hh-b3E"/>
+                                        <constraint firstItem="UWw-Za-4nH" firstAttribute="centerX" secondItem="WwT-eK-scC" secondAttribute="centerX" id="VK5-qV-iAP"/>
                                         <constraint firstItem="UWw-Za-4nH" firstAttribute="top" secondItem="WwT-eK-scC" secondAttribute="top" constant="2" id="age-5Z-XHC"/>
+                                        <constraint firstItem="UWw-Za-4nH" firstAttribute="leading" secondItem="I8H-5z-Vvh" secondAttribute="trailing" priority="500" id="chF-9k-gRb"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="NRM-Da-AAw" secondAttribute="trailing" id="m04-zD-d2S"/>
+                                        <constraint firstItem="I8H-5z-Vvh" firstAttribute="leading" secondItem="WwT-eK-scC" secondAttribute="leadingMargin" id="rgS-1N-AT5"/>
                                     </constraints>
                                 </view>
                                 <constraints>
@@ -278,7 +292,9 @@ The current track will be added to those highlighted playlists.
                             <constraint firstAttribute="trailing" secondItem="c5s-uz-ohS" secondAttribute="trailing" id="rdq-ET-KLb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Song to Playlists" id="Ms0-sb-dXP"/>
+                    <navigationItem key="navigationItem" title="Add Song to Playlists" id="Ms0-sb-dXP">
+                        <barButtonItem key="rightBarButtonItem" title="Stop" id="e7d-qq-TRO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="artistLabel" destination="oYd-g6-lfH" id="E4I-NR-Sbk"/>
                         <outlet property="artwork" destination="Plq-E2-v5L" id="Crd-Lh-2AG"/>
@@ -325,6 +341,7 @@ The current track will be added to those highlighted playlists.
         </scene>
     </scenes>
     <resources>
+        <image name="List" width="54" height="42"/>
         <image name="play" width="29" height="29"/>
     </resources>
 </document>

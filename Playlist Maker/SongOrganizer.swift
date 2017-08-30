@@ -229,6 +229,12 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         showSong(at: currentIndex + 1)
     }
     
+    /// Show list of all the queued songs in a new view
+    @IBAction func listSongs() {
+        
+        
+    }
+    
     
     // MARK: Media playback - User actions
     
