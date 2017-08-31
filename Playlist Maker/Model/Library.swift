@@ -40,11 +40,26 @@ class Library {
     /// List of the destination playlists
     var playlists = [Playlist]()
     
-    var selectionNotInPlaylists = [Playlist]()
+    var selectionNotInPlaylists = [Playlist]() {
+        didSet {
+            UserDefaults.standard.set(selectionNotInPlaylists.map { $0.id },
+                                      forKey: UserDefaultsKey.selectionNotInPlaylists)
+        }
+    }
     
-    var selectionInPlaylists = [Playlist]()
+    var selectionInPlaylists = [Playlist]() {
+        didSet {
+            UserDefaults.standard.set(selectionInPlaylists.map { $0.id },
+                                      forKey: UserDefaultsKey.selectionInPlaylists)
+        }
+    }
     
-    var destinationPlaylists = [Playlist]()
+    var destinationPlaylists = [Playlist]() {
+        didSet {
+            UserDefaults.standard.set(destinationPlaylists.map { $0.id },
+                                      forKey: UserDefaultsKey.destinationPlaylists)
+        }
+    }
     
     
     /// Fill library with user's playlists
@@ -67,6 +82,40 @@ class Library {
             }
             
             self.playlists = playlists
+            
+            /* Load selection subsets */
+            // Associated class properties have a `didSet`, so we'll create temporary variables
+            var t_selectionNotInPlaylists = [Playlist]()
+            var t_selectionInPlaylists    = [Playlist]()
+            var t_destinationPlaylists    = [Playlist]()
+            
+            // Fetch stored playlist IDs
+            let def = UserDefaults.standard
+            if let notInPlaylistsDef = def.array(forKey: UserDefaultsKey.selectionNotInPlaylists) as? [NSNumber],
+               let inPlaylistsDef    = def.array(forKey: UserDefaultsKey.selectionInPlaylists) as? [NSNumber],
+               let destPlaylistsDef  = def.array(forKey: UserDefaultsKey.destinationPlaylists) as? [NSNumber] {
+                
+                // Process every playlist we have
+                for playlist in playlists {
+                    
+                    // Add the playlist if its ID is contained in the storage
+                    if notInPlaylistsDef.contains(playlist.id) {
+                        t_selectionNotInPlaylists.append(playlist)
+                    }
+                    if inPlaylistsDef.contains(playlist.id) {
+                        t_selectionInPlaylists.append(playlist)
+                    }
+                    if destPlaylistsDef.contains(playlist.id) {
+                        t_destinationPlaylists.append(playlist)
+                    }
+                }
+            }
+            
+            // Finish by copying back
+            self.selectionNotInPlaylists = t_selectionNotInPlaylists
+            self.selectionInPlaylists    = t_selectionInPlaylists
+            self.destinationPlaylists    = t_destinationPlaylists
+            
             completion()
         }
     }

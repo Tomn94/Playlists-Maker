@@ -14,4 +14,13 @@ enum UserDefaultsKey {
     /// Boolean whether songs should play right when a song is displayed
     static let autoplaySongs = "autoplaySongs"
     
+    /// Array of selected playlists IDs for `selectionNotInPlaylists`
+    static let selectionNotInPlaylists    = "selectionNotInPlaylists"
+    
+    /// Array of selected playlists IDs for `selectionInPlaylists`
+    static let selectionInPlaylists       = "selectionInPlaylists"
+    
+    /// Array of selected playlists IDs for `destinationPlaylists`
+    static let destinationPlaylists       = "destinationPlaylists"
+    
 }

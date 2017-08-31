@@ -57,6 +57,7 @@ class SettingsTVC: UITableViewController {
             self.isLoadingLibrary = false
             DispatchQueue.main.async {
                 activity.stopAnimating()
+                self.reloadDetailRows()
             }
         }
     }
@@ -64,13 +65,7 @@ class SettingsTVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        /* Refresh rows containing number of items */
-        var indexPaths = [IndexPath]()
-        for row in detailRows {
-            indexPaths.append(IndexPath(row: row, section: 0))
-        }
-        indexPaths.append(IndexPath(row: 0, section: 1))
-        tableView.reloadRows(at: indexPaths, with: .none)
+        reloadDetailRows()
     }
 
     /// Ads button tapped
@@ -127,6 +122,17 @@ class SettingsTVC: UITableViewController {
 
 // MARK: - Table View Data Source
 extension SettingsTVC {
+    
+    func reloadDetailRows() {
+        
+        /* Refresh rows containing number of items */
+        var indexPaths = [IndexPath]()
+        for row in detailRows {
+            indexPaths.append(IndexPath(row: row, section: 0))
+        }
+        indexPaths.append(IndexPath(row: 0, section: 1))
+        tableView.reloadRows(at: indexPaths, with: .none)
+    }
     
     /// Extra customization for cells with detail accessory:
     ///   - sets check mark color.
