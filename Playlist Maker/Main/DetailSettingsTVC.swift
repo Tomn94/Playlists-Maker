@@ -58,9 +58,9 @@ class DetailSettingsTVC: UITableViewController {
                         
                         /* Reload data */
                         DataStore.shared.library.playlists.append(playlist!)
-                        DataStore.shared.library.playlists.sort(by: { playlist1, playlist2 in
-                            playlist1.name < playlist2.name
-                        })
+                        DataStore.shared.library.playlists.sort { playlist1, playlist2 in
+                            playlist1.name.localizedCaseInsensitiveCompare(playlist2.name) == .orderedAscending
+                        }
                         self.playlists = DataStore.shared.library.playlists
                         
                         /* Reload UI */

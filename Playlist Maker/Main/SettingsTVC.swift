@@ -73,6 +73,7 @@ class SettingsTVC: UITableViewController {
         guard !isLoadingLibrary else {
             return
         }
+        let buttonIndexPath = IndexPath(row: 0, section: 2)
         
         /* No playlist selected in specific playlists mode */
         guard (songSelectionMode != .notInPlaylists ||
@@ -86,6 +87,7 @@ class SettingsTVC: UITableViewController {
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                 present(alert, animated: true)
+                tableView.deselectRow(at: buttonIndexPath, animated: true)
                 return
         }
         
@@ -97,6 +99,7 @@ class SettingsTVC: UITableViewController {
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             present(alert, animated: true)
+            tableView.deselectRow(at: buttonIndexPath, animated: true)
             return
         }
         
@@ -104,11 +107,11 @@ class SettingsTVC: UITableViewController {
         isLoadingLibrary = true
         
         let alert = UIAlertController(title: "Loading songs…",
-                                      message: nil,
+                                      message: "This could take a few minutes depending on your selection",
                                       preferredStyle: .alert)
         present(alert, animated: true)
         
-        DataStore.shared.library.loadSongs(using: self.songSelectionMode) {
+        DataStore.shared.library.loadSongs(using: songSelectionMode) {
             alert.dismiss(animated: true) {
                 
                 self.isLoadingLibrary = false
@@ -121,6 +124,7 @@ class SettingsTVC: UITableViewController {
                                                   preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                     self.present(alert, animated: true)
+                    self.tableView.deselectRow(at: buttonIndexPath, animated: true)
                     return
                 }
                 

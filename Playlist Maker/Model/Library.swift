@@ -96,7 +96,7 @@ class Library {
             
             // Sort by name
             playlists.sort { playlist1, playlist2 in
-                return playlist1.name < playlist2.name
+                playlist1.name.localizedCaseInsensitiveCompare(playlist2.name) == .orderedAscending
             }
             
             self.playlists = playlists
@@ -175,6 +175,11 @@ class Library {
             // Store songs
             for songItem in librarySongs {
                 songs.append(Song(item: songItem))
+            }
+            
+            // Sort by artist
+            songs.sort { song1, song2 in
+                song1.artist.localizedCaseInsensitiveCompare(song2.artist) == .orderedAscending
             }
             
             self.songs = songs
