@@ -321,7 +321,7 @@ The current track will be added to those highlighted playlists.
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="-545.57721139430294"/>
         </scene>
-        <!--Songs to Sort-->
+        <!--Sorting 0 Songs-->
         <scene sceneID="B1P-lq-G4u">
             <objects>
                 <viewController id="1KG-7p-3Mt" customClass="QueueVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
@@ -391,7 +391,7 @@ The current track will be added to those highlighted playlists.
                             <constraint firstAttribute="bottom" secondItem="v4T-l3-rvb" secondAttribute="bottom" id="k0W-cj-8o8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Songs to Sort" id="9Jg-Db-hcc">
+                    <navigationItem key="navigationItem" title="Sorting 0 Songs" id="9Jg-Db-hcc">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="3Ut-fQ-69P">
                             <connections>
                                 <segue destination="1KG-7p-3Mt" kind="custom" customClass="DismissSegue" customModule="Playlist_Maker" customModuleProvider="target" id="eV2-cb-aRT"/>
