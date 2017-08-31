@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		644C29A01F58700300A8AB70 /* SongOrganizer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644C299E1F586FFC00A8AB70 /* SongOrganizer.storyboard */; };
 		64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F831EBB245C000ED6B3 /* AppDelegate.swift */; };
 		64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F851EBB245C000ED6B3 /* SongOrganizer.swift */; };
 		64547F891EBB245C000ED6B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64547F871EBB245C000ED6B3 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		644C299F1F586FFC00A8AB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongOrganizer.storyboard; sourceTree = "<group>"; };
 		64547F801EBB245C000ED6B3 /* Playlist Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Playlist Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64547F831EBB245C000ED6B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64547F851EBB245C000ED6B3 /* SongOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongOrganizer.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */,
 				64900D211F57842100E2F09D /* DismissSegue.swift */,
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
+				644C299E1F586FFC00A8AB70 /* SongOrganizer.storyboard */,
 				64547F8A1EBB245C000ED6B3 /* Assets.xcassets */,
 				64547F8C1EBB245C000ED6B3 /* LaunchScreen.storyboard */,
 				64547F8F1EBB245C000ED6B3 /* Info.plist */,
@@ -159,6 +162,7 @@
 				64547F8E1EBB245C000ED6B3 /* LaunchScreen.storyboard in Resources */,
 				64547F8B1EBB245C000ED6B3 /* Assets.xcassets in Resources */,
 				64547F891EBB245C000ED6B3 /* Main.storyboard in Resources */,
+				644C29A01F58700300A8AB70 /* SongOrganizer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +189,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		644C299E1F586FFC00A8AB70 /* SongOrganizer.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				644C299F1F586FFC00A8AB70 /* Base */,
+			);
+			name = SongOrganizer.storyboard;
+			sourceTree = "<group>";
+		};
 		64547F871EBB245C000ED6B3 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
