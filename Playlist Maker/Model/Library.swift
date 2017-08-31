@@ -40,6 +40,13 @@ class Library {
     /// List of the destination playlists
     var playlists = [Playlist]()
     
+    var selectionNotInPlaylists = [Playlist]()
+    
+    var selectionInPlaylists = [Playlist]()
+    
+    var destinationPlaylists = [Playlist]()
+    
+    
     /// Fill library with user's playlists
     func loadPlaylists(completionHandler completion: @escaping () -> ()) {
         

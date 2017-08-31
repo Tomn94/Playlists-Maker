@@ -99,7 +99,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bk1-Gc-t6F" kind="show" id="qkb-x6-Ghc"/>
+                                            <segue destination="bk1-Gc-t6F" kind="show" identifier="notInPlaylistsSegue" id="qkb-x6-Ghc"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Kd2-Sh-kQ5" detailTextLabel="5iD-dC-foC" style="IBUITableViewCellStyleValue1" id="Y2U-3f-tCy">
@@ -126,7 +126,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bk1-Gc-t6F" kind="show" id="W8Y-0h-Why"/>
+                                            <segue destination="bk1-Gc-t6F" kind="show" identifier="inPlaylistsSegue" id="W8Y-0h-Why"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="PiC-sY-9Rg" style="IBUITableViewCellStyleDefault" id="SJc-xF-YM1">
@@ -167,7 +167,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bk1-Gc-t6F" kind="show" id="Tlv-kq-Hzh"/>
+                                            <segue destination="bk1-Gc-t6F" kind="show" identifier="destinationPlaylistsSegue" id="Tlv-kq-Hzh"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

@@ -11,10 +11,14 @@ import UIKit
 /// List of playlists that can be selected
 class DetailSettingsTVC: UITableViewController {
     
-    /// Model
+    /// Table view model
     var playlists = DataStore.shared.library.playlists
     
+    /// Subset of `playlists` which are selected
     var selectedPlaylists = [Playlist]()
+    
+    /// Mode being customized here
+    var songSelectionMode: SettingsTVC.SongSelection = .inNoPlaylist
     
     
     @IBAction func newPlaylist() {
@@ -151,6 +155,21 @@ extension DetailSettingsTVC {
             selectedPlaylists.append(playlist)
         } else {
             selectedPlaylists.remove(at: selectionIndex!)
+        }
+        
+        // Store changes
+        switch songSelectionMode {
+        case .notInPlaylists:
+            DataStore.shared.library.selectionNotInPlaylists = selectedPlaylists
+            
+        case .inPlaylists:
+            DataStore.shared.library.selectionInPlaylists    = selectedPlaylists
+            
+        case .destination:
+            DataStore.shared.library.destinationPlaylists    = selectedPlaylists
+            
+        case .inNoPlaylist, .inNoDestination, .allSongs:
+            break
         }
         
         // Apply inverted selection state

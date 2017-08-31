@@ -27,9 +27,11 @@ class SettingsTVC: UITableViewController {
         case inPlaylists
         /// Whole library
         case allSongs
+        /// Used when setting destination playlists
+        case destination
     }
     
-    /// Current setting for song selection
+    /// Current setting for song selection input
     var songSelectionMode: SongSelection = .inNoPlaylist
     
     /// Rows in Song Selection Section (0) having a disclosure indicator
@@ -57,6 +59,18 @@ class SettingsTVC: UITableViewController {
                 activity.stopAnimating()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        /* Refresh rows containing number of items */
+        var indexPaths = [IndexPath]()
+        for row in detailRows {
+            indexPaths.append(IndexPath(row: row, section: 0))
+        }
+        indexPaths.append(IndexPath(row: 0, section: 1))
+        tableView.reloadRows(at: indexPaths, with: .none)
     }
 
     /// Ads button tapped
@@ -89,8 +103,23 @@ class SettingsTVC: UITableViewController {
     // Preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let detailVC = segue.destination as? DetailSettingsTVC else {
+            return
+        }
+        
+        // Set already selected items up
+        if segue.identifier == "notInPlaylistsSegue" {
+            detailVC.songSelectionMode = .notInPlaylists
+            detailVC.selectedPlaylists = DataStore.shared.library.selectionNotInPlaylists
+            
+        } else if segue.identifier == "inPlaylistsSegue" {
+            detailVC.songSelectionMode = .inPlaylists
+            detailVC.selectedPlaylists = DataStore.shared.library.selectionInPlaylists
+            
+        } else if segue.identifier == "destinationPlaylistsSegue" {
+            detailVC.songSelectionMode = .destination
+            detailVC.selectedPlaylists = DataStore.shared.library.destinationPlaylists
+        }
     }
 
 }
@@ -100,18 +129,46 @@ class SettingsTVC: UITableViewController {
 extension SettingsTVC {
     
     /// Extra customization for cells with detail accessory:
-    /// Sets check mark color
+    ///   - sets check mark color.
+    ///   - Their number of items (playlists) is updated
     ///
     /// - Parameters:
     ///   - tableView: This table view
     ///   - indexPath: Position of the eventual row to customize
-    /// - Returns: Cell with customized text color, eventually
+    /// - Returns: Cell with customization, eventually
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if detailRows.contains(indexPath.row) {
-            cell.detailTextLabel?.textColor = tableView.tintColor
+            cell.detailTextLabel?.textColor = UIButton.appearance().tintColor
+            
+            if indexPath.section == 0 {
+                if indexPath.row == 2 {         // Not In Playlists
+                    let count = DataStore.shared.library.selectionNotInPlaylists.count
+                    if count == 1 {
+                        cell.textLabel?.text = "Songs not contained in 1 playlist…"
+                    } else {
+                        cell.textLabel?.text = "Songs not contained in \(count) playlists…"
+                    }
+                    
+                } else if indexPath.row == 3 {  // In Playlists
+                    let count = DataStore.shared.library.selectionInPlaylists.count
+                    if count == 1 {
+                        cell.textLabel?.text = "Songs contained in 1 playlist…"
+                    } else {
+                        cell.textLabel?.text = "Songs contained in \(count) playlists…"
+                    }
+                }
+                
+            }
+        } else if indexPath.section == 1 {      // Destination playlists
+            let count = DataStore.shared.library.destinationPlaylists.count
+            if count == 1 {
+                cell.textLabel?.text = "1 playlist selected"
+            } else {
+                cell.textLabel?.text = "\(count) playlists selected"
+            }
         }
         
         return cell
