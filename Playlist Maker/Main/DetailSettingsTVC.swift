@@ -85,13 +85,32 @@ class DetailSettingsTVC: UITableViewController {
     @IBAction func selectAll() {
         
         selectedPlaylists = playlists
+        updateSelectionStorage()
         self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
     }
     
     @IBAction func deselectAll() {
         
         selectedPlaylists = []
+        updateSelectionStorage()
         self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+    }
+    
+    func updateSelectionStorage() {
+        
+        switch songSelectionMode {
+        case .notInPlaylists:
+            DataStore.shared.library.selectionNotInPlaylists = selectedPlaylists
+            
+        case .inPlaylists:
+            DataStore.shared.library.selectionInPlaylists    = selectedPlaylists
+            
+        case .destination:
+            DataStore.shared.library.destinationPlaylists    = selectedPlaylists
+            
+        case .inNoPlaylist, .inNoDestination, .allSongs:
+            break
+        }
     }
 
 }
@@ -158,19 +177,7 @@ extension DetailSettingsTVC {
         }
         
         // Store changes
-        switch songSelectionMode {
-        case .notInPlaylists:
-            DataStore.shared.library.selectionNotInPlaylists = selectedPlaylists
-            
-        case .inPlaylists:
-            DataStore.shared.library.selectionInPlaylists    = selectedPlaylists
-            
-        case .destination:
-            DataStore.shared.library.destinationPlaylists    = selectedPlaylists
-            
-        case .inNoPlaylist, .inNoDestination, .allSongs:
-            break
-        }
+        updateSelectionStorage()
         
         // Apply inverted selection state
         tableView.cellForRow(at: indexPath)?.accessoryType = selectionIndex == nil ? .checkmark : .none
