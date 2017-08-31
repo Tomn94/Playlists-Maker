@@ -139,16 +139,37 @@ class Library {
     }
     
     /// Fill library with songs to sort
-    func loadSongs(using: SongSelectionMode,
+    func loadSongs(using songSelectionMode: SongSelectionMode,
                    completionHandler completion: @escaping () -> ()) {
         
         DispatchQueue.global(qos: .userInitiated).async {
             
-            // Get raw songs in library focus
-            let songsLibrary = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: "Asher Roth",
-                                                                                        forProperty: MPMediaItemPropertyArtist,
-                                                                                        comparisonType: .contains)])
-            let librarySongs = songsLibrary.items ?? []
+            let librarySongs: Set<MPMediaItem>
+            
+            // Select songs according to mode
+            switch songSelectionMode {
+            case .inNoPlaylist:
+                librarySongs = LibraryQueries.inNoPlaylists
+                
+            case .inNoDestination:
+                librarySongs = LibraryQueries.notInDestinationPlaylists
+                
+            case .notInPlaylists:
+                librarySongs = LibraryQueries.notInSelectedPlaylists
+                
+            case .inPlaylists:
+                librarySongs = LibraryQueries.inSelectedPlaylists
+                
+            case .allSongs:
+                librarySongs = LibraryQueries.allSongs
+                
+            case .destination:
+                // Error. Abort.
+                self.songs = []
+                completion()
+                return
+            }
+            
             var songs = [Song]()
             
             // Store songs
@@ -358,6 +379,23 @@ struct Playlist {
         return results.items?.count ?? 0 > 0
     }
     
+    /// <#Description#>
+    ///
+    /// - Parameter song: <#song description#>
+    /// - Returns: <#return value description#>
+    func contains(songId: MPMediaEntityPersistentID) -> Bool {
+        
+        let songPredicate = MPMediaPropertyPredicate(value: songId,
+                                                     forProperty: MPMediaItemPropertyPersistentID,
+                                                     comparisonType: .equalTo)
+        let playlistPredicate = MPMediaPropertyPredicate(value: self.id,
+                                                         forProperty: MPMediaPlaylistPropertyPersistentID,
+                                                         comparisonType: .equalTo)
+        let results = MPMediaQuery(filterPredicates: [songPredicate, playlistPredicate])
+        
+        return results.items?.count ?? 0 > 0
+    }
+    
 }
 
 struct Artist {
@@ -491,24 +529,4 @@ enum Genre: String {
             return nil
         }
     }
-}
-
-extension String {
-    
-    /// Indicates whether the string contains any inputted substring
-    ///
-    /// - Parameter array: Substrings to locate in this larger string
-    /// - Returns: True if one or more substrings are found
-    func containsAny(_ array: [String]) -> Bool {
-        
-        /* Return true as soon as we have our 1st match */
-        for item in array {
-            if self.contains(item) {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
 }

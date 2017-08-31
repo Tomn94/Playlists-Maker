@@ -27,3 +27,23 @@ enum UserDefaultsKey {
     static let destinationPlaylists       = "destinationPlaylists"
     
 }
+
+extension String {
+    
+    /// Indicates whether the string contains any inputted substring
+    ///
+    /// - Parameter array: Substrings to locate in this larger string
+    /// - Returns: True if one or more substrings are found
+    func containsAny(_ array: [String]) -> Bool {
+        
+        /* Return true as soon as we have our 1st match */
+        for item in array {
+            if self.contains(item) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+}

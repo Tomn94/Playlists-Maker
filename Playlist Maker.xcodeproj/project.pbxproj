@@ -24,6 +24,7 @@
 		64F0224D1F5884BE00FCA9DE /* SettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */; };
 		64F0224F1F58862200FCA9DE /* AccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224E1F58862200FCA9DE /* AccessVC.swift */; };
 		64F022541F58934700FCA9DE /* DetailSettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */; };
+		64F022561F58C9AA00FCA9DE /* LibraryQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F022551F58C9AA00FCA9DE /* LibraryQueries.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		64F0224E1F58862200FCA9DE /* AccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessVC.swift; sourceTree = "<group>"; };
 		64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSettingsTVC.swift; sourceTree = "<group>"; };
+		64F022551F58C9AA00FCA9DE /* LibraryQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryQueries.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				64547F981EBB4D41000ED6B3 /* DataStore.swift */,
 				64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */,
 				64547F961EBB35DE000ED6B3 /* Library.swift */,
+				64F022551F58C9AA00FCA9DE /* LibraryQueries.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */,
 				64F022541F58934700FCA9DE /* DetailSettingsTVC.swift in Sources */,
 				64F0224F1F58862200FCA9DE /* AccessVC.swift in Sources */,
+				64F022561F58C9AA00FCA9DE /* LibraryQueries.swift in Sources */,
 				64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */,
 				64900CE01F562B9C00E2F09D /* Utils.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
