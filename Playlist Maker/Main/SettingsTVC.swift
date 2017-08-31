@@ -55,7 +55,9 @@ extension SettingsTVC {
         switch indexPath.section {
         // Song Selection
         case 0:
-            break
+            if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4 {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
             
         // Destination Playlists
         case 1:

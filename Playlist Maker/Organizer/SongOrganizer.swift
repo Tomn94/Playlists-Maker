@@ -199,7 +199,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
                 playlistsView.selectItem(at: selectedIndex, animated: false, scrollPosition: [])
                 
                 let cell = playlistsView.cellForItem(at: selectedIndex) as? PlaylistCell
-                cell?.apply(style: PlaylistCell.selectedShadowStyle)
+                cell?.apply(style: PlaylistCell.Style.selected)
             }
         }
         /* Apply deselection, but avoiding deselecting common playlists */
@@ -208,7 +208,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
                 playlistsView.deselectItem(at: selectedIndex, animated: false)
                 
                 let cell = playlistsView.cellForItem(at: selectedIndex) as? PlaylistCell
-                cell?.apply(style: PlaylistCell.deselectedShadowStyle)
+                cell?.apply(style: PlaylistCell.Style.deselected)
         }
         playlistsViewController.indexPathsForPlaylistsAlreadyContaining = selectedIndexes
         
