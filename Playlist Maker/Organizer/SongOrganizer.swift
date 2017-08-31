@@ -139,6 +139,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
                                       preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Exit", style: .default, handler: { [unowned self] _ in
+            self.songPlayer.stop()
             self.dismiss(animated: true) {
                 DataStore.shared.library.songs = []
             }

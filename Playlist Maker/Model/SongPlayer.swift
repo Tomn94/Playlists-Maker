@@ -88,6 +88,12 @@ class SongPlayer {
         musicPlayer.pause()
     }
     
+    /// Stop playing song
+    func stop() {
+        
+        musicPlayer.stop()
+    }
+    
     /// Change the elapsed time of the current track.
     ///
     /// - Parameter time: Time to play at (now or next time Play is invoked)
