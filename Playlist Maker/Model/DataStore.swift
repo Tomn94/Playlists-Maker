@@ -27,10 +27,10 @@ class DataStore {
     /// Setting whether songs should play right when a song is displayed (defaults to true)
     static var autoplaysSong: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: UserDefaultKeys.autoplaySongs)
+            return UserDefaults.standard.bool(forKey: UserDefaultsKey.autoplaySongs)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: UserDefaultKeys.autoplaySongs)
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.autoplaySongs)
         }
     }
     
@@ -40,7 +40,7 @@ class DataStore {
     private init() {
         
         UserDefaults.standard.register(defaults: [
-            UserDefaultKeys.autoplaySongs : true
+            UserDefaultsKey.autoplaySongs : true
         ])
     }
     

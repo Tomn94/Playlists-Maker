@@ -127,7 +127,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         
         let toggleButton = RecessedButton(type: .system)
         toggleButton.setTitle("Autoplay", for: .normal)
-        toggleButton.isSelected = UserDefaults.standard.bool(forKey: UserDefaultKeys.autoplaySongs)
+        toggleButton.isSelected = UserDefaults.standard.bool(forKey: UserDefaultsKey.autoplaySongs)
         toggleButton.addTarget(self, action: .toggleAutoplay, for: .touchUpInside)
         navigationItem.leftBarButtonItem = RecessedBarButton(button: toggleButton)
     }
@@ -266,7 +266,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     func toggleAutoplay() {
         
         let userDefaults = UserDefaults.standard
-        let autoplayKey  = UserDefaultKeys.autoplaySongs
+        let autoplayKey  = UserDefaultsKey.autoplaySongs
         userDefaults.set(!userDefaults.bool(forKey: autoplayKey), forKey: autoplayKey)
     }
 

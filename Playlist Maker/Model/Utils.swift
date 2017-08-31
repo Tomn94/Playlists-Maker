@@ -9,7 +9,7 @@
 import Foundation
 
 /// UserDefaults common keys
-enum UserDefaultKeys {
+enum UserDefaultsKey {
     
     /// Boolean whether songs should play right when a song is displayed
     static let autoplaySongs = "autoplaySongs"
