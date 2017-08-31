@@ -83,11 +83,72 @@ class SettingsTVC: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    /// Begin process
+    /// Does some checks before engaging sort process.
+    /// Then starts generating queue of songs to be sorted.
     func beginSorting() {
         
         guard !isLoadingLibrary else {
             return
+        }
+        
+        /* No playlist selected in specific playlists mode */
+        guard (songSelectionMode != .notInPlaylists ||
+               !DataStore.shared.library.selectionNotInPlaylists.isEmpty) &&
+              (songSelectionMode != .inPlaylists ||
+               !DataStore.shared.library.selectionInPlaylists.isEmpty) else {
+                
+                let part  = songSelectionMode == .notInPlaylists ? "don't " : ""
+                let alert = UIAlertController(title: "No Playlists Selected",
+                                              message: "You chose to sort songs that \(part)belong to specific playlists. Select some playlists to begin.",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                present(alert, animated: true)
+                return
+        }
+        
+        /* No destination playlists selected */
+        guard !DataStore.shared.library.destinationPlaylists.isEmpty else {
+            
+            let alert = UIAlertController(title: "No destination playlists selected",
+                                          message: "In order to sort songs in playlists, you need to select some!",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(alert, animated: true)
+            return
+        }
+        
+        /* Generate song list */
+        isLoadingLibrary = true
+        
+        let alert = UIAlertController(title: "Loading songs…",
+                                      message: nil,
+                                      preferredStyle: .alert)
+        present(alert, animated: true)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            DataStore.shared.library.loadSongs {
+                alert.dismiss(animated: true) {
+                    
+                    self.isLoadingLibrary = false
+                    
+                    /* No song found in selection */
+                    guard !DataStore.shared.library.songs.isEmpty else {
+                        
+                        let alert = UIAlertController(title: "No Songs Found",
+                                                      message: "No songs to be sorted were found according to your selection.",
+                                                      preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(alert, animated: true)
+                        return
+                    }
+                    
+                    /* Present Song Organizer and let user begin sorting */
+                    let storyboard = UIStoryboard(name: "SongOrganizer", bundle: nil)
+                    let songOrganizer = storyboard.instantiateInitialViewController()
+                    self.present(songOrganizer!, animated: true)
+                }
+            }
         }
     }
     
