@@ -255,7 +255,7 @@ The current track will be added to those highlighted playlists.
                                             </constraints>
                                             <state key="normal" title="Button" image="List"/>
                                             <connections>
-                                                <action selector="listSongs" destination="BYZ-38-t0r" eventType="touchUpInside" id="UJY-pm-bCp"/>
+                                                <segue destination="aua-qH-x62" kind="presentation" id="nPQ-Nk-XsO"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -321,6 +321,92 @@ The current track will be added to those highlighted playlists.
             </objects>
             <point key="canvasLocation" x="1285.5999999999999" y="-545.57721139430294"/>
         </scene>
+        <!--Songs to Sort-->
+        <scene sceneID="B1P-lq-G4u">
+            <objects>
+                <viewController id="1KG-7p-3Mt" customClass="QueueVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RQs-UM-tI3"/>
+                        <viewControllerLayoutGuide type="bottom" id="n31-UH-RME"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uSm-py-iMr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4T-l3-rvb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Yob-Ad-bsz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qF2-1R-HCt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <prototypes>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="queueCell" textLabel="ozg-gd-75S" detailTextLabel="syK-Ga-WtW" rowHeight="80" style="IBUITableViewCellStyleSubtitle" id="ML2-JH-1sj">
+                                                    <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ML2-JH-1sj" id="oLm-WF-Syh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ozg-gd-75S">
+                                                                <rect key="frame" x="15" y="20" width="33.5" height="20.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="syK-Ga-WtW">
+                                                                <rect key="frame" x="15" y="43.5" width="44" height="14.5"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </tableViewCellContentView>
+                                                </tableViewCell>
+                                            </prototypes>
+                                            <connections>
+                                                <outlet property="dataSource" destination="1KG-7p-3Mt" id="kwp-8p-DoX"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="qF2-1R-HCt" secondAttribute="bottom" id="Ndy-xt-wJ6"/>
+                                        <constraint firstAttribute="trailing" secondItem="qF2-1R-HCt" secondAttribute="trailing" id="Sse-Ek-88b"/>
+                                        <constraint firstItem="qF2-1R-HCt" firstAttribute="top" secondItem="Yob-Ad-bsz" secondAttribute="top" id="YGl-eN-bA7"/>
+                                        <constraint firstItem="qF2-1R-HCt" firstAttribute="leading" secondItem="Yob-Ad-bsz" secondAttribute="leading" id="eSk-6v-J6j"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v4T-l3-rvb" firstAttribute="leading" secondItem="uSm-py-iMr" secondAttribute="leading" id="6c1-gI-oQv"/>
+                            <constraint firstAttribute="trailing" secondItem="v4T-l3-rvb" secondAttribute="trailing" id="bsI-fb-eAn"/>
+                            <constraint firstItem="v4T-l3-rvb" firstAttribute="top" secondItem="uSm-py-iMr" secondAttribute="top" id="e4Z-Pj-cXr"/>
+                            <constraint firstAttribute="bottom" secondItem="v4T-l3-rvb" secondAttribute="bottom" id="k0W-cj-8o8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Songs to Sort" id="9Jg-Db-hcc">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="3Ut-fQ-69P">
+                            <connections>
+                                <segue destination="1KG-7p-3Mt" kind="custom" customClass="DismissSegue" customModule="Playlist_Maker" customModuleProvider="target" id="eV2-cb-aRT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="qF2-1R-HCt" id="Szz-pv-fra"/>
+                        <outlet property="visualEffectView" destination="v4T-l3-rvb" id="2rf-71-VBU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rtv-iD-sZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286" y="159"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hPi-Ba-t3W">
             <objects>
@@ -338,6 +424,24 @@ The current track will be added to those highlighted playlists.
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rtx-s7-wdq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="533.60000000000002" y="-543.77811094452773"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="z07-Wt-TkI">
+            <objects>
+                <navigationController storyboardIdentifier="QueueNVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="aua-qH-x62" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E4S-i8-KDe">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1KG-7p-3Mt" kind="relationship" relationship="rootViewController" id="TXc-nC-iwv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KIe-kW-xGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="534" y="159"/>
         </scene>
     </scenes>
     <resources>

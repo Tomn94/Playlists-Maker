@@ -18,6 +18,8 @@
 		64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */; };
 		64900CE01F562B9C00E2F09D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900CDF1F562B9C00E2F09D /* Utils.swift */; };
 		64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */; };
+		64900D221F57842100E2F09D /* DismissSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D211F57842100E2F09D /* DismissSegue.swift */; };
+		64900D241F578B2300E2F09D /* QueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D231F578B2300E2F09D /* QueueVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		64900CDD1F55FE0F00E2F09D /* SongPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongPlayer.swift; sourceTree = "<group>"; };
 		64900CDF1F562B9C00E2F09D /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNRecessedButton.swift; sourceTree = "<group>"; };
+		64900D211F57842100E2F09D /* DismissSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissSegue.swift; sourceTree = "<group>"; };
+		64900D231F578B2300E2F09D /* QueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +74,9 @@
 				64547F831EBB245C000ED6B3 /* AppDelegate.swift */,
 				64547F851EBB245C000ED6B3 /* SongOrganizer.swift */,
 				647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */,
+				64900D231F578B2300E2F09D /* QueueVC.swift */,
 				64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */,
+				64900D211F57842100E2F09D /* DismissSegue.swift */,
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
 				64547F8A1EBB245C000ED6B3 /* Assets.xcassets */,
 				64547F8C1EBB245C000ED6B3 /* LaunchScreen.storyboard */,
@@ -163,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64900D241F578B2300E2F09D /* QueueVC.swift in Sources */,
 				647E7BAB1EBCEE62005291A0 /* PlaylistsView.swift in Sources */,
 				64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */,
 				64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */,
@@ -170,6 +177,7 @@
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
 				64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */,
 				64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */,
+				64900D221F57842100E2F09D /* DismissSegue.swift in Sources */,
 				64547F971EBB35DE000ED6B3 /* Library.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
