@@ -32,8 +32,8 @@
         <!--Sort Music Library-->
         <scene sceneID="7Vp-jG-KHb">
             <objects>
-                <tableViewController id="V1R-2n-18n" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zFL-nS-bRz">
+                <tableViewController id="V1R-2n-18n" customClass="SettingsTVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="zFL-nS-bRz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -182,6 +182,9 @@
                                             <subviews>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4eN-bi-COB"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <state key="normal" title="Begin Sorting"/>
                                                 </button>
@@ -199,12 +202,10 @@
                         </sections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Sort Music Library" id="FBq-qw-cz0">
-                        <barButtonItem key="leftBarButtonItem" title="Ads" id="N7a-ab-frc"/>
-                        <barButtonItem key="rightBarButtonItem" id="CFF-h9-bnf">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="5wq-ON-neH">
-                                <rect key="frame" x="337" y="11" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Ads" id="N7a-ab-frc">
+                            <connections>
+                                <action selector="showIAP" destination="V1R-2n-18n" id="QLS-ZO-4yF"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
@@ -220,7 +221,7 @@
                         <viewControllerLayoutGuide type="top" id="lRJ-QU-gs9"/>
                         <viewControllerLayoutGuide type="bottom" id="ypr-A8-yWQ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3Po-bf-3iB">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="3Po-bf-3iB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -281,15 +282,15 @@
             </objects>
             <point key="canvasLocation" x="1301.5999999999999" y="176.76161919040482"/>
         </scene>
-        <!--View Controller-->
+        <!--AccessVC-->
         <scene sceneID="Zjq-kz-Rao">
             <objects>
-                <viewController storyboardIdentifier="AccessVC" id="JtA-aH-vUr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccessVC" id="JtA-aH-vUr" customClass="AccessVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SWH-zs-FPn"/>
                         <viewControllerLayoutGuide type="bottom" id="eXE-HH-GZY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="irC-Ea-Jvq">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="irC-Ea-Jvq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -321,6 +322,9 @@ To do this, the app requires access to your Music Library.</string>
                                         <rect key="frame" x="0.0" y="554" width="343" height="33"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <state key="normal" title="Allow Access and Begin"/>
+                                        <connections>
+                                            <action selector="allow" destination="JtA-aH-vUr" eventType="touchUpInside" id="Mqd-eH-VK3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

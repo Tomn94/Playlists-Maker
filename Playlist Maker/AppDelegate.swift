@@ -41,7 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        if Library.status != .authorized {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let accessVC  = storyboard.instantiateViewController(withIdentifier: "AccessVC")
+            self.window?.rootViewController?.present(accessVC, animated: true)
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

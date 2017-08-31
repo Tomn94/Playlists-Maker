@@ -18,7 +18,7 @@ class Library {
     typealias LibraryStatus = MPMediaLibraryAuthorizationStatus
     
     /// Get current access status from iOS
-    var status: LibraryStatus {
+    class var status: LibraryStatus {
         return MPMediaLibrary.authorizationStatus()
     }
     
@@ -26,7 +26,7 @@ class Library {
     /// Ask access to iOS music library
     ///
     /// - Parameter handler: Block called after the user choses whether to authorize the app
-    func askAuthorization(handler: @escaping (LibraryStatus) -> Void) {
+    class func askAuthorization(handler: @escaping (LibraryStatus) -> Void) {
         
         MPMediaLibrary.requestAuthorization(handler)
     }
