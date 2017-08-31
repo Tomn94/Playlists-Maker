@@ -132,6 +132,26 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         navigationItem.leftBarButtonItem = RecessedBarButton(button: toggleButton)
     }
 
+    /// Stop process & dismiss
+    @IBAction func stop() {
+        
+        let alert = UIAlertController(title: "Exit Sorting Process?",
+                                      message: "Processed songs are already saved.\nCurrent and next songs won't be added to selected playlists.",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Exit", style: .default, handler: { [unowned self] _ in
+            self.dismiss(animated: true) {
+                DataStore.shared.library.songs = []
+            }
+        }))
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.preferredAction = cancelAction
+        
+        self.present(alert, animated: true)
+    }
+    
     func showSong(at index: Int,
                   animated: Bool = true) {
         

@@ -353,7 +353,11 @@ The current track will be added to those highlighted playlists.
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Song to Playlists" id="Ms0-sb-dXP">
-                        <barButtonItem key="rightBarButtonItem" title="Stop" id="e7d-qq-TRO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Stop" id="e7d-qq-TRO">
+                            <connections>
+                                <action selector="stop" destination="BYZ-38-t0r" id="55p-Vy-oU7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="artistLabel" destination="oYd-g6-lfH" id="E4I-NR-Sbk"/>
