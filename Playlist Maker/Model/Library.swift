@@ -68,25 +68,31 @@ class Library {
             playlists.append(Playlist(collection: libraryPlaylist))
         }
         
+        // Sort by name
+        playlists.sort { playlist1, playlist2 in
+            return playlist1.name < playlist2.name
+        }
+        
         self.playlists = playlists
         completion()
     }
     
-    func createPlaylist(named playlistName: String,
-                        completion completionHandler: @escaping (MPMediaPlaylist?, Error?) -> ()) {
+    class func createPlaylist(named playlistName: String,
+                              completion completionHandler: @escaping (Playlist?, Error?) -> ()) {
         
         let data = MPMediaPlaylistCreationMetadata(name: playlistName)
         MPMediaLibrary.default().getPlaylist(with: UUID(),
                                              creationMetadata: data,
                                              completionHandler:
-            { [unowned self] playlist, error in
+            { playlist, error in
                 
-                if playlist != nil, error == nil {
-                    let newPlaylist = Playlist(collection: playlist!)
-                    self.playlists.append(newPlaylist)
+                guard playlist != nil, error == nil else {
+                    completionHandler(nil, error)
+                    return
                 }
                 
-                completionHandler(playlist, error)
+                let newPlaylist = Playlist(collection: playlist!)
+                completionHandler(newPlaylist, nil)
         })
     }
     

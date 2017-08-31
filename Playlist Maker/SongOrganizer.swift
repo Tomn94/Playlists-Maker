@@ -64,6 +64,8 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         playlistsView.dataSource = playlistsViewController
         playlistsView.delegate   = playlistsViewController
         playlistsView.allowsMultipleSelection = true
+        self.addChildViewController(playlistsViewController)
+        playlistsViewController.didMove(toParentViewController: self)
         
         let insetsFromBars = UIEdgeInsets(top: topBar.frame.height,        left: 0,
                                           bottom: bottomBar.frame.height, right: 0)
@@ -88,6 +90,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         DataStore.shared.library.load {
             /* Completion handler */
             self.playlistsViewController.playlists = DataStore.shared.library.playlists
+            self.playlistsView.reloadData()
         }
         showSong(at: 0, animated: false)
     }

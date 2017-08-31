@@ -14,13 +14,7 @@ class PlaylistsViewController: UICollectionViewController {
     
     var indexPathsForPlaylistsAlreadyContaining = [IndexPath]()
     
-    var playlists = [Playlist]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.collectionView?.reloadData()
-            }
-        }
-    }
+    var playlists = [Playlist]()
     
     
     func createPlaylist() {
@@ -43,25 +37,26 @@ class PlaylistsViewController: UICollectionViewController {
                 return
             }
             
-            DataStore.shared.library.createPlaylist(named: name!,
-                                                    completion:
+            Library.createPlaylist(named: name!,
+                                   completion:
                 { [unowned self] playlist, error in
                     
-                    /* Apple Music error */
-                    guard error == nil else {
-                        let alert = UIAlertController(title: "Unable to create playlist",
-                                                      message: error?.localizedDescription,
-                                                      preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                        self.organizer?.present(alert, animated: true)
-                        return
-                    }
-                    
-                    /* Reload content */
-                    self.playlists = DataStore.shared.library.playlists
                     DispatchQueue.main.async {
-                        self.collectionView?.reloadItems(at: [IndexPath(item: self.playlists.count, section: 0),
-                                                              IndexPath(item: self.playlists.count - 1, section: 0)])
+                        /* Apple Music error */
+                        guard playlist != nil, error == nil else {
+                            let alert = UIAlertController(title: "Unable to create playlist",
+                                                          message: error?.localizedDescription,
+                                                          preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                            self.organizer?.present(alert, animated: true)
+                            return
+                        }
+                        
+                        /* Reload content */
+                        self.playlists.append(playlist!)
+                        /*self.collectionView?.performBatchUpdates({
+                            self.collectionView?.insertItems(at: [IndexPath(item: self.playlists.count - 1, section: 0)])
+                        })*/
                     }
             })
         })
@@ -89,7 +84,7 @@ extension PlaylistsViewController {
                                  numberOfItemsInSection section: Int) -> Int {
         
         // Add 1 for Add Playlist cell
-        return playlists.count + 1
+        return playlists.count// + 1
     }
     
     /// Configure cells
@@ -102,16 +97,15 @@ extension PlaylistsViewController {
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         /* New Playlist Button */
-        if indexPath.item == playlists.count {
-            
-            return collectionView.dequeueReusableCell(withReuseIdentifier: "newPlaylistCell",
-                                                      for: indexPath)
-        }
+//        if indexPath.item == 0 {
+//            return collectionView.dequeueReusableCell(withReuseIdentifier: "newPlaylistCell",
+//                                                      for: indexPath)
+//        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlistCell",
                                                       for: indexPath) as! PlaylistCell
         
-        let playlist = playlists[indexPath.item]
+        let playlist = playlists[indexPath.item]// - 1]
         cell.name.text = playlist.name
         cell.imageView.image = playlist.artwork
         
@@ -155,12 +149,11 @@ extension PlaylistsViewController {
                                  didSelectItemAt indexPath: IndexPath) {
         
         // Add Playlist Button
-        if indexPath.item == playlists.count {
-            
+        /*if indexPath.item == 0 {
             createPlaylist()
             collectionView.deselectItem(at: indexPath, animated: false)
             return
-        }
+        }*/
         
         if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             cell.animateSelectionStyle(before: PlaylistCell.deselectedShadowStyle,
@@ -178,8 +171,10 @@ extension PlaylistsViewController {
                                  shouldDeselectItemAt indexPath: IndexPath) -> Bool {
         
         /* Return true by default */
+        let shiftedIndexPath = IndexPath(item: indexPath.item/* - 1*/, section: indexPath.section)
         guard let organizer = organizer,
-              indexPathsForPlaylistsAlreadyContaining.contains(indexPath) else {
+//              indexPath.item > 0,
+              indexPathsForPlaylistsAlreadyContaining.contains(shiftedIndexPath) else {
             return true
         }
         
