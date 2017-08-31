@@ -27,7 +27,9 @@ extension PlaylistsViewController {
     /// - Returns: Number of playlist cells in a given section
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return DataStore.shared.library.playlists.count
+        
+        // Add 1 for Add Playlist cell
+        return DataStore.shared.library.playlists.count + 1
     }
     
     /// Configure cells
@@ -38,6 +40,13 @@ extension PlaylistsViewController {
     /// - Returns: The configured cell
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        /* New Playlist Button */
+        if indexPath.item == DataStore.shared.library.playlists.count {
+            
+            return collectionView.dequeueReusableCell(withReuseIdentifier: "newPlaylistCell",
+                                                      for: indexPath)
+        }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlistCell",
                                                       for: indexPath) as! PlaylistCell

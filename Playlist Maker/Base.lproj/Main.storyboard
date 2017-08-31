@@ -29,11 +29,11 @@
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="70"/>
-                                    <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
+                                    <inset key="sectionInset" minX="20" minY="220" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playlistCell" id="ESy-Nx-wSV" customClass="PlaylistCell" customModule="Playlist_Maker" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                        <rect key="frame" x="20" y="220" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -89,9 +89,73 @@
                                             <outlet property="wrapper" destination="qD6-yN-uwP" id="rbd-B0-jKy"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newPlaylistCell" id="SM9-7i-PIL" customClass="PlaylistCell" customModule="Playlist_Maker" customModuleProvider="target">
+                                        <rect key="frame" x="137.5" y="220" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZK-sA-M4j">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="95"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebm-r9-2Qz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="95"/>
+                                                            <attributedString key="attributedText">
+                                                                <fragment content="+">
+                                                                    <attributes>
+                                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <font key="NSFont" size="32" name=".AppleSystemUIFont"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                                <fragment>
+                                                                    <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                                                                    <attributes>
+                                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" lineSpacing="3" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                                <fragment>
+                                                                    <string key="content">Add
+Playlist</string>
+                                                                    <attributes>
+                                                                        <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Ebm-r9-2Qz" firstAttribute="leading" secondItem="hZK-sA-M4j" secondAttribute="leading" id="BzI-KC-0tg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ebm-r9-2Qz" secondAttribute="trailing" id="N53-Zl-NvW"/>
+                                                        <constraint firstItem="Ebm-r9-2Qz" firstAttribute="top" secondItem="hZK-sA-M4j" secondAttribute="top" id="nmp-DD-TCq"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Ebm-r9-2Qz" secondAttribute="bottom" id="nyb-nf-Vmb"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="hZK-sA-M4j" secondAttribute="trailing" id="DBV-gg-dGk"/>
+                                            <constraint firstItem="hZK-sA-M4j" firstAttribute="leading" secondItem="SM9-7i-PIL" secondAttribute="leading" id="Trz-Jo-H0q"/>
+                                            <constraint firstItem="hZK-sA-M4j" firstAttribute="top" secondItem="SM9-7i-PIL" secondAttribute="top" id="oLF-kj-MaH"/>
+                                            <constraint firstAttribute="bottom" secondItem="hZK-sA-M4j" secondAttribute="bottom" constant="5" id="un1-cG-d9d"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="name" destination="Ebm-r9-2Qz" id="03o-Ni-Xer"/>
+                                            <outlet property="wrapper" destination="hZK-sA-M4j" id="vbX-Pr-Dqk"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="playlistFooter" id="9EF-0M-5Od">
-                                    <rect key="frame" x="0.0" y="140" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="340" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-iH-oEY">
@@ -100,7 +164,7 @@
 The current track will be added to those highlighted playlists.
 </string>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
