@@ -108,29 +108,26 @@ class SettingsTVC: UITableViewController {
                                       preferredStyle: .alert)
         present(alert, animated: true)
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            
-            DataStore.shared.library.loadSongs {
-                alert.dismiss(animated: true) {
+        DataStore.shared.library.loadSongs(using: self.songSelectionMode) {
+            alert.dismiss(animated: true) {
+                
+                self.isLoadingLibrary = false
+                
+                /* No song found in selection */
+                guard !DataStore.shared.library.songs.isEmpty else {
                     
-                    self.isLoadingLibrary = false
-                    
-                    /* No song found in selection */
-                    guard !DataStore.shared.library.songs.isEmpty else {
-                        
-                        let alert = UIAlertController(title: "No Songs Found",
-                                                      message: "No songs to be sorted were found according to your selection.",
-                                                      preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                        self.present(alert, animated: true)
-                        return
-                    }
-                    
-                    /* Present Song Organizer and let user begin sorting */
-                    let storyboard = UIStoryboard(name: "SongOrganizer", bundle: nil)
-                    let songOrganizer = storyboard.instantiateInitialViewController()
-                    self.present(songOrganizer!, animated: true)
+                    let alert = UIAlertController(title: "No Songs Found",
+                                                  message: "No songs to be sorted were found according to your selection.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    self.present(alert, animated: true)
+                    return
                 }
+                
+                /* Present Song Organizer and let user begin sorting */
+                let storyboard = UIStoryboard(name: "SongOrganizer", bundle: nil)
+                let songOrganizer = storyboard.instantiateInitialViewController()
+                self.present(songOrganizer!, animated: true)
             }
         }
     }

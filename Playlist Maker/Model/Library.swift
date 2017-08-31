@@ -139,21 +139,26 @@ class Library {
     }
     
     /// Fill library with songs to sort
-    func loadSongs(completionHandler completion: @escaping () -> ()) {
+    func loadSongs(using: SongSelectionMode,
+                   completionHandler completion: @escaping () -> ()) {
         
-        // Get raw songs in library focus
-        let songsLibrary = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: "Asher Roth",
-                                                                                    forProperty: MPMediaItemPropertyArtist,
-                                                                                    comparisonType: .contains)])
-        let librarySongs = songsLibrary.items ?? []
-        var songs = [Song]()
-        
-        // Store songs
-        for songItem in librarySongs {
-            songs.append(Song(item: songItem))
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            // Get raw songs in library focus
+            let songsLibrary = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: "Asher Roth",
+                                                                                        forProperty: MPMediaItemPropertyArtist,
+                                                                                        comparisonType: .contains)])
+            let librarySongs = songsLibrary.items ?? []
+            var songs = [Song]()
+            
+            // Store songs
+            for songItem in librarySongs {
+                songs.append(Song(item: songItem))
+            }
+            
+            self.songs = songs
+            completion()
         }
-        
-        self.songs = songs
     }
     
     class func createPlaylist(named playlistName: String,
