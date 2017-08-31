@@ -41,7 +41,7 @@ class Library {
     var playlists = [Playlist]()
     
     /// Fill library with songs to sort
-    func load() {
+    func load(completionHandler completion: @escaping () -> ()) {
         
         /* Songs */
         // Get raw songs in library focus
@@ -69,6 +69,25 @@ class Library {
         }
         
         self.playlists = playlists
+        completion()
+    }
+    
+    func createPlaylist(named playlistName: String,
+                        completion completionHandler: @escaping (MPMediaPlaylist?, Error?) -> ()) {
+        
+        let data = MPMediaPlaylistCreationMetadata(name: playlistName)
+        MPMediaLibrary.default().getPlaylist(with: UUID(),
+                                             creationMetadata: data,
+                                             completionHandler:
+            { [unowned self] playlist, error in
+                
+                if playlist != nil, error == nil {
+                    let newPlaylist = Playlist(collection: playlist!)
+                    self.playlists.append(newPlaylist)
+                }
+                
+                completionHandler(playlist, error)
+        })
     }
     
 }

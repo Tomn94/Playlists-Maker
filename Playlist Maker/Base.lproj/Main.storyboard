@@ -29,11 +29,11 @@
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="70"/>
-                                    <inset key="sectionInset" minX="20" minY="220" maxX="20" maxY="20"/>
+                                    <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="playlistCell" id="ESy-Nx-wSV" customClass="PlaylistCell" customModule="Playlist_Maker" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="220" width="100" height="100"/>
+                                        <rect key="frame" x="20" y="20" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -89,8 +89,8 @@
                                             <outlet property="wrapper" destination="qD6-yN-uwP" id="rbd-B0-jKy"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newPlaylistCell" id="SM9-7i-PIL" customClass="PlaylistCell" customModule="Playlist_Maker" customModuleProvider="target">
-                                        <rect key="frame" x="137.5" y="220" width="100" height="100"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newPlaylistCell" id="SM9-7i-PIL">
+                                        <rect key="frame" x="137.5" y="20" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -99,7 +99,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZK-sA-M4j">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="95"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebm-r9-2Qz">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="4" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebm-r9-2Qz">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="95"/>
                                                             <attributedString key="attributedText">
                                                                 <fragment content="+">
@@ -148,14 +148,10 @@ Playlist</string>
                                             <constraint firstItem="hZK-sA-M4j" firstAttribute="top" secondItem="SM9-7i-PIL" secondAttribute="top" id="oLF-kj-MaH"/>
                                             <constraint firstAttribute="bottom" secondItem="hZK-sA-M4j" secondAttribute="bottom" constant="5" id="un1-cG-d9d"/>
                                         </constraints>
-                                        <connections>
-                                            <outlet property="name" destination="Ebm-r9-2Qz" id="03o-Ni-Xer"/>
-                                            <outlet property="wrapper" destination="hZK-sA-M4j" id="vbX-Pr-Dqk"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="playlistFooter" id="9EF-0M-5Od">
-                                    <rect key="frame" x="0.0" y="340" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="140" width="375" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-iH-oEY">
@@ -411,18 +407,18 @@ The current track will be added to those highlighted playlists.
                                                     <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ML2-JH-1sj" id="oLm-WF-Syh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ozg-gd-75S">
-                                                                <rect key="frame" x="15" y="20" width="33.5" height="20.5"/>
+                                                                <rect key="frame" x="15" y="20" width="34" height="20"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="syK-Ga-WtW">
-                                                                <rect key="frame" x="15" y="43.5" width="44" height="14.5"/>
+                                                                <rect key="frame" x="15" y="43" width="44" height="15"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                 <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

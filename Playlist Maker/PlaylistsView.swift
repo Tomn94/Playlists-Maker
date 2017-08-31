@@ -14,7 +14,67 @@ class PlaylistsViewController: UICollectionViewController {
     
     var indexPathsForPlaylistsAlreadyContaining = [IndexPath]()
     
+    var playlists = [Playlist]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView?.reloadData()
+            }
+        }
+    }
+    
+    
+    func createPlaylist() {
+        
+        let alert = UIAlertController(title: "Name your new playlist",
+                                      message: nil,
+                                      preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "My New Playlist"
+        })
+        
+        let confirmAction = UIAlertAction(title: "Create",
+                                          style: .default, handler: { [unowned self] _ in
+            
+            let name = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespaces)
+            guard !(name?.isEmpty ?? true) else {
+                /* Retry if empty name */
+                self.createPlaylist()
+                return
+            }
+            
+            DataStore.shared.library.createPlaylist(named: name!,
+                                                    completion:
+                { [unowned self] playlist, error in
+                    
+                    /* Apple Music error */
+                    guard error == nil else {
+                        let alert = UIAlertController(title: "Unable to create playlist",
+                                                      message: error?.localizedDescription,
+                                                      preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.organizer?.present(alert, animated: true)
+                        return
+                    }
+                    
+                    /* Reload content */
+                    self.playlists = DataStore.shared.library.playlists
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadItems(at: [IndexPath(item: self.playlists.count, section: 0),
+                                                              IndexPath(item: self.playlists.count - 1, section: 0)])
+                    }
+            })
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(confirmAction)
+        alert.preferredAction = confirmAction
+        
+        organizer?.present(alert, animated: true)
+    }
+    
 }
+
 
 // MARK: - Data Source
 extension PlaylistsViewController {
@@ -29,7 +89,7 @@ extension PlaylistsViewController {
                                  numberOfItemsInSection section: Int) -> Int {
         
         // Add 1 for Add Playlist cell
-        return DataStore.shared.library.playlists.count + 1
+        return playlists.count + 1
     }
     
     /// Configure cells
@@ -42,7 +102,7 @@ extension PlaylistsViewController {
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         /* New Playlist Button */
-        if indexPath.item == DataStore.shared.library.playlists.count {
+        if indexPath.item == playlists.count {
             
             return collectionView.dequeueReusableCell(withReuseIdentifier: "newPlaylistCell",
                                                       for: indexPath)
@@ -51,7 +111,7 @@ extension PlaylistsViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playlistCell",
                                                       for: indexPath) as! PlaylistCell
         
-        let playlist = DataStore.shared.library.playlists[indexPath.item]
+        let playlist = playlists[indexPath.item]
         cell.name.text = playlist.name
         cell.imageView.image = playlist.artwork
         
@@ -74,11 +134,11 @@ extension PlaylistsViewController {
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         
-        if kind == UICollectionElementKindSectionFooter {
-            
-            return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "playlistFooter", for: indexPath)
+        guard kind == UICollectionElementKindSectionFooter else {
+            return UICollectionReusableView()
         }
-        return UICollectionReusableView()
+        
+        return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionFooter, withReuseIdentifier: "playlistFooter", for: indexPath)
     }
     
 }
@@ -86,50 +146,59 @@ extension PlaylistsViewController {
 // MARK: - Delegate
 extension PlaylistsViewController {
     
-    /// <#Description#>
+    /// Called when a not-selected-yet cell is tapped
     ///
     /// - Parameters:
-    ///   - collectionView: <#collectionView description#>
-    ///   - indexPath: <#indexPath description#>
+    ///   - collectionView: Collection view containing the item
+    ///   - indexPath: Position of the new selection
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
         
-        if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
+        // Add Playlist Button
+        if indexPath.item == playlists.count {
             
+            createPlaylist()
+            collectionView.deselectItem(at: indexPath, animated: false)
+            return
+        }
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             cell.animateSelectionStyle(before: PlaylistCell.deselectedShadowStyle,
                                        after:  PlaylistCell.selectedShadowStyle)
         }
     }
     
-    /// <#Description#>
+    /// Disable deselection of already selected playlists before the sorting process.
     ///
     /// - Parameters:
-    ///   - collectionView: <#collectionView description#>
-    ///   - indexPath: <#indexPath description#>
-    /// - Returns: <#return value description#>
+    ///   - collectionView: Collection view containing the item to deselect
+    ///   - indexPath: Position of the requested deselection
+    /// - Returns: Whether this item can be deselected
     override func collectionView(_ collectionView: UICollectionView,
                                  shouldDeselectItemAt indexPath: IndexPath) -> Bool {
         
-        if let organizer = organizer,
-           indexPathsForPlaylistsAlreadyContaining.contains(indexPath) {
-            
-            let alert = UIAlertController(title: "“\(DataStore.shared.currentSong?.title ?? "Unknown track")” is already in this playlist",
-                                          message: "The playlist cannot be deselected, since the app is not allowed to remove songs from your playlists.\n\nPlease go in Music app to manually remove it.",
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Got it!", style: .cancel))
-            organizer.present(alert, animated: true)
-            
-            return false
+        /* Return true by default */
+        guard let organizer = organizer,
+              indexPathsForPlaylistsAlreadyContaining.contains(indexPath) else {
+            return true
         }
         
-        return true
+        /* Return false if the playlist contained the song before the sorting process.
+           And display an alert */
+        let alert = UIAlertController(title: "“\(DataStore.shared.currentSong?.title ?? "Unknown track")” is already in this playlist",
+            message: "The playlist cannot be deselected, since the app is not allowed to remove songs from your playlists.\n\nPlease go in Music app to manually remove it.",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Got it!", style: .cancel))
+        organizer.present(alert, animated: true)
+        
+        return false
     }
     
-    /// <#Description#>
+    /// Called when a selected cell is tapped
     ///
     /// - Parameters:
-    ///   - collectionView: <#collectionView description#>
-    ///   - indexPath: <#indexPath description#>
+    ///   - collectionView: Collection view containing the item
+    ///   - indexPath: Position of the old selection
     override func collectionView(_ collectionView: UICollectionView,
                                  didDeselectItemAt indexPath: IndexPath) {
         
