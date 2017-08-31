@@ -13,6 +13,7 @@ class SettingsTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.leftBarButtonItem = nil
     }
     
     @IBAction func showIAP() {
@@ -24,14 +25,49 @@ class SettingsTVC: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    /*
+    func beginSorting() {
+        
+    }
+    
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
+}
+
+
+// MARK: - Table View Delegate
+extension SettingsTVC {
+    
+    /// Called when a row is tapped by user
+    ///
+    /// - Parameters:
+    ///   - tableView: This table view
+    ///   - indexPath: Position of the selected row
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        // Song Selection
+        case 0:
+            break
+            
+        // Destination Playlists
+        case 1:
+            break
+        
+        // Fire Button
+        case 2:
+            beginSorting()
+            
+        default:
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
 }

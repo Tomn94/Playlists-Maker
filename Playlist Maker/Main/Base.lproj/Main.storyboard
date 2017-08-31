@@ -7,6 +7,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -211,7 +212,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ftz-IJ-bc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="-544"/>
+            <point key="canvasLocation" x="1265" y="-544"/>
         </scene>
         <!--Music Selection Sorted-->
         <scene sceneID="3fK-8L-Zue">
@@ -280,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wiX-JJ-kSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1301.5999999999999" y="176.76161919040482"/>
+            <point key="canvasLocation" x="1265" y="161"/>
         </scene>
         <!--AccessVC-->
         <scene sceneID="Zjq-kz-Rao">
@@ -340,13 +341,13 @@ To do this, the app requires access to your Music Library.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dq7-Km-R57" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2078" y="177"/>
+            <point key="canvasLocation" x="2001" y="161"/>
         </scene>
-        <!--Select Playlists-->
+        <!--Table View Controller-->
         <scene sceneID="s2w-fV-ofa">
             <objects>
                 <tableViewController id="bk1-Gc-t6F" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ix1-pC-d5y">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ix1-pC-d5y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -374,11 +375,17 @@ To do this, the app requires access to your Music Library.</string>
                             <outlet property="delegate" destination="bk1-Gc-t6F" id="QJZ-o6-SH3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Playlists" id="WFD-B4-z8e"/>
+                    <navigationItem key="navigationItem" id="WFD-B4-z8e">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Select All" id="q5g-H4-xRw"/>
+                            <barButtonItem title="Deselect All" id="Svk-gc-aZl"/>
+                            <barButtonItem title="New" id="GJy-Vn-uF1"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzX-X5-Wzu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2078" y="-544"/>
+            <point key="canvasLocation" x="2001" y="-546"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ypU-lc-qFY">
@@ -396,7 +403,7 @@ To do this, the app requires access to your Music Library.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDy-mq-eX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534" y="177"/>
+            <point key="canvasLocation" x="534" y="162"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
