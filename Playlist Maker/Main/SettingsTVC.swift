@@ -9,13 +9,36 @@
 import UIKit
 
 class SettingsTVC: UITableViewController {
+    
+    /// Whether library is currently loading playlists.
+    /// Disables table view actions
+    var isLoadingLibrary = false
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.leftBarButtonItem = nil
+        navigationItem.leftBarButtonItem = nil  // remove Ads button
+        
+        /* Load playlists */
+        // Indicate with UI
+        let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activity)
+        activity.startAnimating()
+        
+        // Disable table view actions
+        self.isLoadingLibrary = true
+        
+        DataStore.shared.library.loadPlaylists {
+            // Finished loading
+            self.isLoadingLibrary = false
+            DispatchQueue.main.async {
+                activity.stopAnimating()
+            }
+        }
     }
-    
+
+    /// Ads button tapped
     @IBAction func showIAP() {
         
         let alert = UIAlertController(title: "",
@@ -25,15 +48,26 @@ class SettingsTVC: UITableViewController {
         self.present(alert, animated: true)
     }
     
+    /// Begin process
     func beginSorting() {
         
+        guard !isLoadingLibrary else {
+            return
+        }
     }
     
     
     // MARK: - Navigation
+    
+    /// Disable table view actions when loading library
+    override func shouldPerformSegue(withIdentifier identifier: String,
+                                     sender: Any?) -> Bool {
+        return !isLoadingLibrary
+    }
 
     // Preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
@@ -51,6 +85,11 @@ extension SettingsTVC {
     ///   - indexPath: Position of the selected row
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
+        
+        guard !isLoadingLibrary else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         
         switch indexPath.section {
         // Song Selection

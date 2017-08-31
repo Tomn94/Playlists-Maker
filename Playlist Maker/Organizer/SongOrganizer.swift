@@ -87,7 +87,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         nextButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         /* Load content */
-        DataStore.shared.library.load {
+        DataStore.shared.library.loadSongs {
             /* Completion handler */
             self.playlistsViewController.playlists = DataStore.shared.library.playlists
             self.playlistsView.reloadData()

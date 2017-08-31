@@ -40,10 +40,33 @@ class Library {
     /// List of the destination playlists
     var playlists = [Playlist]()
     
-    /// Fill library with songs to sort
-    func load(completionHandler completion: @escaping () -> ()) {
+    /// Fill library with user's playlists
+    func loadPlaylists(completionHandler completion: @escaping () -> ()) {
         
-        /* Songs */
+        DispatchQueue.global(qos: .userInitiated).async {
+        
+            // Get raw playlists in library focus
+            let libraryPlaylists = MPMediaQuery.playlists().collections ?? []
+            var playlists = [Playlist]()
+            
+            // Store playlists
+            for libraryPlaylist in libraryPlaylists {
+                playlists.append(Playlist(collection: libraryPlaylist))
+            }
+            
+            // Sort by name
+            playlists.sort { playlist1, playlist2 in
+                return playlist1.name < playlist2.name
+            }
+            
+            self.playlists = playlists
+            completion()
+        }
+    }
+    
+    /// Fill library with songs to sort
+    func loadSongs(completionHandler completion: @escaping () -> ()) {
+        
         // Get raw songs in library focus
         let songsLibrary = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: "Asher Roth",
                                                                                     forProperty: MPMediaItemPropertyArtist,
@@ -57,24 +80,6 @@ class Library {
         }
         
         self.songs = songs
-        
-        /* Playlists */
-        // Get raw playlists in library focus
-        let libraryPlaylists = MPMediaQuery.playlists().collections ?? []
-        var playlists = [Playlist]()
-        
-        // Store playlists
-        for libraryPlaylist in libraryPlaylists {
-            playlists.append(Playlist(collection: libraryPlaylist))
-        }
-        
-        // Sort by name
-        playlists.sort { playlist1, playlist2 in
-            return playlist1.name < playlist2.name
-        }
-        
-        self.playlists = playlists
-        completion()
     }
     
     class func createPlaylist(named playlistName: String,
