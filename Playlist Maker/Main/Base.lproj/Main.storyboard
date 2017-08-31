@@ -148,10 +148,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="To which destination playlists" id="swN-iP-9xr">
+                            <tableViewSection headerTitle="To which destination playlists" footerTitle="These will be the available choices where you can put your songs." id="swN-iP-9xr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="VR8-DX-n6L" style="IBUITableViewCellStyleDefault" id="Nnu-Ok-8XG">
-                                        <rect key="frame" x="0.0" y="331.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="339" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nnu-Ok-8XG" id="pbu-8o-CgV">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -175,7 +175,7 @@
                             <tableViewSection id="Qyl-Ji-iSs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="YgT-2e-HcZ">
-                                        <rect key="frame" x="0.0" y="411.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="447" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YgT-2e-HcZ" id="vYb-yu-mc1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -347,13 +347,13 @@ To do this, the app requires access to your Music Library.</string>
         <scene sceneID="s2w-fV-ofa">
             <objects>
                 <tableViewController id="bk1-Gc-t6F" customClass="DetailSettingsTVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ix1-pC-d5y">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="ix1-pC-d5y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="settingsDetailCell" textLabel="cmy-PU-8e9" style="IBUITableViewCellStyleDefault" id="D5c-L6-xue">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D5c-L6-xue" id="rBe-yS-TN7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -382,12 +382,13 @@ To do this, the app requires access to your Music Library.</string>
                                     <action selector="newPlaylist" destination="bk1-Gc-t6F" id="NDE-Mp-cbH"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Select All" id="q5g-H4-xRw">
+                            <barButtonItem title="Select All " id="q5g-H4-xRw">
                                 <connections>
                                     <action selector="selectAll" destination="bk1-Gc-t6F" id="bkI-Ur-W4h"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Deselect All" id="Svk-gc-aZl">
+                            <barButtonItem title="Deselect All " id="Svk-gc-aZl">
+                                <inset key="largeContentSizeImageInsets" minX="0.0" minY="0.0" maxX="24" maxY="0.0"/>
                                 <connections>
                                     <action selector="deselectAll" destination="bk1-Gc-t6F" id="1sZ-Lb-5Dh"/>
                                 </connections>

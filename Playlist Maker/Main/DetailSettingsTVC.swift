@@ -129,6 +129,31 @@ extension DetailSettingsTVC {
         
         return playlists.count
     }
+    
+    /// Sets header title according to song selection mode
+    ///
+    /// - Parameters:
+    ///   - tableView: This table view
+    ///   - section: One-and-only section
+    /// - Returns: Name of selection mode
+    override func tableView(_ tableView: UITableView,
+                            titleForHeaderInSection section: Int) -> String? {
+        
+        switch songSelectionMode {
+        case .notInPlaylists:
+            return "Sort songs not contained in…"
+        case .inPlaylists:
+            return "Sort songs contained in…"
+            
+        case .destination:
+            return "Allow songs to be added to…"
+            
+        case .inNoPlaylist,
+             .inNoDestination,
+             .allSongs:
+            return nil
+        }
+    }
 
     /// Populates table view with custom cell
     ///

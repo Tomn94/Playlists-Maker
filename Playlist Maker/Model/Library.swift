@@ -130,9 +130,13 @@ class Library {
             }
             
             // Finish by copying back
-            self.selectionNotInPlaylists = t_selectionNotInPlaylists
-            self.selectionInPlaylists    = t_selectionInPlaylists
-            self.destinationPlaylists    = t_destinationPlaylists
+            self.selectionNotInPlaylists  = t_selectionNotInPlaylists
+            self.selectionInPlaylists     = t_selectionInPlaylists
+            if t_destinationPlaylists.isEmpty {
+                self.destinationPlaylists = self.playlists
+            } else {
+                self.destinationPlaylists = t_destinationPlaylists
+            }
             
             completion()
         }
