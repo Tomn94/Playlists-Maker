@@ -116,8 +116,8 @@ extension PlaylistsViewController {
         if let selection = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
             selected = selection
         }
-        cell.apply(style: selected ? PlaylistCell.selectedShadowStyle
-                                   : PlaylistCell.deselectedShadowStyle)
+        cell.apply(style: selected ? PlaylistCell.Style.selected
+                                   : PlaylistCell.Style.deselected)
         cell.clipsToBounds = false
         
         return cell
@@ -156,8 +156,8 @@ extension PlaylistsViewController {
         }*/
         
         if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
-            cell.animateSelectionStyle(before: PlaylistCell.deselectedShadowStyle,
-                                       after:  PlaylistCell.selectedShadowStyle)
+            cell.animateSelectionStyle(before: PlaylistCell.Style.deselected,
+                                       after:  PlaylistCell.Style.selected)
         }
     }
     
@@ -199,8 +199,8 @@ extension PlaylistsViewController {
         
         if let cell = collectionView.cellForItem(at: indexPath) as? PlaylistCell {
             
-            cell.animateSelectionStyle(before: PlaylistCell.selectedShadowStyle,
-                                       after:  PlaylistCell.deselectedShadowStyle)
+            cell.animateSelectionStyle(before: PlaylistCell.Style.selected,
+                                       after:  PlaylistCell.Style.deselected)
         }
     }
     
@@ -211,14 +211,22 @@ extension PlaylistsViewController {
 /// Appearance & structure of a cell displaying a playlist
 class PlaylistCell: UICollectionViewCell {
     
+    /// Defines the type for styles in PlaylistCell.Style
     typealias PlaylistCellStyle = (opacity: Float, color: CGColor, radius: CGFloat, offset: CGSize)
     
-    static let deselectedShadowStyle: PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
-                                                           radius: 5, offset: CGSize(width: 0, height: 4))
+    /// Available styles for PlaylistCell
+    enum Style {
+        /// Default cell style
+        static let deselected: PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
+                                                    radius: 5, offset: CGSize(width: 0, height: 4))
+        
+        /// Cell in selected state
+        static let selected:   PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
+                                                    radius: 8, offset: .zero)
+    }
     
-    static let selectedShadowStyle:   PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
-                                                           radius: 8, offset: .zero)
     
+    /// Defines shadow form for every cell and every style
     static let shadowPath = CGPath(rect: CGRect(x: 0, y: 0, width: 100, height: 100), transform: nil)
     
     
@@ -232,7 +240,11 @@ class PlaylistCell: UICollectionViewCell {
     @IBOutlet weak var wrapper: UIView!
     
     
+    /// Applies one style to the cell
+    ///
+    /// - Parameter style: New style to use
     func apply(style: PlaylistCellStyle) {
+        
         let contentLayer = contentView.layer
         contentLayer.shadowOpacity = style.opacity
         contentLayer.shadowColor   = style.color
@@ -241,7 +253,13 @@ class PlaylistCell: UICollectionViewCell {
         contentLayer.shadowPath    = PlaylistCell.shadowPath
     }
     
-    func animateSelectionStyle(before: PlaylistCellStyle, after: PlaylistCellStyle) {
+    /// Transitions between 2 cell styles
+    ///
+    /// - Parameters:
+    ///   - before: Style at the beginning of the animation
+    ///   - after:  Style at the end of the animation
+    func animateSelectionStyle(before: PlaylistCellStyle,
+                               after:  PlaylistCellStyle) {
         
         let duration = 0.15
         let contentLayer = contentView.layer
