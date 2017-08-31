@@ -81,6 +81,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
             titleLabel.adjustsFontForContentSizeCategory = true
         }
         
+        /* Bottom bar setup */
         nextButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         /* Load content */
@@ -91,6 +92,29 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpNavigationBar()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        /* Monospaced figures */
+        let monospaced = [
+            UIFontDescriptorFeatureSettingsAttribute : [
+                [UIFontFeatureTypeIdentifierKey     : kNumberSpacingType,           // monospaced
+                 UIFontFeatureSelectorIdentifierKey : kMonospacedNumbersSelector],
+                [UIFontFeatureTypeIdentifierKey     : kStylisticAlternativesType,   // alternative 6 & 9
+                 UIFontFeatureSelectorIdentifierKey : kStylisticAltOneOnSelector]
+            ]]
+        
+        // Time
+        let footnoteDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .footnote)
+        let monoFootnoteFontDescriptor = footnoteDescriptor.addingAttributes(monospaced)
+        timeLabel.font        = UIFont(descriptor: monoFootnoteFontDescriptor, size: 0)
+        
+        // Progression
+        let caption2Descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption2)
+        let monoCaption2FontDescriptor = caption2Descriptor.addingAttributes(monospaced)
+        progressionLabel.font = UIFont(descriptor: monoCaption2FontDescriptor, size: 0)
     }
     
     func setUpNavigationBar() {
