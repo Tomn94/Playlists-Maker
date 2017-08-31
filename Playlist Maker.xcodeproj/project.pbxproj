@@ -23,6 +23,7 @@
 		64900D241F578B2300E2F09D /* QueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D231F578B2300E2F09D /* QueueVC.swift */; };
 		64F0224D1F5884BE00FCA9DE /* SettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */; };
 		64F0224F1F58862200FCA9DE /* AccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224E1F58862200FCA9DE /* AccessVC.swift */; };
+		64F022541F58934700FCA9DE /* DetailSettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		64900D231F578B2300E2F09D /* QueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueVC.swift; sourceTree = "<group>"; };
 		64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		64F0224E1F58862200FCA9DE /* AccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessVC.swift; sourceTree = "<group>"; };
+		64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSettingsTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
 				64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */,
 				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
+				64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				64900D241F578B2300E2F09D /* QueueVC.swift in Sources */,
 				647E7BAB1EBCEE62005291A0 /* PlaylistsView.swift in Sources */,
 				64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */,
+				64F022541F58934700FCA9DE /* DetailSettingsTVC.swift in Sources */,
 				64F0224F1F58862200FCA9DE /* AccessVC.swift in Sources */,
 				64547F991EBB4D41000ED6B3 /* DataStore.swift in Sources */,
 				64900CE01F562B9C00E2F09D /* Utils.swift in Sources */,
