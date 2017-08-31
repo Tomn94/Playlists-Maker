@@ -13,6 +13,27 @@ class SettingsTVC: UITableViewController {
     /// Whether library is currently loading playlists.
     /// Disables table view actions
     var isLoadingLibrary = false
+    
+    
+    /// Available song selection settings
+    enum SongSelection {
+        /// Songs in no playlist at all
+        case inNoPlaylist
+        /// Songs not in destination playlists
+        case inNoDestination
+        /// Songs not in selected playlists
+        case notInPlaylists([Playlist])
+        /// Songs in selected playlists
+        case inPlaylists([Playlist])
+        /// Whole library
+        case allSongs
+    }
+    
+    /// Current setting for song selection
+    let songSelectionMode: SongSelection = .inNoPlaylist
+    
+    /// Rows in Song Selection Section (0) having a disclosure indicator
+    let detailRows = [2, 3]
 
     
     override func viewDidLoad() {
@@ -75,6 +96,30 @@ class SettingsTVC: UITableViewController {
 }
 
 
+// MARK: - Table View Data Source
+extension SettingsTVC {
+    
+    /// Extra customization for cells with detail accessory:
+    /// Sets check mark color
+    ///
+    /// - Parameters:
+    ///   - tableView: This table view
+    ///   - indexPath: Position of the eventual row to customize
+    /// - Returns: Cell with customized text color, eventually
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        if detailRows.contains(indexPath.row) {
+            cell.detailTextLabel?.textColor = tableView.tintColor
+        }
+        
+        return cell
+    }
+    
+}
+
+
 // MARK: - Table View Delegate
 extension SettingsTVC {
     
@@ -94,7 +139,23 @@ extension SettingsTVC {
         switch indexPath.section {
         // Song Selection
         case 0:
-            if indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 4 {
+            
+            // Deselect all rows
+            for row in 0..<tableView.numberOfRows(inSection: 0) {
+                let iP = IndexPath(row: row, section: 0)
+                if detailRows.contains(row) {
+                    tableView.cellForRow(at: iP)?.detailTextLabel?.text = nil
+                } else {
+                    tableView.cellForRow(at: iP)?.accessoryType = .none
+                }
+            }
+            
+            // Select requested row
+            if detailRows.contains(indexPath.row) {
+                tableView.cellForRow(at: indexPath)?.detailTextLabel?.text = "✓"
+                // Don't deselect, it'll be done when detail view is dismissed
+            } else {
+                tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                 tableView.deselectRow(at: indexPath, animated: true)
             }
             

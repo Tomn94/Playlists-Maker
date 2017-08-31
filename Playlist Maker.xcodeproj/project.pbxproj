@@ -106,8 +106,8 @@
 			children = (
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
 				64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */,
-				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
 				64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */,
+				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
