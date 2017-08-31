@@ -87,16 +87,15 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         nextButton.titleLabel?.adjustsFontForContentSizeCategory = true
         
         /* Load content */
-        DataStore.shared.library.loadSongs {
-            /* Completion handler */
-            self.playlistsViewController.playlists = DataStore.shared.library.playlists
-            self.playlistsView.reloadData()
-        }
+        self.playlistsViewController.playlists = DataStore.shared.library.destinationPlaylists
+        self.playlistsView.reloadData()
+        
         showSong(at: 0, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         setUpNavigationBar()
     }
     
@@ -152,6 +151,12 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         self.present(alert, animated: true)
     }
     
+    /// Change the current song in stack and display it
+    ///
+    /// - Parameters:
+    ///   - index: Index in stack of the new song to display
+    ///   - animated: Whether a transition from the previous song is added.
+    ///               Defaults to true.
     func showSong(at index: Int,
                   animated: Bool = true) {
         
@@ -188,7 +193,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         /* We'll deselect previous selection */
         let previouslySelectedIndexes = playlistsView.indexPathsForSelectedItems ?? []
         /* And select the playlists in which the song is */
-        let playlists = DataStore.shared.library.playlists
+        let playlists = DataStore.shared.library.destinationPlaylists
         var selectedIndexes = [IndexPath]()
         for (index, playlist) in playlists.enumerated() {
             if playlist.contains(song: song) {
