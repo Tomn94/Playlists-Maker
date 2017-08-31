@@ -16,21 +16,21 @@ class SettingsTVC: UITableViewController {
     
     
     /// Available song selection settings
-    enum SongSelection {
+    enum SongSelection: Int {
         /// Songs in no playlist at all
         case inNoPlaylist
         /// Songs not in destination playlists
         case inNoDestination
         /// Songs not in selected playlists
-        case notInPlaylists([Playlist])
+        case notInPlaylists
         /// Songs in selected playlists
-        case inPlaylists([Playlist])
+        case inPlaylists
         /// Whole library
         case allSongs
     }
     
     /// Current setting for song selection
-    let songSelectionMode: SongSelection = .inNoPlaylist
+    var songSelectionMode: SongSelection = .inNoPlaylist
     
     /// Rows in Song Selection Section (0) having a disclosure indicator
     let detailRows = [2, 3]
@@ -158,6 +158,9 @@ extension SettingsTVC {
                 tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
                 tableView.deselectRow(at: indexPath, animated: true)
             }
+            
+            // Set mode
+            songSelectionMode = SongSelection(rawValue: indexPath.row) ?? .inNoPlaylist
             
         // Destination Playlists
         case 1:
