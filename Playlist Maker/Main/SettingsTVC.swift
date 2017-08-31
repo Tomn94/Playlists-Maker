@@ -32,7 +32,12 @@ class SettingsTVC: UITableViewController {
     }
     
     /// Current setting for song selection input
-    var songSelectionMode: SongSelection = .inNoPlaylist
+    var songSelectionMode: SongSelection = SongSelection(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
+        didSet {
+            UserDefaults.standard.set(songSelectionMode.rawValue,
+                                      forKey: UserDefaultsKey.songSelectionMode)
+        }
+    }
     
     /// Rows in Song Selection Section (0) having a disclosure indicator
     let detailRows = [2, 3]
@@ -146,10 +151,15 @@ extension SettingsTVC {
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        if detailRows.contains(indexPath.row) {
-            cell.detailTextLabel?.textColor = UIButton.appearance().tintColor
+        if indexPath.section == 0 {
             
-            if indexPath.section == 0 {
+            let selected = indexPath.row == songSelectionMode.rawValue
+            
+            if detailRows.contains(indexPath.row) {
+                
+                cell.detailTextLabel?.text = selected ? "✓" : nil
+                cell.detailTextLabel?.textColor = UIButton.appearance().tintColor
+            
                 if indexPath.row == 2 {         // Not In Playlists
                     let count = DataStore.shared.library.selectionNotInPlaylists.count
                     if count == 1 {
@@ -167,7 +177,10 @@ extension SettingsTVC {
                     }
                 }
                 
+            } else {
+                cell.accessoryType = selected ? .checkmark : .none
             }
+            
         } else if indexPath.section == 1 {      // Destination playlists
             let count = DataStore.shared.library.destinationPlaylists.count
             if count == 1 {
