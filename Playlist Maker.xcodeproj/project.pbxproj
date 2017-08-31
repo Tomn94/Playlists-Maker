@@ -78,15 +78,9 @@
 			children = (
 				64547F951EBB35AF000ED6B3 /* Model */,
 				64547F831EBB245C000ED6B3 /* AppDelegate.swift */,
-				64547F851EBB245C000ED6B3 /* SongOrganizer.swift */,
-				647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */,
-				64900D231F578B2300E2F09D /* QueueVC.swift */,
-				64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */,
 				64900D211F57842100E2F09D /* DismissSegue.swift */,
-				64547F871EBB245C000ED6B3 /* Main.storyboard */,
-				64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */,
-				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
-				644C299E1F586FFC00A8AB70 /* SongOrganizer.storyboard */,
+				64F022511F588CE600FCA9DE /* Main */,
+				64F022521F588D0100FCA9DE /* Organizer */,
 				64547F8A1EBB245C000ED6B3 /* Assets.xcassets */,
 				64547F8C1EBB245C000ED6B3 /* LaunchScreen.storyboard */,
 				64547F8F1EBB245C000ED6B3 /* Info.plist */,
@@ -103,6 +97,28 @@
 				64547F961EBB35DE000ED6B3 /* Library.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		64F022511F588CE600FCA9DE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				64547F871EBB245C000ED6B3 /* Main.storyboard */,
+				64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */,
+				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		64F022521F588D0100FCA9DE /* Organizer */ = {
+			isa = PBXGroup;
+			children = (
+				644C299E1F586FFC00A8AB70 /* SongOrganizer.storyboard */,
+				64547F851EBB245C000ED6B3 /* SongOrganizer.swift */,
+				647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */,
+				64900D231F578B2300E2F09D /* QueueVC.swift */,
+				64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */,
+			);
+			path = Organizer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
