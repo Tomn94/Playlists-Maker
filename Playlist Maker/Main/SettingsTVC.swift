@@ -14,25 +14,8 @@ class SettingsTVC: UITableViewController {
     /// Disables table view actions
     var isLoadingLibrary = false
     
-    
-    /// Available song selection settings
-    enum SongSelection: Int {
-        /// Songs in no playlist at all
-        case inNoPlaylist
-        /// Songs not in destination playlists
-        case inNoDestination
-        /// Songs not in selected playlists
-        case notInPlaylists
-        /// Songs in selected playlists
-        case inPlaylists
-        /// Whole library
-        case allSongs
-        /// Used when setting destination playlists
-        case destination
-    }
-    
     /// Current setting for song selection input
-    var songSelectionMode: SongSelection = SongSelection(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
+    var songSelectionMode: SongSelectionMode = SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
         didSet {
             UserDefaults.standard.set(songSelectionMode.rawValue,
                                       forKey: UserDefaultsKey.songSelectionMode)
@@ -297,7 +280,7 @@ extension SettingsTVC {
             }
             
             // Set mode
-            songSelectionMode = SongSelection(rawValue: indexPath.row) ?? .inNoPlaylist
+            songSelectionMode = SongSelectionMode(rawValue: indexPath.row) ?? .inNoPlaylist
             
         // Destination Playlists
         case 1:

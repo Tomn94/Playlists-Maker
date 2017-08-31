@@ -9,9 +9,24 @@
 import Foundation
 import MediaPlayer
 
+/// Available song selection settings
+enum SongSelectionMode: Int {
+    /// Songs in no playlist at all
+    case inNoPlaylist
+    /// Songs not in destination playlists
+    case inNoDestination
+    /// Songs not in selected playlists
+    case notInPlaylists
+    /// Songs in selected playlists
+    case inPlaylists
+    /// Whole library
+    case allSongs
+    /// Only used when editing destination playlists
+    case destination
+}
+
 /// Contains all information about the current songs to sort
 class Library {
-    
     
     // MARK: Status
     
@@ -32,14 +47,15 @@ class Library {
     }
     
     
-    // MARK: Songs
+    // MARK: Content
     
     /// List of the songs to sort
     var songs = [Song]()
     
-    /// List of the destination playlists
+    /// List of the playlists
     var playlists = [Playlist]()
     
+    /// Stored selection of playlists for Not Contained In mode
     var selectionNotInPlaylists = [Playlist]() {
         didSet {
             UserDefaults.standard.set(selectionNotInPlaylists.map { $0.id },
@@ -47,6 +63,7 @@ class Library {
         }
     }
     
+    /// Stored selection of playlists for Contained In mode
     var selectionInPlaylists = [Playlist]() {
         didSet {
             UserDefaults.standard.set(selectionInPlaylists.map { $0.id },
@@ -54,6 +71,7 @@ class Library {
         }
     }
     
+    /// Stored selection of playlists acting as destinations when sorting songs
     var destinationPlaylists = [Playlist]() {
         didSet {
             UserDefaults.standard.set(destinationPlaylists.map { $0.id },
