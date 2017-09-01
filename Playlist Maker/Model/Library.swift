@@ -91,7 +91,9 @@ class Library {
             
             // Store playlists
             for libraryPlaylist in libraryPlaylists {
-                playlists.append(Playlist(collection: libraryPlaylist))
+                if let playlist = libraryPlaylist as? MPMediaPlaylist {
+                    playlists.append(Playlist(raw: playlist))
+                }
             }
             
             // Sort by name
@@ -178,7 +180,7 @@ class Library {
             
             // Store songs
             for songItem in librarySongs {
-                songs.append(Song(item: songItem))
+                songs.append(Song(raw: songItem))
             }
             
             // Sort by artist
@@ -191,6 +193,12 @@ class Library {
         }
     }
     
+    /// Creates a playlist in the user's librayry
+    ///
+    /// - Parameters:
+    ///   - playlistName: Name of the new playlist
+    ///   - completionHandler: Called when operation completed.
+    ///                        Gives back the new playlist object if succeeded, an error otherwise.
     class func createPlaylist(named playlistName: String,
                               completion completionHandler: @escaping (Playlist?, Error?) -> ()) {
         
@@ -205,7 +213,7 @@ class Library {
                     return
                 }
                 
-                let newPlaylist = Playlist(collection: playlist!)
+                let newPlaylist = Playlist(raw: playlist!)
                 completionHandler(newPlaylist, nil)
         })
     }
@@ -235,13 +243,13 @@ struct Song {
     
     let artwork: UIImage?
     
-    let item: MPMediaItem
+    let raw: MPMediaItem
     
     
     /// Init Song object with a media library query result
     ///
     /// - Parameter item: Library item to wrap in Song object
-    init(item: MPMediaItem) {
+    init(raw item: MPMediaItem) {
         
         self.id      = item.persistentID
         self.title   = item.title ?? "Unknown title"
@@ -254,7 +262,7 @@ struct Song {
         }
         self.length  = item.playbackDuration
         self.artwork = item.artwork?.image(at: Song.artworkSize)
-        self.item    = item
+        self.raw     = item
     }
     
 }
@@ -277,12 +285,15 @@ struct Playlist {
     
     let artwork: UIImage?
     
+    let raw: MPMediaPlaylist
+    
     
     /// Init Playlist object with a playlist raw type
     ///
     /// - Parameter collection: Playlist in library
-    init(collection: MPMediaItemCollection) {
+    init(raw collection: MPMediaPlaylist) {
         
+        self.raw  = collection
         self.id   = collection.value(forProperty: MPMediaPlaylistPropertyPersistentID) as? NSNumber ?? NSNumber(value: 0)
         
         self.name = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"

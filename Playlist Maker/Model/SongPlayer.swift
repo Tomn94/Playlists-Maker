@@ -70,7 +70,7 @@ class SongPlayer {
         musicPlayer.currentPlaybackTime = 0
         
         let songItems = songs.map { song in
-            song.item
+            song.raw
         }
         let collection = MPMediaItemCollection(items: songItems)
         musicPlayer.setQueue(with: collection)
