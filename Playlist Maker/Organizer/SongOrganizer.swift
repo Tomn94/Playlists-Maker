@@ -293,6 +293,16 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         playButton.isHidden = true
     }
     
+    @IBAction func back() {
+        
+        songPlayer.seek(to: songPlayer.currentTime - SongOrganizer.jumpButtonInterval)
+    }
+    
+    @IBAction func forward() {
+        
+        songPlayer.seek(to: songPlayer.currentTime + SongOrganizer.jumpButtonInterval)
+    }
+    
     
     // MARK: Media playback - Received events
     

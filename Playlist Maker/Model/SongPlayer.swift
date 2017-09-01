@@ -47,6 +47,15 @@ class SongPlayer {
     var isPlaying: Bool {
         return musicPlayer.playbackState == .playing
     }
+    
+    /// Time elapsed since the player started a song
+    var currentTime: TimeInterval {
+        let time = musicPlayer.currentPlaybackTime
+        if time.isNaN {
+            return 0
+        }
+        return time
+    }
 
     
     /// Prepare the player to play a list of songs
@@ -98,6 +107,7 @@ class SongPlayer {
     ///
     /// - Parameter time: Time to play at (now or next time Play is invoked)
     func seek(to time: TimeInterval) {
+        
         musicPlayer.currentPlaybackTime = time
     }
     
