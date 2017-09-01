@@ -51,6 +51,14 @@ class QueueVC: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        if #available(iOS 11.0, *) {
+        } else {  // iOS 10
+            let barInsets = UIEdgeInsets(top: self.topLayoutGuide.length,
+                                         left: 0, bottom: 0, right: 0)
+            tableView.contentInset = barInsets
+            tableView.scrollIndicatorInsets = barInsets
+        }
+        
         /* Always show the current song */
         guard songs.count > 0 else { return }
         tableView.scrollToRow(at: IndexPath(row: 0, section: 1), at: .middle, animated: false)

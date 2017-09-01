@@ -20,6 +20,9 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     
     /// Handles track playback
     let songPlayer = SongPlayer()
+    
+    /* Navigation Bar */
+    @IBOutlet weak var autoplayButton: RecessedButton!
 
     /* Song info - top bar */
     @IBOutlet weak var topBar: UIVisualEffectView!
@@ -96,7 +99,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setUpNavigationBar()
+        autoplayButton.isSelected = UserDefaults.standard.bool(forKey: UserDefaultsKey.autoplaySongs)
     }
     
     override func viewWillLayoutSubviews() {
@@ -120,15 +123,6 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         let caption2Descriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption2)
         let monoCaption2FontDescriptor = caption2Descriptor.addingAttributes(monospaced)
         progressionLabel.font = UIFont(descriptor: monoCaption2FontDescriptor, size: 0)
-    }
-    
-    func setUpNavigationBar() {
-        
-        let toggleButton = RecessedButton(type: .system)
-        toggleButton.setTitle("Autoplay", for: .normal)
-        toggleButton.isSelected = UserDefaults.standard.bool(forKey: UserDefaultsKey.autoplaySongs)
-        toggleButton.addTarget(self, action: .toggleAutoplay, for: .touchUpInside)
-        navigationItem.leftBarButtonItem = RecessedBarButton(button: toggleButton)
     }
 
     /// Stop process & dismiss
@@ -269,7 +263,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     // MARK: Actions
     
     /// Autoplay switch button tapped
-    func toggleAutoplay() {
+    @IBAction func toggleAutoplay() {
         
         let userDefaults = UserDefaults.standard
         let autoplayKey  = UserDefaultsKey.autoplaySongs

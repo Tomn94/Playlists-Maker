@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -28,7 +29,7 @@
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="10" id="ytj-JQ-scO">
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="70"/>
+                                    <size key="footerReferenceSize" width="0.0" height="80"/>
                                     <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                 </collectionViewFlowLayout>
                                 <cells>
@@ -151,11 +152,11 @@ Playlist</string>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="playlistFooter" id="9EF-0M-5Od">
-                                    <rect key="frame" x="0.0" y="140" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="140" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBz-iH-oEY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <string key="text">Tap some of the above playlists to select them, tap again to deselect.
 The current track will be added to those highlighted playlists.
 </string>
@@ -353,6 +354,16 @@ The current track will be added to those highlighted playlists.
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Song to Playlists" id="Ms0-sb-dXP">
+                        <barButtonItem key="leftBarButtonItem" id="Q96-4D-Waz">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bTI-K2-Snf" customClass="RecessedButton" customModule="Playlist_Maker" customModuleProvider="target">
+                                <rect key="frame" x="16" y="7" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Autoplay"/>
+                                <connections>
+                                    <action selector="toggleAutoplay" destination="BYZ-38-t0r" eventType="touchUpInside" id="xcD-x5-c9A"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Stop" id="e7d-qq-TRO">
                             <connections>
                                 <action selector="stop" destination="BYZ-38-t0r" id="55p-Vy-oU7"/>
@@ -362,6 +373,7 @@ The current track will be added to those highlighted playlists.
                     <connections>
                         <outlet property="artistLabel" destination="oYd-g6-lfH" id="E4I-NR-Sbk"/>
                         <outlet property="artwork" destination="Plq-E2-v5L" id="Crd-Lh-2AG"/>
+                        <outlet property="autoplayButton" destination="bTI-K2-Snf" id="i7e-PC-aWK"/>
                         <outlet property="bottomBar" destination="c5s-uz-ohS" id="aMO-iT-VaR"/>
                         <outlet property="detailLabel" destination="NW8-Wo-nKO" id="5a4-tM-7tb"/>
                         <outlet property="nextButton" destination="UWw-Za-4nH" id="r8P-vs-y71"/>
