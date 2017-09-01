@@ -34,8 +34,15 @@ class SettingsTVC: UITableViewController {
         /* Load playlists */
         // Indicate with UI
         let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activity)
+        let info = UIBarButtonItem(title: "Loading playlists…", style: .plain,
+                                   target: nil, action: nil)
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: activity), info]
         activity.startAnimating()
+        // Remove title for this in compact width
+        let previousTitle = navigationItem.title
+        if traitCollection.horizontalSizeClass == .compact {
+            navigationItem.title = nil
+        }
         
         // Disable table view actions
         self.isLoadingLibrary = true
@@ -45,6 +52,8 @@ class SettingsTVC: UITableViewController {
             self.isLoadingLibrary = false
             DispatchQueue.main.async {
                 activity.stopAnimating()
+                self.navigationItem.setRightBarButtonItems([], animated: true)
+                self.navigationItem.title = previousTitle
                 self.reloadDetailRows()
             }
         }
