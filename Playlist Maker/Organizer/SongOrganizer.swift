@@ -202,7 +202,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
                 playlistsView.selectItem(at: selectedIndex, animated: false, scrollPosition: [])
                 
                 let cell = playlistsView.cellForItem(at: selectedIndex) as? PlaylistCell
-                cell?.apply(style: PlaylistCell.Style.selected)
+                cell?.apply(style: PlaylistCell.Style.selectedFrozen)
             }
         }
         /* Apply deselection, but avoiding deselecting common playlists */
@@ -312,7 +312,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         }
         
         // Pass to the next one
-        self.showSong(at: currentIndex + 1)
+        showSong(at: currentIndex + 1)
     }
     
     
