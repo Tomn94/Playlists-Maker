@@ -48,6 +48,9 @@ class SongPlayer {
         return musicPlayer.playbackState == .playing
     }
     
+    /// Whether the player has no music in queue
+    var isStopped = true
+    
     /// Time elapsed since the player started a song
     var currentTime: TimeInterval {
         let time = musicPlayer.currentPlaybackTime
@@ -71,6 +74,7 @@ class SongPlayer {
         }
         let collection = MPMediaItemCollection(items: songItems)
         musicPlayer.setQueue(with: collection)
+        isStopped = false
         
         playbackStatusChanged()
     }
@@ -101,6 +105,7 @@ class SongPlayer {
     func stop() {
         
         musicPlayer.stop()
+        isStopped = true
     }
     
     /// Change the elapsed time of the current track.

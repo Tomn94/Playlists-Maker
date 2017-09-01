@@ -18,6 +18,9 @@ fileprivate extension Selector {
 
 class SongOrganizer: UIViewController, SongPlayerDelegate {
     
+    /// Time added/subtracted when pressing back/forward buttons
+    static let jumpButtonInterval: TimeInterval = 30
+    
     /// Handles track playback
     let songPlayer = SongPlayer()
     
@@ -241,8 +244,9 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         timeLabel.text = formatter.string(from: song.length)
         
         // Load song in player
-        songPlayer.load(songs: [song])
+        songPlayer.stop()
         if DataStore.autoplaysSong {
+            songPlayer.load(songs: [song])
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
                 // Dispatch otherwise player UI not ready
                 self.songPlayer.resume()
@@ -285,6 +289,10 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     /// Play/Pause button tapped
     @IBAction func playPause() {
         
+        if songPlayer.isStopped,
+           let currentSong = DataStore.shared.currentSong {
+            songPlayer.load(songs: [currentSong])
+        }
         songPlayer.playPause()
         
         /* iOS takes some time to change playback status,
