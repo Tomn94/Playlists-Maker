@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641634C41F59098300696EAC /* GenresVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641634C31F59098300696EAC /* GenresVC.swift */; };
 		644C29A01F58700300A8AB70 /* SongOrganizer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 644C299E1F586FFC00A8AB70 /* SongOrganizer.storyboard */; };
 		64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F831EBB245C000ED6B3 /* AppDelegate.swift */; };
 		64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64547F851EBB245C000ED6B3 /* SongOrganizer.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		641634C31F59098300696EAC /* GenresVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresVC.swift; sourceTree = "<group>"; };
 		644C299F1F586FFC00A8AB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SongOrganizer.storyboard; sourceTree = "<group>"; };
 		64547F801EBB245C000ED6B3 /* Playlist Maker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Playlist Maker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64547F831EBB245C000ED6B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				64547F851EBB245C000ED6B3 /* SongOrganizer.swift */,
 				647E7BAA1EBCEE62005291A0 /* PlaylistsView.swift */,
 				64900D231F578B2300E2F09D /* QueueVC.swift */,
+				641634C31F59098300696EAC /* GenresVC.swift */,
 				64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */,
 			);
 			path = Organizer;
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64F0224D1F5884BE00FCA9DE /* SettingsTVC.swift in Sources */,
+				641634C41F59098300696EAC /* GenresVC.swift in Sources */,
 				64900D241F578B2300E2F09D /* QueueVC.swift in Sources */,
 				647E7BAB1EBCEE62005291A0 /* PlaylistsView.swift in Sources */,
 				64547F861EBB245C000ED6B3 /* SongOrganizer.swift in Sources */,

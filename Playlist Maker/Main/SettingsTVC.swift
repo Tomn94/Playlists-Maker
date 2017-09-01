@@ -116,7 +116,7 @@ class SettingsTVC: UITableViewController {
                 
                 let part  = songSelectionMode == .notInPlaylists ? "don't " : ""
                 let alert = UIAlertController(title: "No Playlists Selected",
-                                              message: "You chose to sort songs that \(part)belong to specific playlists. Select some playlists to begin.",
+                                              message: "You chose to sort songs that \(part)belong to specific playlists.\nThen select some playlists to begin.",
                                               preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                 present(alert, animated: true)
