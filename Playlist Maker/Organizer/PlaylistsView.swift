@@ -112,12 +112,15 @@ extension PlaylistsViewController {
         cell.wrapper.layer.cornerRadius = 7
         cell.wrapper.clipsToBounds = true
         
-        var selected = false
-        if let selection = collectionView.indexPathsForSelectedItems?.contains(indexPath) {
-            selected = selection
+        if collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false {
+            if indexPathsForPlaylistsAlreadyContaining.contains(indexPath) {
+                cell.apply(style: PlaylistCell.Style.selectedFrozen)
+            } else {
+                cell.apply(style: PlaylistCell.Style.selected)
+            }
+        } else {
+            cell.apply(style: PlaylistCell.Style.deselected)
         }
-        cell.apply(style: selected ? PlaylistCell.Style.selected
-                                   : PlaylistCell.Style.deselected)
         cell.clipsToBounds = false
         
         return cell
@@ -217,12 +220,16 @@ class PlaylistCell: UICollectionViewCell {
     /// Available styles for PlaylistCell
     enum Style {
         /// Default cell style
-        static let deselected: PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
-                                                    radius: 5, offset: CGSize(width: 0, height: 4))
+        static let deselected:     PlaylistCellStyle = (opacity: 0.2, color: UIColor.black.cgColor,
+                                                        radius: 5, offset: CGSize(width: 0, height: 4))
         
         /// Cell in selected state
-        static let selected:   PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
-                                                    radius: 8, offset: .zero)
+        static let selected:       PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 0.5041746497, green: 0.6987419724, blue: 0, alpha: 1).cgColor,
+                                                        radius: 8, offset: .zero)
+        
+        /// Cell in selected state
+        static let selectedFrozen: PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
+                                                        radius: 8, offset: .zero)
     }
     
     
