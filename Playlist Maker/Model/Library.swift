@@ -84,6 +84,11 @@ class Library {
     func loadPlaylists(completionHandler completion: @escaping () -> ()) {
         
         DispatchQueue.global(qos: .userInitiated).async {
+            
+            guard Library.status == .authorized else {
+                completion()
+                return
+            }
         
             // Get raw playlists in library focus
             let libraryPlaylists = MPMediaQuery.playlists().collections ?? []
@@ -149,6 +154,11 @@ class Library {
                    completionHandler completion: @escaping () -> ()) {
         
         DispatchQueue.global(qos: .userInitiated).async {
+            
+            guard Library.status == .authorized else {
+                completion()
+                return
+            }
             
             let librarySongs: Set<MPMediaItem>
             

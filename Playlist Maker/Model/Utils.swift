@@ -28,6 +28,13 @@ enum UserDefaultsKey {
     
 }
 
+extension Notification.Name {
+    
+    /// Called when user granted access to music library
+    static let libraryAccessGranted = Notification.Name("libraryAccessGranted")
+    
+}
+
 extension String {
     
     /// Indicates whether the string contains any inputted substring

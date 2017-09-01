@@ -16,8 +16,15 @@ class AccessVC: UIViewController {
         super.viewDidAppear(animated)
         
         if Library.status == .authorized {
-            dismiss(animated: true)
+            authorized()
         }
+    }
+    
+    /// Called when user has granted access
+    func authorized() {
+        
+        NotificationCenter.default.post(name: .libraryAccessGranted, object: nil)
+        dismiss(animated: true)
     }
     
     /// User tapped Request Access button,
@@ -49,7 +56,7 @@ class AccessVC: UIViewController {
             
         case .authorized:
             // User shares access, dismiss this Request view
-            dismiss(animated: true)
+            authorized()
         }
     }
     

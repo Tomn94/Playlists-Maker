@@ -8,11 +8,22 @@
 
 import UIKit
 
+fileprivate extension Selector {
+    
+    /// Called when library access status changed
+    static let reloadPlaylists = #selector(SettingsTVC.loadPlaylists)
+    
+}
+
+
 class SettingsTVC: UITableViewController {
     
     /// Whether library is currently loading playlists.
     /// Disables table view actions
     var isLoadingLibrary = false
+    
+    /// Spinner displayed when loading playlists
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     /// Current setting for song selection input
     var songSelectionMode: SongSelectionMode = SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
@@ -29,36 +40,13 @@ class SettingsTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.leftBarButtonItem = nil  // remove Ads button
+        /* Remove Ads button */
+        navigationItem.leftBarButtonItem = nil
         
-        /* Load playlists */
-        // Indicate with UI
-        let activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        let info = UIBarButtonItem(title: "Loading playlists…", style: .plain,
-                                   target: nil, action: nil)
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: activity), info]
-        activity.startAnimating()
-        // Remove title for this in compact width
-        let previousTitle = navigationItem.title
-        if traitCollection.horizontalSizeClass == .compact {
-            navigationItem.title = nil
-        }
-        
-        // Disable table view actions
-        self.isLoadingLibrary = true
-        tableView.allowsSelection = false
-        
-        DataStore.shared.library.loadPlaylists {
-            // Finished loading
-            self.isLoadingLibrary = false
-            DispatchQueue.main.async {
-                activity.stopAnimating()
-                self.tableView.allowsSelection = true
-                self.navigationItem.setRightBarButtonItems([], animated: true)
-                self.navigationItem.title = previousTitle
-                self.reloadDetailRows()
-            }
-        }
+        /* Set up loading playlists */
+        NotificationCenter.default.addObserver(self, selector: .reloadPlaylists,
+                                               name: .libraryAccessGranted, object: nil)
+        loadPlaylists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +63,40 @@ class SettingsTVC: UITableViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         self.present(alert, animated: true)
+    }
+    
+    /// Set up main content
+    func loadPlaylists() {
+        
+        let info = UIBarButtonItem(title: "Loading playlists…", style: .plain,
+                                   target: nil, action: nil)
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: activityIndicator),
+                                                   info]
+        
+        activityIndicator.startAnimating()
+        // Remove title for this in compact width
+        let previousTitle = navigationItem.title
+        if traitCollection.horizontalSizeClass == .compact {
+            navigationItem.title = nil
+        }
+        
+        // Disable table view actions
+        self.isLoadingLibrary = true
+        tableView.allowsSelection = false
+        
+        DataStore.shared.library.loadPlaylists {
+            // Finished loading
+            self.isLoadingLibrary = false
+            DispatchQueue.main.async {
+                let reloadItem = UIBarButtonItem(barButtonSystemItem: .refresh,
+                                                 target: self, action: .reloadPlaylists)
+                self.activityIndicator.stopAnimating()
+                self.tableView.allowsSelection = true
+                self.navigationItem.setRightBarButtonItems([reloadItem], animated: true)
+                self.navigationItem.title = previousTitle
+                self.reloadDetailRows()
+            }
+        }
     }
     
     /// Does some checks before engaging sort process.
