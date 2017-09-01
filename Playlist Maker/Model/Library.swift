@@ -218,6 +218,25 @@ class Library {
         })
     }
     
+    /// Adds a given song to selected playlists
+    ///
+    /// - Parameters:
+    ///   - song: Songs to add
+    ///   - playlists: Destination playlists
+    ///   - completionHandler: Called for each playlist processed.
+    class func addSong(_ song: Song,
+                       to playlists: [Playlist],
+                       completion completionHandler: @escaping (Playlist, Error?) -> ()) {
+        
+        for playlist in playlists {
+            
+            // Add song to each playlist
+            playlist.raw.add([song.raw]) { error in
+                completionHandler(playlist, error)
+            }
+        }
+    }
+    
 }
 
 

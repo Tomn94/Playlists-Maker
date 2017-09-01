@@ -277,10 +277,42 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     /// Next button tapped
     @IBAction func nextSong() {
         
-        guard let currentIndex = DataStore.shared.currentIndex
+        guard let currentIndex = DataStore.shared.currentIndex,
+              let currentSong  = DataStore.shared.currentSong
             else { return }
         
-        showSong(at: currentIndex + 1)
+        // Get playlist selection
+        var selection = playlistsView.indexPathsForSelectedItems ?? []
+        let notNeeded = playlistsViewController.indexPathsForPlaylistsAlreadyContaining
+        
+        // Remove playlists already containing song from selection indexes
+        for indexPath in notNeeded {
+            if let position = selection.index(of: indexPath) {
+                selection.remove(at: position)
+            }
+        }
+        
+        // Get selected playlists by user from filtered indexes
+        let allPlaylists = playlistsViewController.playlists
+        let selectedPlaylists = selection.map { selectionPosition in
+            allPlaylists[selectionPosition.item]
+        }
+        
+        // Validate
+        Library.addSong(currentSong,
+                        to: selectedPlaylists) { playlist, error in
+                            
+            if error != nil {
+                let alert = UIAlertController(title: "Error when adding “\(currentSong.title)” to “\(playlist.name)”",
+                                              message: error?.localizedDescription,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(alert, animated: true)
+            }
+        }
+        
+        // Pass to the next one
+        self.showSong(at: currentIndex + 1)
     }
     
     
