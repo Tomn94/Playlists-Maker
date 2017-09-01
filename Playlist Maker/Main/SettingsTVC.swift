@@ -46,12 +46,14 @@ class SettingsTVC: UITableViewController {
         
         // Disable table view actions
         self.isLoadingLibrary = true
+        tableView.allowsSelection = false
         
         DataStore.shared.library.loadPlaylists {
             // Finished loading
             self.isLoadingLibrary = false
             DispatchQueue.main.async {
                 activity.stopAnimating()
+                self.tableView.allowsSelection = true
                 self.navigationItem.setRightBarButtonItems([], animated: true)
                 self.navigationItem.title = previousTitle
                 self.reloadDetailRows()
