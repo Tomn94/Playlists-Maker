@@ -68,6 +68,19 @@ enum SongSelectionMode: Int {
     }
 }
 
+
+/// Available song selection at date settings.
+/// Associated `Int` is settings storage value.
+enum DateSelectionMode: Int {
+    /// `SongSelectionMode.addedDate` applies to song added dates before selection
+    case before = 0
+    /// `SongSelectionMode.addedDate` applies to song added dates after selection
+    case after  = 1
+    /// `SongSelectionMode.addedDate` applies to song added dates between date selection
+    case range  = 2
+}
+
+
 /// Contains all information about the current songs to sort
 class Library {
     

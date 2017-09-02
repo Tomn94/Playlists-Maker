@@ -22,6 +22,7 @@
 		64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */; };
 		64900D221F57842100E2F09D /* DismissSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D211F57842100E2F09D /* DismissSegue.swift */; };
 		64900D241F578B2300E2F09D /* QueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D231F578B2300E2F09D /* QueueVC.swift */; };
+		64E33BA61F5B2E6F0017AD5A /* DateSettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E33BA51F5B2E6F0017AD5A /* DateSettingsTVC.swift */; };
 		64F0224D1F5884BE00FCA9DE /* SettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */; };
 		64F0224F1F58862200FCA9DE /* AccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224E1F58862200FCA9DE /* AccessVC.swift */; };
 		64F022541F58934700FCA9DE /* DetailSettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */; };
@@ -46,6 +47,7 @@
 		64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNRecessedButton.swift; sourceTree = "<group>"; };
 		64900D211F57842100E2F09D /* DismissSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissSegue.swift; sourceTree = "<group>"; };
 		64900D231F578B2300E2F09D /* QueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueVC.swift; sourceTree = "<group>"; };
+		64E33BA51F5B2E6F0017AD5A /* DateSettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSettingsTVC.swift; sourceTree = "<group>"; };
 		64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		64F0224E1F58862200FCA9DE /* AccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessVC.swift; sourceTree = "<group>"; };
 		64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSettingsTVC.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				64547F871EBB245C000ED6B3 /* Main.storyboard */,
 				64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */,
 				64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */,
+				64E33BA51F5B2E6F0017AD5A /* DateSettingsTVC.swift */,
 				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
 			);
 			path = Main;
@@ -216,6 +219,7 @@
 				64900CE01F562B9C00E2F09D /* Utils.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
 				64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */,
+				64E33BA61F5B2E6F0017AD5A /* DateSettingsTVC.swift in Sources */,
 				64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */,
 				64900D221F57842100E2F09D /* DismissSegue.swift in Sources */,
 				64547F971EBB35DE000ED6B3 /* Library.swift in Sources */,

@@ -24,13 +24,29 @@ class DataStore {
         return nil
     }
     
-    /// Setting whether songs should play right when a song is displayed (defaults to true)
+    /// Preference whether songs should play right when a song is displayed (defaults to true)
     static var autoplaysSong: Bool {
         get {
             return UserDefaults.standard.bool(forKey: UserDefaultsKey.autoplaySongs)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.autoplaySongs)
+        }
+    }
+    
+    /// Date after which songs are accepted in `SongSelectionMode.addedDate`
+    var dateSelectionModeStart = UserDefaults.standard.object(forKey: UserDefaultsKey.dateSelectionModeStart) as? Date ?? Date() {
+        didSet {
+            UserDefaults.standard.set(dateSelectionModeStart,
+                                      forKey: UserDefaultsKey.dateSelectionModeStart)
+        }
+    }
+    
+    /// Date before which songs are accepted in `SongSelectionMode.addedDate`
+    var dateSelectionModeEnd   = UserDefaults.standard.object(forKey: UserDefaultsKey.dateSelectionModeEnd) as? Date ?? Date() {
+        didSet {
+            UserDefaults.standard.set(dateSelectionModeEnd,
+                                      forKey: UserDefaultsKey.dateSelectionModeEnd)
         }
     }
     

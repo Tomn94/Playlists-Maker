@@ -26,6 +26,15 @@ enum UserDefaultsKey {
     /// Array of selected playlists IDs for `destinationPlaylists`
     static let destinationPlaylists       = "destinationPlaylists"
     
+    /// Date Selection mode
+    static let dateSelectionMode      = "dateSelectionMode"
+    
+    /// Date after which songs are accepted, for `dateSelectionModeStart`
+    static let dateSelectionModeStart = "dateSelectionModeStart"
+    
+    /// Date before which songs are accepted, for `dateSelectionModeEnd`
+    static let dateSelectionModeEnd   = "dateSelectionModeEnd"
+    
 }
 
 extension Notification.Name {

@@ -25,8 +25,8 @@ class SettingsTVC: UITableViewController {
     /// Spinner displayed when loading playlists
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
-    /// Current setting for song selection input
-    var songSelectionMode: SongSelectionMode = SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
+    /// Current preference for song selection input
+    var songSelectionMode = SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
         didSet {
             UserDefaults.standard.set(songSelectionMode.rawValue,
                                       forKey: UserDefaultsKey.songSelectionMode)
