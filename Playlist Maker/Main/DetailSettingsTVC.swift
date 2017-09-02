@@ -27,12 +27,12 @@ class DetailSettingsTVC: UITableViewController {
                                       message: nil,
                                       preferredStyle: .alert)
         
-        alert.addTextField(configurationHandler: { textField in
+        alert.addTextField { textField in
             textField.placeholder = "My New Playlist"
-        })
+        }
         
         let confirmAction = UIAlertAction(title: "Create",
-                                          style: .default, handler: { [unowned self] _ in
+                                          style: .default) { [unowned self] _ in
             
             let name = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespaces)
             guard !(name?.isEmpty ?? true) else {
@@ -41,39 +41,38 @@ class DetailSettingsTVC: UITableViewController {
                 return
             }
             
-            Library.createPlaylist(named: name!,
-                                   completion:
-                { [unowned self] playlist, error in
-                    
-                    DispatchQueue.main.async {
-                        /* Apple Music error */
-                        guard playlist != nil, error == nil else {
-                            let alert = UIAlertController(title: "Unable to create playlist",
-                                                          message: error?.localizedDescription,
-                                                          preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                            self.present(alert, animated: true)
-                            return
-                        }
-                        
-                        /* Reload data */
-                        DataStore.shared.library.playlists.append(playlist!)
-                        DataStore.shared.library.playlists.sort { playlist1, playlist2 in
-                            playlist1.name.localizedCaseInsensitiveCompare(playlist2.name) == .orderedAscending
-                        }
-                        self.playlists = DataStore.shared.library.playlists
-                        
-                        /* Reload UI */
-                        if let indexSort = self.playlists.index(where: {
-                            $0.id == playlist!.id
-                        }) {
-                            let indexPath = IndexPath(row: indexSort, section: 0)
-                            self.tableView.insertRows(at: [indexPath], with: .automatic)
-                            self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-                        }
+            Library.createPlaylist(named: name!)
+              { [unowned self] playlist, error in
+
+                DispatchQueue.main.async {
+                    /* Apple Music error */
+                    guard playlist != nil, error == nil else {
+                        let alert = UIAlertController(title: "Unable to create playlist",
+                                                      message: error?.localizedDescription,
+                                                      preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                        self.present(alert, animated: true)
+                        return
                     }
-            })
-        })
+                    
+                    /* Reload data */
+                    DataStore.shared.library.playlists.append(playlist!)
+                    DataStore.shared.library.playlists.sort { playlist1, playlist2 in
+                        playlist1.name.localizedCaseInsensitiveCompare(playlist2.name) == .orderedAscending
+                    }
+                    self.playlists = DataStore.shared.library.playlists
+                    
+                    /* Reload UI */
+                    if let indexSort = self.playlists.index(where: {
+                        $0.id == playlist!.id
+                    }) {
+                        let indexPath = IndexPath(row: indexSort, section: 0)
+                        self.tableView.insertRows(at: [indexPath], with: .automatic)
+                        self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+                    }
+                }
+            }
+        }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(confirmAction)

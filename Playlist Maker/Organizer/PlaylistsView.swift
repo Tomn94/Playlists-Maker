@@ -23,12 +23,12 @@ class PlaylistsViewController: UICollectionViewController {
                                       message: nil,
                                       preferredStyle: .alert)
         
-        alert.addTextField(configurationHandler: { textField in
+        alert.addTextField { textField in
             textField.placeholder = "My New Playlist"
-        })
+        }
         
         let confirmAction = UIAlertAction(title: "Create",
-                                          style: .default, handler: { [unowned self] _ in
+                                          style: .default) { [unowned self] _ in
             
             let name = alert.textFields?.first?.text?.trimmingCharacters(in: .whitespaces)
             guard !(name?.isEmpty ?? true) else {
@@ -37,9 +37,7 @@ class PlaylistsViewController: UICollectionViewController {
                 return
             }
             
-            Library.createPlaylist(named: name!,
-                                   completion:
-                { [unowned self] playlist, error in
+            Library.createPlaylist(named: name!) { [unowned self] playlist, error in
                     
                     DispatchQueue.main.async {
                         /* Apple Music error */
@@ -58,8 +56,8 @@ class PlaylistsViewController: UICollectionViewController {
                             self.collectionView?.insertItems(at: [IndexPath(item: self.playlists.count - 1, section: 0)])
                         })*/
                     }
-            })
-        })
+            }
+        }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         alert.addAction(confirmAction)

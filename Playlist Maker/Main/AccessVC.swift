@@ -44,12 +44,12 @@ class AccessVC: UIViewController {
                                           message: "Do you want to change this in Settings?",
                                           preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            let confirmAction = UIAlertAction(title: "Authorize", style: .default, handler: { _ in
+            let confirmAction = UIAlertAction(title: "Authorize", style: .default) { _ in
                 
                 // Open iOS Settings
                 UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!,
                                           options: [:])
-            })
+            }
             alert.addAction(confirmAction)
             alert.preferredAction = confirmAction
             present(alert, animated: true)
