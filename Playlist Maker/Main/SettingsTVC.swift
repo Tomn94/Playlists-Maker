@@ -124,6 +124,24 @@ class SettingsTVC: UITableViewController {
                 return
         }
         
+        /* In Date Range mode, verify range */
+        if songSelectionMode == .addedDate &&
+           .range == DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .before &&
+           DataStore.shared.dateSelectionModeStart > DataStore.shared.dateSelectionModeEnd {
+            
+            let alert = UIAlertController(title: "Wrong Date Interval",
+                                          message: "Please review your selected time range.\nThe end of the current interval is before its start.",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Review", style: .default) { _ in
+                // Go to date settings
+                self.performSegue(withIdentifier: "dateAddedSegue", sender: self)
+            })
+            alert.addAction(UIAlertAction(title: "cancel", style: .cancel))
+            present(alert, animated: true)
+            tableView.deselectRow(at: buttonIndexPath, animated: true)
+            return
+        }
+        
         /* No destination playlists selected */
         guard !DataStore.shared.library.destinationPlaylists.isEmpty else {
             

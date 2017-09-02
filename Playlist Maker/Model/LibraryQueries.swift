@@ -40,8 +40,48 @@ class LibraryQueries {
     
         let allPlaylists = DataStore.shared.library.playlists
         return LibraryQueries.notInPlaylists(allPlaylists)
+    }
+    
+    class var addedToLibraryAtDates: Set<MPMediaItem> {
         
-        return allSongs.subtracting(allInPlaylists)
+        /* Set interval */
+        var startDate    = DataStore.shared.dateSelectionModeStart
+        var   endDate    = DataStore.shared.dateSelectionModeEnd
+        
+        // Apply mode
+        let rawMode = UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)
+        let dateSelectionMode = DateSelectionMode(rawValue: rawMode) ?? .before
+        if dateSelectionMode == .before {
+            startDate = Date.distantPast
+        }
+        if dateSelectionMode == .after {
+            endDate   = Date.distantFuture
+        }
+        
+        // Exclude selected days
+        startDate = Calendar(identifier: .gregorian).date(bySettingHour: 23,
+                                                          minute:        59,
+                                                          second:        59,
+                                                          of:  startDate) ?? startDate
+        endDate   = Calendar(identifier: .gregorian).date(bySettingHour:  0,
+                                                          minute:         0,
+                                                          second:         0,
+                                                          of:    endDate) ?? endDate
+        
+        var librarySongs = Set<MPMediaItem>()
+        
+        let allSongs = MPMediaQuery.songs().items ?? []
+        for song in allSongs {
+            let songDate = song.dateAdded
+            
+            if songDate > startDate &&
+               songDate <   endDate {
+                // Add songs
+                librarySongs.insert(song)
+            }
+        }
+        
+        return librarySongs
     }
     
     
