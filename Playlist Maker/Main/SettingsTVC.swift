@@ -231,7 +231,7 @@ extension SettingsTVC {
         
         if indexPath.section == 0 {
             
-            let selected = indexPath.row == songSelectionMode.rawValue
+            let selected = indexPath.row == songSelectionMode.rowIndex()
             
             if detailRows.contains(indexPath.row) {
                 
@@ -313,24 +313,9 @@ extension SettingsTVC {
                 tableView.deselectRow(at: indexPath, animated: true)
             }
             
-            /* Set mode
-               We don't use `SongSelectionMode(rawValue: indexPath.row)`
-               in case we would add new modes or reorder them */
-            switch indexPath.row {
-            case 0:
-                songSelectionMode = .addedAfterDate
-            case 1:
-                songSelectionMode = .inNoPlaylist
-            case 2:
-                songSelectionMode = .inNoDestination
-            case 3:
-                songSelectionMode = .notInPlaylists
-            case 4:
-                songSelectionMode = .inPlaylists
-            case 5:
-                songSelectionMode = .allSongs
-            default:
-                break
+            // Set mode
+            if let newMode = SongSelectionMode.mode(for: indexPath.row) {
+                songSelectionMode = newMode
             }
             
         // Destination Playlists

@@ -9,22 +9,63 @@
 import Foundation
 import MediaPlayer
 
-/// Available song selection settings
+/// Available song selection settings.
+/// Associated `Int` is settings storage value.
 enum SongSelectionMode: Int {
-    /// Songs added to library after selected date
-    case addedAfterDate     = 5
+    /// Songs added to library before/after selected date(s)
+    case addedDate       = 5
     /// Songs in no playlist at all
-    case inNoPlaylist       = 0
+    case inNoPlaylist    = 0
     /// Songs not in destination playlists
-    case inNoDestination    = 1
+    case inNoDestination = 1
     /// Songs not in selected playlists
-    case notInPlaylists     = 2
+    case notInPlaylists  = 2
     /// Songs in selected playlists
-    case inPlaylists        = 3
+    case inPlaylists     = 3
     /// Whole library
-    case allSongs           = 4
+    case allSongs        = 4
     /// Only used when editing destination playlists
-    case destination        = -1
+    case destination     = -1
+    
+    /// Get table view row index from mode
+    func rowIndex() -> Int {
+        switch self {
+        case .addedDate:
+            return 0
+        case .inNoPlaylist:
+            return 1
+        case .inNoDestination:
+            return 2
+        case .notInPlaylists:
+            return 3
+        case .inPlaylists:
+            return 4
+        case .allSongs:
+            return 5
+        case .destination:
+            return -1
+        }
+    }
+    
+    /// Get mode from table view row index
+    static func mode(for row: Int) -> SongSelectionMode? {
+        switch row {
+        case 0:
+            return .addedDate
+        case 1:
+            return .inNoPlaylist
+        case 2:
+            return .inNoDestination
+        case 3:
+            return .notInPlaylists
+        case 4:
+            return .inPlaylists
+        case 5:
+            return .allSongs
+        default:
+            return nil
+        }
+    }
 }
 
 /// Contains all information about the current songs to sort
@@ -166,7 +207,7 @@ class Library {
             
             // Select songs according to mode
             switch songSelectionMode {
-            case .addedAfterDate:
+            case .addedDate:
                 librarySongs = LibraryQueries.addedToLibraryAfterDate
                 
             case .inNoPlaylist:

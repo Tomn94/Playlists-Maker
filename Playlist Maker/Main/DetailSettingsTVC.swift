@@ -108,7 +108,7 @@ class DetailSettingsTVC: UITableViewController {
         case .destination:
             DataStore.shared.library.destinationPlaylists    = selectedPlaylists
             
-        case .addedAfterDate, .inNoPlaylist, .inNoDestination, .allSongs:
+        case .addedDate, .inNoPlaylist, .inNoDestination, .allSongs:
             break
         }
     }
@@ -148,7 +148,7 @@ extension DetailSettingsTVC {
         case .destination:
             return "Allow songs to be added to…"
             
-        case .addedAfterDate,
+        case .addedDate,
              .inNoPlaylist,
              .inNoDestination,
              .allSongs:
