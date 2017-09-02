@@ -11,18 +11,20 @@ import MediaPlayer
 
 /// Available song selection settings
 enum SongSelectionMode: Int {
+    /// Songs added to library after selected date
+    case addedAfterDate     = 5
     /// Songs in no playlist at all
-    case inNoPlaylist
+    case inNoPlaylist       = 0
     /// Songs not in destination playlists
-    case inNoDestination
+    case inNoDestination    = 1
     /// Songs not in selected playlists
-    case notInPlaylists
+    case notInPlaylists     = 2
     /// Songs in selected playlists
-    case inPlaylists
+    case inPlaylists        = 3
     /// Whole library
-    case allSongs
+    case allSongs           = 4
     /// Only used when editing destination playlists
-    case destination
+    case destination        = -1
 }
 
 /// Contains all information about the current songs to sort
