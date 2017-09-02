@@ -282,18 +282,33 @@ struct Song {
     /// - Parameter item: Library item to wrap in Song object
     init(raw item: MPMediaItem) {
         
-        self.id      = item.persistentID
-        self.title   = item.title ?? "Unknown title"
-        self.artist  = item.artist ?? "Unknown artist"
-        self.album   = item.albumTitle ?? "Unknown album"
-        if let genre = item.genre {
+        self.raw = item
+        
+        /* Load property values in batch */
+        var properties: [String : Any?] = [MPMediaItemPropertyPersistentID     : nil,
+                                           MPMediaItemPropertyTitle            : nil,
+                                           MPMediaItemPropertyArtist           : nil,
+                                           MPMediaItemPropertyAlbumTitle       : nil,
+                                           MPMediaItemPropertyGenre            : nil,
+                                           MPMediaItemPropertyPlaybackDuration : nil,
+                                           MPMediaItemPropertyArtwork          : nil]
+        
+        item.enumerateValues(forProperties: Set(properties.keys)) { property, value, _ in
+            properties[property] = value
+        }
+        
+        /* Apply properties */
+        self.id      = properties[MPMediaItemPropertyPersistentID] as? MPMediaEntityPersistentID ?? 0
+        self.title   = properties[MPMediaItemPropertyTitle]        as? String ?? "Unknown title"
+        self.artist  = properties[MPMediaItemPropertyArtist]       as? String ?? "Unknown artist"
+        self.album   = properties[MPMediaItemPropertyAlbumTitle]   as? String ?? "Unknown album"
+        if let genre = properties[MPMediaItemPropertyGenre]        as? String {
             self.genre = (Genre(fromString: genre), genre)
         } else {
-            self.genre = (nil, item.genre)
+            self.genre = (.unknown, nil)
         }
-        self.length  = item.playbackDuration
-        self.artwork = item.artwork?.image(at: Song.artworkSize)
-        self.raw     = item
+        self.length  =  properties[MPMediaItemPropertyPlaybackDuration] as? TimeInterval ?? 0
+        self.artwork = (properties[MPMediaItemPropertyArtwork] as? MPMediaItemArtwork)?.image(at: Song.artworkSize)
     }
     
 }
@@ -324,10 +339,19 @@ struct Playlist {
     /// - Parameter collection: Playlist in library
     init(raw collection: MPMediaPlaylist) {
         
-        self.raw  = collection
-        self.id   = collection.value(forProperty: MPMediaPlaylistPropertyPersistentID) as? NSNumber ?? NSNumber(value: 0)
+        self.raw = collection
         
-        self.name = collection.value(forProperty: MPMediaPlaylistPropertyName) as? String ?? "Unknown playlist"
+        /* Load property values in batch */
+        var properties: [String : Any?] = [MPMediaPlaylistPropertyPersistentID : nil,
+                                           MPMediaPlaylistPropertyName         : nil]
+        
+        collection.enumerateValues(forProperties: Set(properties.keys)) { property, value, _ in
+            properties[property] = value
+        }
+        
+        /* Apply properties */
+        self.id   = properties[MPMediaPlaylistPropertyPersistentID] as? NSNumber ?? NSNumber(value: 0)
+        self.name = properties[MPMediaPlaylistPropertyName]         as? String   ?? "Unknown playlist"
         
         /* Fetch artworks from the 4 first tracks
            Does not use collection.items.dropLast because it's O(nbrSongs - 4) */
