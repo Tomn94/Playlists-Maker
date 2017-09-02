@@ -166,6 +166,9 @@ class Library {
             
             // Select songs according to mode
             switch songSelectionMode {
+            case .addedAfterDate:
+                librarySongs = LibraryQueries.addedToLibraryAfterDate
+                
             case .inNoPlaylist:
                 librarySongs = LibraryQueries.inNoPlaylists
                 

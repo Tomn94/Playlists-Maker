@@ -34,7 +34,7 @@ class SettingsTVC: UITableViewController {
     }
     
     /// Rows in Song Selection Section (0) having a disclosure indicator
-    let detailRows = [2, 3]
+    let detailRows = [0, 3, 4]
 
     
     override func viewDidLoad() {
@@ -318,14 +318,16 @@ extension SettingsTVC {
                in case we would add new modes or reorder them */
             switch indexPath.row {
             case 0:
-                songSelectionMode = .inNoPlaylist
+                songSelectionMode = .addedAfterDate
             case 1:
-                songSelectionMode = .inNoDestination
+                songSelectionMode = .inNoPlaylist
             case 2:
-                songSelectionMode = .notInPlaylists
+                songSelectionMode = .inNoDestination
             case 3:
-                songSelectionMode = .inPlaylists
+                songSelectionMode = .notInPlaylists
             case 4:
+                songSelectionMode = .inPlaylists
+            case 5:
                 songSelectionMode = .allSongs
             default:
                 break
