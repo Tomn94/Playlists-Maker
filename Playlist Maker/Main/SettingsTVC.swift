@@ -111,7 +111,7 @@ class SettingsTVC: UITableViewController {
         /* No playlist selected in specific playlists mode */
         guard (songSelectionMode != .notInPlaylists ||
                !DataStore.shared.library.selectionNotInPlaylists.isEmpty) &&
-              (songSelectionMode != .inPlaylists ||
+              (songSelectionMode != .inPlaylists    ||
                !DataStore.shared.library.selectionInPlaylists.isEmpty) else {
                 
                 let part  = songSelectionMode == .notInPlaylists ? "don't " : ""
@@ -313,8 +313,23 @@ extension SettingsTVC {
                 tableView.deselectRow(at: indexPath, animated: true)
             }
             
-            // Set mode
-            songSelectionMode = SongSelectionMode(rawValue: indexPath.row) ?? .inNoPlaylist
+            /* Set mode
+               We don't use `SongSelectionMode(rawValue: indexPath.row)`
+               in case we would add new modes or reorder them */
+            switch indexPath.row {
+            case 0:
+                songSelectionMode = .inNoPlaylist
+            case 1:
+                songSelectionMode = .inNoDestination
+            case 2:
+                songSelectionMode = .notInPlaylists
+            case 3:
+                songSelectionMode = .inPlaylists
+            case 4:
+                songSelectionMode = .allSongs
+            default:
+                break
+            }
             
         // Destination Playlists
         case 1:
