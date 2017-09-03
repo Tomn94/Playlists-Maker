@@ -42,15 +42,15 @@ class TipMachine: NSObject {
         let alert = UIAlertController(title: "Playlists Maker",
                                       message: "Made by Thomas Naudet",
                                       preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "⭐️ Leave a Review", style: .default) { _ in
+            UIApplication.shared.open(URL(string: TipMachine.appStoreURL)!,
+                                      options: [:])
+        })
         if SKPaymentQueue.canMakePayments() {
             alert.addAction(UIAlertAction(title: "❤️ Give a Tip", style: .default) { _ in
                 self.presentOptions(from: parentVC)
             })
         }
-        alert.addAction(UIAlertAction(title: "⭐️ Leave a Review", style: .default) { _ in
-            UIApplication.shared.open(URL(string: TipMachine.appStoreURL)!,
-                                      options: [:])
-        })
         alert.addAction(UIAlertAction(title: "✉️ Contact", style: .default) { _ in
             UIApplication.shared.open(URL(string: TipMachine.contactURL)!,
                                       options: [:])

@@ -163,29 +163,35 @@ class SettingsTVC: UITableViewController {
         let alert = UIAlertController(title: "Loading songs…",
                                       message: "This could take a few minutes depending on your selection",
                                       preferredStyle: .alert)
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true) {
         
-        DataStore.shared.library.loadSongs(using: songSelectionMode) {
-            alert.dismiss(animated: true) {
-                
-                self.isLoadingLibrary = false
-                
-                /* No song found in selection */
-                guard !DataStore.shared.library.songs.isEmpty else {
+                DataStore.shared.library.loadSongs(using: self.songSelectionMode) {
                     
-                    let alert = UIAlertController(title: "No Songs Found",
-                                                  message: "No songs to be sorted were found according to your selection.",
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                    self.present(alert, animated: true)
-                    self.tableView.deselectRow(at: buttonIndexPath, animated: true)
-                    return
+                    DispatchQueue.main.async {
+                        alert.dismiss(animated: true) {
+                            
+                            self.isLoadingLibrary = false
+                            
+                            /* No song found in selection */
+                            guard !DataStore.shared.library.songs.isEmpty else {
+                                
+                                let alert = UIAlertController(title: "No Songs Found",
+                                                              message: "No songs to be sorted were found according to your selection.",
+                                                              preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                                self.present(alert, animated: true)
+                                self.tableView.deselectRow(at: buttonIndexPath, animated: true)
+                                return
+                            }
+                            
+                            /* Present Song Organizer and let user begin sorting */
+                            let storyboard = UIStoryboard(name: "SongOrganizer", bundle: nil)
+                            let songOrganizer = storyboard.instantiateInitialViewController()
+                            self.present(songOrganizer!, animated: true)
+                        }
+                    }
                 }
-                
-                /* Present Song Organizer and let user begin sorting */
-                let storyboard = UIStoryboard(name: "SongOrganizer", bundle: nil)
-                let songOrganizer = storyboard.instantiateInitialViewController()
-                self.present(songOrganizer!, animated: true)
             }
         }
     }
