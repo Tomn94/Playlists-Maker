@@ -313,7 +313,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
             }
         }
         
-        if SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist == .addedDate &&
+        if SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .addedDate == .addedDate &&
            DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .after == .after &&
            UserDefaults.standard.bool(forKey: UserDefaultsKey.dateSelectionUpdates) {
             

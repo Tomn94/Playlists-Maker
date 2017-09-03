@@ -18,7 +18,7 @@ class DetailSettingsTVC: UITableViewController {
     var selectedPlaylists = [Playlist]()
     
     /// Mode being customized here
-    var songSelectionMode: SongSelectionMode = .inNoPlaylist
+    var songSelectionMode: SongSelectionMode = .addedDate
     
     
     @IBAction func newPlaylist() {

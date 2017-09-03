@@ -63,15 +63,19 @@ class DataStore {
     
     // MARK: Singleton
     
-    private init() {
+    private init() {}
+    
+    static let shared = DataStore()
+    
+    /// Must be called before any view is set up to have the correct model
+    class func initDefaults() {
         
         UserDefaults.standard.register(defaults: [
             UserDefaultsKey.autoplaySongs : true,
+            UserDefaultsKey.songSelectionMode : SongSelectionMode.addedDate.rawValue,
             UserDefaultsKey.dateSelectionMode : DateSelectionMode.after.rawValue,
             UserDefaultsKey.dateSelectionUpdates : true
         ])
     }
-    
-    static let shared = DataStore()
     
 }

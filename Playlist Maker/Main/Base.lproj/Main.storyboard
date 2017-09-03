@@ -93,7 +93,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update date while sorting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeN-lZ-Ohb">
                                             <rect key="frame" x="16" y="-0.5" width="286" height="44.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="BQP-LL-BgR"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="BQP-LL-BgR"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -308,7 +308,7 @@
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4eN-bi-COB"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="4eN-bi-COB"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <state key="normal" title="Begin Sorting"/>

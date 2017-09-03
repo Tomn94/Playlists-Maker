@@ -34,7 +34,7 @@ class SettingsTVC: UITableViewController {
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     /// Current preference for song selection input
-    var songSelectionMode = SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist {
+    var songSelectionMode: SongSelectionMode = .addedDate {
         didSet {
             UserDefaults.standard.set(songSelectionMode.rawValue,
                                       forKey: UserDefaultsKey.songSelectionMode)
@@ -47,6 +47,9 @@ class SettingsTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Not ready to be called at init
+        songSelectionMode = SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .addedDate
         
         /* Set up loading playlists */
         NotificationCenter.default.addObserver(self, selector: .reloadPlaylists,
