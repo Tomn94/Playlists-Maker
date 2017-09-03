@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISlider.appearance().tintColor = tintColor
         UINavigationBar.appearance().tintColor = tintColor
         
-        DataStore.initDefaults()
         SKPaymentQueue.default().add(self)
         
         return true
