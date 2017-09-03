@@ -12,12 +12,34 @@ import StoreKit
 /// Everything that concerns money…
 class TipMachine: NSObject {
     
+    /// it is me
+    static let contactURL = "https://twitter.com/tomn94"
+    
     fileprivate let productIds = ["fr.tomn.PlaylistsMaker.TipTier1", "fr.tomn.PlaylistsMaker.TipTier2",
                                   "fr.tomn.PlaylistsMaker.TipTier4", "fr.tomn.PlaylistsMaker.TipTier9"]
     
     fileprivate var products = [SKProduct]()
     
     var parentVC: UIViewController?
+    
+    
+    func showInfo(from parentVC: UIViewController) {
+        
+        let alert = UIAlertController(title: "Playlists Maker",
+                                      message: "Made by Thomas Naudet",
+                                      preferredStyle: .alert)
+        if SKPaymentQueue.canMakePayments() {
+            alert.addAction(UIAlertAction(title: "Give a Tip", style: .default) { _ in
+                self.presentOptions(from: parentVC)
+            })
+        }
+        alert.addAction(UIAlertAction(title: "Contact", style: .default) { _ in
+            UIApplication.shared.open(URL(string: TipMachine.contactURL)!,
+                                      options: [:])
+        })
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        parentVC.present(alert, animated: true)
+    }
     
 
     func presentOptions(from parentVC: UIViewController) {

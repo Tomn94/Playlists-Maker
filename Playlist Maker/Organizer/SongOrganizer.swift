@@ -135,11 +135,8 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
                                       message: "Processed songs are already saved.\nCurrent song won't be added to selected playlists.\nNext songs have not been processed yet.",
                                       preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Exit", style: .default) { [unowned self] _ in
-            self.songPlayer.stop()
-            self.dismiss(animated: true) {
-                DataStore.shared.library.songs = []
-            }
+        alert.addAction(UIAlertAction(title: "Exit", style: .default) { _ in
+            self.finished(cancelled: true)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -167,7 +164,12 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         /* Update current song */
         let songs = DataStore.shared.library.songs
         let songsCount = songs.count
-        guard index < songsCount else { return }
+        guard index < songsCount else {
+            
+            /* Finished! */
+            self.finished()
+            return
+        }
         let song = songs[index]
         
         DataStore.shared.currentIndex = index
@@ -313,6 +315,28 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
         
         // Pass to the next one
         showSong(at: currentIndex + 1)
+    }
+    
+    /// Sorted every song
+    func finished(cancelled: Bool = false) {
+        
+        songPlayer.stop()
+        
+        dismiss(animated: true) {
+            
+            // Don't show Congrats panel if no song sorted
+            if !cancelled || DataStore.shared.currentIndex != 0 {
+                
+                let count = cancelled ? DataStore.shared.currentIndex ?? 0  // no + 1 since current is cancelled
+                                      : DataStore.shared.library.songs.count
+                
+                NotificationCenter.default.post(name: .finishedSortingSongs, object: nil,
+                                                userInfo: [NotificationUserInfoKey.count : count])
+            }
+            
+            DataStore.shared.currentIndex  = nil
+            DataStore.shared.library.songs = []
+        }
     }
     
     

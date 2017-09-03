@@ -14,13 +14,13 @@ fileprivate extension Selector {
     /// Called when library access status changed
     static let reloadPlaylists = #selector(SettingsTVC.loadPlaylists)
     
+    /// Called when user finished sorting their songs
+    static let finishedSorting = #selector(SettingsTVC.finishedSorting(_:))
+    
 }
 
 
 class SettingsTVC: UITableViewController {
-    
-    /// it is me
-    static let contactURL = "https://twitter.com/tomn94"
     
     /// Shows In-App Purchases
     lazy var tipMachine: TipMachine = TipMachine()
@@ -51,6 +51,8 @@ class SettingsTVC: UITableViewController {
         /* Set up loading playlists */
         NotificationCenter.default.addObserver(self, selector: .reloadPlaylists,
                                                name: .libraryAccessGranted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: .finishedSorting,
+                                               name: .finishedSortingSongs, object: nil)
         loadPlaylists()
     }
     
@@ -60,23 +62,10 @@ class SettingsTVC: UITableViewController {
         reloadDetailRows()
     }
 
-    /// Ads button tapped
+    /// Info button tapped
     @IBAction func showInfo() {
         
-        let alert = UIAlertController(title: "Playlists Maker",
-                                      message: "Made by Thomas Naudet",
-                                      preferredStyle: .alert)
-        if SKPaymentQueue.canMakePayments() {
-            alert.addAction(UIAlertAction(title: "Give a Tip", style: .default) { _ in
-                self.tipMachine.presentOptions(from: self)
-            })
-        }
-        alert.addAction(UIAlertAction(title: "Contact", style: .default) { _ in
-            UIApplication.shared.open(URL(string: SettingsTVC.contactURL)!,
-                                      options: [:])
-        })
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-        self.present(alert, animated: true)
+        tipMachine.showInfo(from: self)
     }
     
     /// Set up main content
@@ -199,6 +188,22 @@ class SettingsTVC: UITableViewController {
                 self.present(songOrganizer!, animated: true)
             }
         }
+    }
+    
+    func finishedSorting(_ notification: Notification) {
+        
+        guard let userInfo = notification.userInfo,
+              let count = userInfo[NotificationUserInfoKey.count] as? Int
+            else { return }
+        
+        let storyboard  = UIStoryboard(name: "Main", bundle: nil)
+        let finishedNVC = storyboard.instantiateViewController(withIdentifier: "FinishedNVC") as! UINavigationController
+        let finishedVC  = finishedNVC.viewControllers.first as! FinishedVC
+        
+        finishedVC.count    = count
+        finishedVC.parentVC = self
+        
+        present(finishedNVC, animated: true)
     }
     
     

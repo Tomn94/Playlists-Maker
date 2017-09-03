@@ -271,8 +271,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4eN-bi-COB"/>
                                                     </constraints>
@@ -282,7 +282,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vcU-TT-m7I" firstAttribute="leading" secondItem="vYb-yu-mc1" secondAttribute="leading" id="0lj-ed-PO5"/>
-                                                <constraint firstItem="vcU-TT-m7I" firstAttribute="centerY" secondItem="vYb-yu-mc1" secondAttribute="centerY" id="7EB-Ep-Ve6"/>
                                                 <constraint firstAttribute="bottom" secondItem="vcU-TT-m7I" secondAttribute="bottom" id="H4k-tt-A5b"/>
                                                 <constraint firstAttribute="trailing" secondItem="vcU-TT-m7I" secondAttribute="trailing" id="XkU-bl-q31"/>
                                                 <constraint firstItem="vcU-TT-m7I" firstAttribute="top" secondItem="vYb-yu-mc1" secondAttribute="top" id="ezq-1n-KDf"/>
@@ -312,7 +311,7 @@
         <!--Music Selection Sorted-->
         <scene sceneID="3fK-8L-Zue">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="Moz-sM-xQg" sceneMemberID="viewController">
+                <viewController id="Moz-sM-xQg" customClass="FinishedVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lRJ-QU-gs9"/>
                         <viewControllerLayoutGuide type="bottom" id="ypr-A8-yWQ"/>
@@ -337,26 +336,34 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-NV-hrk">
-                                                    <rect key="frame" x="0.0" y="309" width="359" height="62.5"/>
+                                                    <rect key="frame" x="0.0" y="303.5" width="359" height="62.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" text="Come back regularly!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
-                                                    <rect key="frame" x="0.0" y="411" width="359" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
+                                                    <rect key="frame" x="0.0" y="400" width="359" height="42.5"/>
+                                                    <string key="text">42 songs sorted
+Come back regularly!</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfp-zp-GZh">
-                                                    <rect key="frame" x="0.0" y="470.5" width="359" height="33"/>
+                                                    <rect key="frame" x="0.0" y="476" width="359" height="33"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <state key="normal" title="Nice!"/>
+                                                    <connections>
+                                                        <segue destination="Moz-sM-xQg" kind="custom" customClass="DismissSegue" customModule="Playlist_Maker" customModuleProvider="target" id="fB7-gf-VfK"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
                                                     <rect key="frame" x="0.0" y="543" width="359" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <state key="normal" title="Support the app"/>
+                                                    <connections>
+                                                        <action selector="supportApp" destination="Moz-sM-xQg" eventType="touchUpInside" id="ods-TZ-mGS"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -379,6 +386,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Music Selection Sorted" id="b8f-pn-yV2"/>
+                    <connections>
+                        <outlet property="detailLabel" destination="20z-Zc-zEa" id="SZb-To-dg1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wiX-JJ-kSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -504,7 +514,7 @@ To do this, the app requires access to your Music Library.</string>
         <!--Navigation Controller-->
         <scene sceneID="ypU-lc-qFY">
             <objects>
-                <navigationController storyboardIdentifier="FinishedVC" automaticallyAdjustsScrollViewInsets="NO" id="xjl-kK-FrU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FinishedNVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overCurrentContext" id="xjl-kK-FrU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bqV-us-LJo">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

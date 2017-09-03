@@ -42,6 +42,17 @@ extension Notification.Name {
     /// Called when user granted access to music library
     static let libraryAccessGranted = Notification.Name("libraryAccessGranted")
     
+    /// Called when user finished sorting their song
+    static let finishedSortingSongs = Notification.Name("finishedSortingSongs")
+    
+}
+
+/// Keys for user info Notification dictionaries
+enum NotificationUserInfoKey {
+    
+    /// Number of songs sorted, for `finishedSortingSongs`
+    static let count = "count"
+    
 }
 
 extension String {
