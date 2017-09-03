@@ -108,7 +108,16 @@ extension GenresVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "genreCell",
                                                  for: indexPath)
 
-        cell.textLabel?.text = genres[indexPath.row]
+        let genre = genres[indexPath.row]
+        cell.textLabel?.text = genre
+        
+        if let song         = DataStore.shared.currentSong,
+           let currentGenre = song.genre.category?.rawValue,
+           currentGenre    == String(genre[genre.startIndex]) {
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        } else {
+            cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        }
 
         return cell
     }
