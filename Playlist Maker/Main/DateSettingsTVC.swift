@@ -11,6 +11,8 @@ import UIKit
 fileprivate extension Selector {
     /// One of the date pickers value changed
     static let datePickerValueChanged = #selector(DateSettingsTVC.datePickerValueChanged(_:))
+    /// One of the switches value changed
+    static let     switchValueChanged = #selector(DateSettingsTVC.switchValueChanged(_:))
 }
 
 
@@ -47,6 +49,19 @@ class DateSettingsTVC: UITableViewController {
         }
     }
     
+    /// Called when the boolean value of one of the switch(es) changed
+    ///
+    /// - Parameter sender: Switch, hopefully, whose value changed
+    @objc func switchValueChanged(_ sender: AnyObject) {
+        
+        guard let `switch` = sender as? UISwitch else { return }
+        
+        if `switch`.tag == 0 {
+            UserDefaults.standard.set(`switch`.isOn,
+                                      forKey: UserDefaultsKey.dateSelectionUpdates)
+        }
+    }
+    
 }
 
 
@@ -55,13 +70,13 @@ extension DateSettingsTVC {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return dateSelectionMode == .range ? 3 : 2  // mode selection + 1 or 2 pickers
+        return dateSelectionMode != .before ? 3 : 2  // mode selection + 1 or 2 pickers + settings if .after
     }
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         
-        return section == 0 ? 3 : 1  // 3 modes, 1 picker at a time
+        return section == 0 ? 3 : 1  // 3 modes, 1 picker at a time, 1 setting
     }
     
     /// Display a hint about the section below this title
@@ -72,7 +87,7 @@ extension DateSettingsTVC {
             return "Select songs added to your library…"
         }
         if section == 2 {
-            return "but also before…"
+            return dateSelectionMode == .range ? "but also before…" : nil
         }
         
         // Section 1
@@ -92,9 +107,10 @@ extension DateSettingsTVC {
         guard section != 0 else { return nil }
         
         switch dateSelectionMode {
-        case .before,
-             .after:
-            return "Date is exclusive"  // can only be for section 1
+        case .before:
+            return "Date is exclusive"
+        case .after:
+            return section == 1 ? "Date is exclusive"   : "Allows you, the next time you open the app with new songs in your library, to only sort those ones.\nAlso allows you to resume any sorting process you stopped."
         case .range:
             return section == 2 ? "Dates are exclusive" : nil
         }
@@ -109,6 +125,7 @@ extension DateSettingsTVC {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // SELECTABLE TEXT
         if indexPath.section == 0 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateCell",
@@ -130,6 +147,19 @@ extension DateSettingsTVC {
             return cell
         }
         
+        // SWITCH
+        if indexPath.section == 2 && dateSelectionMode == .after {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell",
+                                                     for: indexPath) as! DateSettingsSwitchCell
+            
+            cell.switch.isOn = UserDefaults.standard.bool(forKey: UserDefaultsKey.dateSelectionUpdates)
+            cell.switch.addTarget(self, action: .switchValueChanged, for: .valueChanged)
+            
+            return cell
+        }
+        
+        // PICKER
         let cell = tableView.dequeueReusableCell(withIdentifier: "pickerCell",
                                                  for: indexPath)
         
@@ -162,7 +192,7 @@ extension DateSettingsTVC {
         guard indexPath.section == 0 else { return }
         
         /* Update mode in model */
-        let wasInRangeMode = dateSelectionMode == .range
+        let previousMode = dateSelectionMode
         switch indexPath.row {
         case 0:
             dateSelectionMode = .before
@@ -175,15 +205,21 @@ extension DateSettingsTVC {
         }
         
         /* Change display mode in Sections 1 & 2 */
-        let changesFromRangeMode =  wasInRangeMode && indexPath.row != 2
-        let changesToRangeMode   = !wasInRangeMode && indexPath.row == 2
+        let wasInBeforeMode         = previousMode == .before
+        let changesFromBeforeMode   =  wasInBeforeMode && dateSelectionMode != .before
+        let changesToBeforeMode     = !wasInBeforeMode && dateSelectionMode == .before
+        let changesBtwAfterAndRange = (previousMode == .after && dateSelectionMode == .range) ||
+                                      (previousMode == .range && dateSelectionMode == .after)
         let updateTable = {
             tableView.reloadSections(IndexSet(integer: 1),     with: .fade)
-            if changesFromRangeMode {
+            if changesToBeforeMode {
                 tableView.deleteSections(IndexSet(integer: 2), with: .middle)
             }
-            if changesToRangeMode {
+            if changesFromBeforeMode {
                 tableView.insertSections(IndexSet(integer: 2), with: .middle)
+            }
+            if changesBtwAfterAndRange {
+                tableView.reloadSections(IndexSet(integer: 2), with: .fade)
             }
         }
         // Apply
@@ -218,7 +254,7 @@ class DateSettingsPickerCell: UITableViewCell {
     var pickerMode: DateSelectionMode = .after {
         didSet {
             /* Save mode so the view controller can
-               idenfity it back when saving changes */
+             idenfity it back when saving changes */
             picker.tag = pickerMode.rawValue
             
             /* Load initial date according to picker mode */
@@ -236,3 +272,15 @@ class DateSettingsPickerCell: UITableViewCell {
     @IBOutlet weak var picker: UIDatePicker!
     
 }
+
+
+
+// MARK: - Switch Cell
+/// Cell for DateSettingsTVC.
+/// Contains a text label and a UISwitch.
+class DateSettingsSwitchCell: UITableViewCell {
+    
+    @IBOutlet weak var `switch`: UISwitch!
+    
+}
+

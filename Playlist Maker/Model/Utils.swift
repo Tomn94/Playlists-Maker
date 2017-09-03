@@ -35,6 +35,9 @@ enum UserDefaultsKey {
     /// Date before which songs are accepted, for `dateSelectionModeEnd`
     static let dateSelectionModeEnd   = "dateSelectionModeEnd"
     
+    /// Whether the selected date is updates while sorting
+    static let dateSelectionUpdates   = "dateSelectionUpdates"
+    
     /// Number of times the user finished sorting process
     static let sortFinishedCount = "sortFinishedCount"
     

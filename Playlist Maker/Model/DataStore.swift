@@ -67,7 +67,8 @@ class DataStore {
         
         UserDefaults.standard.register(defaults: [
             UserDefaultsKey.autoplaySongs : true,
-            UserDefaultsKey.dateSelectionMode : DateSelectionMode.after.rawValue
+            UserDefaultsKey.dateSelectionMode : DateSelectionMode.after.rawValue,
+            UserDefaultsKey.dateSelectionUpdates : true
         ])
     }
     

@@ -83,6 +83,39 @@
                                     <outlet property="picker" destination="WUZ-JY-x7Z" id="LF5-HD-nkq"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="switchCell" id="672-lm-Lja" customClass="DateSettingsSwitchCell" customModule="Playlist_Maker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="318.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="672-lm-Lja" id="Iic-ct-TG7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update date while sorting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeN-lZ-Ohb">
+                                            <rect key="frame" x="16" y="-0.5" width="286" height="44.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="BQP-LL-BgR"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKV-6w-lqK">
+                                            <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                        </switch>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="EKV-6w-lqK" firstAttribute="centerY" secondItem="QeN-lZ-Ohb" secondAttribute="centerY" id="5pm-hp-5vc"/>
+                                        <constraint firstAttribute="bottom" secondItem="QeN-lZ-Ohb" secondAttribute="bottom" id="FPV-HS-bIk"/>
+                                        <constraint firstItem="QeN-lZ-Ohb" firstAttribute="leading" secondItem="Iic-ct-TG7" secondAttribute="leadingMargin" constant="8" id="fSR-l6-bQb"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EKV-6w-lqK" secondAttribute="trailing" constant="8" id="hnx-oV-5Cq"/>
+                                        <constraint firstItem="EKV-6w-lqK" firstAttribute="leading" secondItem="QeN-lZ-Ohb" secondAttribute="trailing" constant="8" id="kZT-ev-fAg"/>
+                                        <constraint firstItem="QeN-lZ-Ohb" firstAttribute="top" secondItem="Iic-ct-TG7" secondAttribute="top" id="oWM-h1-C1B"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="switch" destination="EKV-6w-lqK" id="u5z-yT-yK6"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="8Qp-k7-gCy" id="Utw-gT-ad6"/>
