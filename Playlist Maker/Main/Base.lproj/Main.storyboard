@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Which songs to sort" id="TeM-AV-3oI">
+                            <tableViewSection headerTitle="🔍 Which songs to sort" id="TeM-AV-3oI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="TYt-ko-95Z" detailTextLabel="QOH-lI-Pf5" style="IBUITableViewCellStyleValue1" id="BzG-qD-MTR">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
@@ -238,7 +238,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="To which destination playlists" footerTitle="These will be the available choices where you can put your songs." id="swN-iP-9xr">
+                            <tableViewSection headerTitle="📥 To which destination playlists" footerTitle="These will be the available choices where you can put your songs." id="swN-iP-9xr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="VR8-DX-n6L" style="IBUITableViewCellStyleDefault" id="Nnu-Ok-8XG">
                                         <rect key="frame" x="0.0" y="383" width="375" height="44"/>
