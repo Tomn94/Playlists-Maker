@@ -134,9 +134,12 @@ extension QueueVC: UITableViewDataSource {
             }
             detailText += song.album ?? ""
         }
+        let isCurrent = indexPath.section == 1 && indexPath.row == 0
+        let font = UIFont.preferredFont(forTextStyle: isCurrent ? .headline : .body)
         
         /* Apply on UI */
         cell.textLabel?.text       = song.title
+        cell.textLabel?.font       = font
         cell.detailTextLabel?.text = detailText
         cell.imageView?.image      = song.artwork
         cell.backgroundColor       = .clear  // see blur behind
