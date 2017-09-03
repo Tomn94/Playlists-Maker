@@ -336,27 +336,19 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-NV-hrk">
-                                                    <rect key="frame" x="0.0" y="303.5" width="359" height="62.5"/>
+                                                    <rect key="frame" x="0.0" y="325.5" width="359" height="62.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
-                                                    <rect key="frame" x="0.0" y="400" width="359" height="42.5"/>
+                                                    <rect key="frame" x="0.0" y="444.5" width="359" height="42.5"/>
                                                     <string key="text">42 songs sorted
 Come back regularly!</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfp-zp-GZh">
-                                                    <rect key="frame" x="0.0" y="476" width="359" height="33"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                    <state key="normal" title="Nice!"/>
-                                                    <connections>
-                                                        <segue destination="Moz-sM-xQg" kind="custom" customClass="DismissSegue" customModule="Playlist_Maker" customModuleProvider="target" id="fB7-gf-VfK"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
                                                     <rect key="frame" x="0.0" y="543" width="359" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
@@ -385,7 +377,13 @@ Come back regularly!</string>
                             <constraint firstItem="Tex-cN-jqZ" firstAttribute="top" secondItem="lRJ-QU-gs9" secondAttribute="bottom" id="yOG-KJ-JqH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Music Selection Sorted" id="b8f-pn-yV2"/>
+                    <navigationItem key="navigationItem" title="Music Selection Sorted" id="b8f-pn-yV2">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="T6x-CI-uMo">
+                            <connections>
+                                <segue destination="Moz-sM-xQg" kind="custom" customClass="DismissSegue" customModule="Playlist_Maker" customModuleProvider="target" id="1Fb-hs-CmK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailLabel" destination="20z-Zc-zEa" id="SZb-To-dg1"/>
                     </connections>
