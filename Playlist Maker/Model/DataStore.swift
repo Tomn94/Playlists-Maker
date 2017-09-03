@@ -24,6 +24,16 @@ class DataStore {
         return nil
     }
     
+    /// Number of times the user finished sorting their songs
+    static var sortFinishedCount: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: UserDefaultsKey.sortFinishedCount)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: UserDefaultsKey.sortFinishedCount)
+        }
+    }
+    
     /// Preference whether songs should play right when a song is displayed (defaults to true)
     static var autoplaysSong: Bool {
         get {

@@ -12,15 +12,29 @@ import StoreKit
 /// Everything that concerns money…
 class TipMachine: NSObject {
     
+    static let timesBeforeShowingRatings = 3
+    
     /// it is me
     static let contactURL = "https://twitter.com/tomn94"
     
-    fileprivate let productIds = ["fr.tomn.PlaylistsMaker.TipTier1", "fr.tomn.PlaylistsMaker.TipTier2",
-                                  "fr.tomn.PlaylistsMaker.TipTier4", "fr.tomn.PlaylistsMaker.TipTier9"]
+    /// App Store redirection to leave a review
+    static let appStoreURL = "itms-apps://itunes.apple.com/app/id1278103627?action=write-review"
+    
+    fileprivate static let productIds = ["fr.tomn.PlaylistsMaker.TipTier1", "fr.tomn.PlaylistsMaker.TipTier2",
+                                         "fr.tomn.PlaylistsMaker.TipTier4", "fr.tomn.PlaylistsMaker.TipTier9"]
     
     fileprivate var products = [SKProduct]()
     
     var parentVC: UIViewController?
+    
+    
+    /// In-App App Store Rating
+    class func askForReview() {
+        
+        if DataStore.sortFinishedCount >= TipMachine.timesBeforeShowingRatings {
+            SKStoreReviewController.requestReview()
+        }
+    }
     
     
     func showInfo(from parentVC: UIViewController) {
@@ -29,15 +43,19 @@ class TipMachine: NSObject {
                                       message: "Made by Thomas Naudet",
                                       preferredStyle: .alert)
         if SKPaymentQueue.canMakePayments() {
-            alert.addAction(UIAlertAction(title: "Give a Tip", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: "❤️ Give a Tip", style: .default) { _ in
                 self.presentOptions(from: parentVC)
             })
         }
-        alert.addAction(UIAlertAction(title: "Contact", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: "⭐️ Leave a Review", style: .default) { _ in
+            UIApplication.shared.open(URL(string: TipMachine.appStoreURL)!,
+                                      options: [:])
+        })
+        alert.addAction(UIAlertAction(title: "✉️ Contact", style: .default) { _ in
             UIApplication.shared.open(URL(string: TipMachine.contactURL)!,
                                       options: [:])
         })
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         parentVC.present(alert, animated: true)
     }
     
@@ -57,7 +75,7 @@ class TipMachine: NSObject {
         self.parentVC = parentVC
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        let request = SKProductsRequest(productIdentifiers: Set(productIds))
+        let request = SKProductsRequest(productIdentifiers: Set(TipMachine.productIds))
         request.delegate = self
         request.start()
     }

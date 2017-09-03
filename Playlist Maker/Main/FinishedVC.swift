@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class FinishedVC: UIViewController {
     
@@ -28,6 +29,13 @@ class FinishedVC: UIViewController {
         } else {
             detailLabel?.text = "\(count) songs sorted\nCome back regularly!"
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DataStore.sortFinishedCount += 1
+        TipMachine.askForReview()
     }
     
     @IBAction func supportApp() {

@@ -35,6 +35,9 @@ enum UserDefaultsKey {
     /// Date before which songs are accepted, for `dateSelectionModeEnd`
     static let dateSelectionModeEnd   = "dateSelectionModeEnd"
     
+    /// Number of times the user finished sorting process
+    static let sortFinishedCount = "sortFinishedCount"
+    
 }
 
 extension Notification.Name {
