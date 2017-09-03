@@ -271,8 +271,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4eN-bi-COB"/>
                                                     </constraints>
@@ -282,6 +282,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vcU-TT-m7I" firstAttribute="leading" secondItem="vYb-yu-mc1" secondAttribute="leading" id="0lj-ed-PO5"/>
+                                                <constraint firstItem="vcU-TT-m7I" firstAttribute="centerY" secondItem="vYb-yu-mc1" secondAttribute="centerY" id="7EB-Ep-Ve6"/>
                                                 <constraint firstAttribute="bottom" secondItem="vcU-TT-m7I" secondAttribute="bottom" id="H4k-tt-A5b"/>
                                                 <constraint firstAttribute="trailing" secondItem="vcU-TT-m7I" secondAttribute="trailing" id="XkU-bl-q31"/>
                                                 <constraint firstItem="vcU-TT-m7I" firstAttribute="top" secondItem="vYb-yu-mc1" secondAttribute="top" id="ezq-1n-KDf"/>
@@ -326,28 +327,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-cN-jqZ">
-                                            <rect key="frame" x="8" y="64" width="359" height="603"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-cN-jqZ">
+                                            <rect key="frame" x="8" y="64" width="359" height="573"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-hL-nkD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="269.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Ccs-hL-nkD" secondAttribute="height" multiplier="4:3" id="WtC-0z-O7y"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-NV-hrk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="258"/>
+                                                    <rect key="frame" x="0.0" y="309" width="359" height="62.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Come back regularly!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
-                                                    <rect key="frame" x="0.0" y="258" width="359" height="85"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" text="Come back regularly!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
+                                                    <rect key="frame" x="0.0" y="411" width="359" height="20.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfp-zp-GZh">
-                                                    <rect key="frame" x="0.0" y="343" width="359" height="136"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfp-zp-GZh">
+                                                    <rect key="frame" x="0.0" y="470.5" width="359" height="33"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <state key="normal" title="Nice!"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
-                                                    <rect key="frame" x="0.0" y="479" width="359" height="124"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
+                                                    <rect key="frame" x="0.0" y="543" width="359" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <state key="normal" title="Support the app"/>
                                                 </button>
@@ -367,7 +374,7 @@
                             <constraint firstAttribute="trailing" secondItem="r9S-sn-FDx" secondAttribute="trailing" id="Foz-dH-2J9"/>
                             <constraint firstAttribute="bottom" secondItem="r9S-sn-FDx" secondAttribute="bottom" id="UsZ-6K-sBv"/>
                             <constraint firstItem="r9S-sn-FDx" firstAttribute="leading" secondItem="3Po-bf-3iB" secondAttribute="leading" id="l7y-Zt-cPI"/>
-                            <constraint firstItem="ypr-A8-yWQ" firstAttribute="top" secondItem="Tex-cN-jqZ" secondAttribute="bottom" id="uVl-jc-vDb"/>
+                            <constraint firstItem="ypr-A8-yWQ" firstAttribute="top" secondItem="Tex-cN-jqZ" secondAttribute="bottom" constant="30" id="uVl-jc-vDb"/>
                             <constraint firstItem="Tex-cN-jqZ" firstAttribute="top" secondItem="lRJ-QU-gs9" secondAttribute="bottom" id="yOG-KJ-JqH"/>
                         </constraints>
                     </view>
@@ -497,7 +504,7 @@ To do this, the app requires access to your Music Library.</string>
         <!--Navigation Controller-->
         <scene sceneID="ypU-lc-qFY">
             <objects>
-                <navigationController storyboardIdentifier="FinishedNVC" automaticallyAdjustsScrollViewInsets="NO" id="xjl-kK-FrU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FinishedVC" automaticallyAdjustsScrollViewInsets="NO" id="xjl-kK-FrU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bqV-us-LJo">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
