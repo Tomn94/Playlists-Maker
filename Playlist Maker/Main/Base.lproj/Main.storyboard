@@ -327,22 +327,22 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-cN-jqZ">
-                                            <rect key="frame" x="8" y="64" width="359" height="573"/>
+                                            <rect key="frame" x="8" y="94" width="359" height="543"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-hL-nkD">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="250" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-hL-nkD">
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="269.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Ccs-hL-nkD" secondAttribute="height" multiplier="4:3" id="WtC-0z-O7y"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-NV-hrk">
-                                                    <rect key="frame" x="0.0" y="325.5" width="359" height="62.5"/>
+                                                    <rect key="frame" x="0.0" y="315.5" width="359" height="62.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
-                                                    <rect key="frame" x="0.0" y="444.5" width="359" height="42.5"/>
+                                                    <rect key="frame" x="0.0" y="424.5" width="359" height="42.5"/>
                                                     <string key="text">42 songs sorted
 Come back regularly!</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -350,7 +350,7 @@ Come back regularly!</string>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
-                                                    <rect key="frame" x="0.0" y="543" width="359" height="30"/>
+                                                    <rect key="frame" x="0.0" y="513" width="359" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <state key="normal" title="Support the app"/>
                                                     <connections>
@@ -374,7 +374,7 @@ Come back regularly!</string>
                             <constraint firstAttribute="bottom" secondItem="r9S-sn-FDx" secondAttribute="bottom" id="UsZ-6K-sBv"/>
                             <constraint firstItem="r9S-sn-FDx" firstAttribute="leading" secondItem="3Po-bf-3iB" secondAttribute="leading" id="l7y-Zt-cPI"/>
                             <constraint firstItem="ypr-A8-yWQ" firstAttribute="top" secondItem="Tex-cN-jqZ" secondAttribute="bottom" constant="30" id="uVl-jc-vDb"/>
-                            <constraint firstItem="Tex-cN-jqZ" firstAttribute="top" secondItem="lRJ-QU-gs9" secondAttribute="bottom" id="yOG-KJ-JqH"/>
+                            <constraint firstItem="Tex-cN-jqZ" firstAttribute="top" secondItem="lRJ-QU-gs9" secondAttribute="bottom" constant="30" id="yOG-KJ-JqH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Music Selection Sorted" id="b8f-pn-yV2">
@@ -407,7 +407,7 @@ Come back regularly!</string>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TLx-Hd-n3s">
                                 <rect key="frame" x="16" y="50" width="343" height="587"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5AM-2f-dNv">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="250" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="5AM-2f-dNv">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="257.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5AM-2f-dNv" secondAttribute="height" multiplier="4:3" id="5WG-r1-giT"/>
@@ -528,6 +528,9 @@ To do this, the app requires access to your Music Library.</string>
             <point key="canvasLocation" x="534" y="162"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Icon" width="1024" height="1024"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qkb-x6-Ghc"/>
     </inferredMetricsTieBreakers>
