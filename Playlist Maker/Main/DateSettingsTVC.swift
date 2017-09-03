@@ -104,16 +104,10 @@ extension DateSettingsTVC {
     override func tableView(_ tableView: UITableView,
                             titleForFooterInSection section: Int) -> String? {
         
-        guard section != 0 else { return nil }
-        
-        switch dateSelectionMode {
-        case .before:
-            return "Date is exclusive"
-        case .after:
-            return section == 1 ? "Date is exclusive"   : "Allows you, the next time you open the app with new songs in your library, to only sort those ones.\nAlso allows you to resume any sorting process you stopped."
-        case .range:
-            return section == 2 ? "Dates are exclusive" : nil
+        if section == 2 && dateSelectionMode == .after {
+            return "Allows you, the next time you open the app with new songs in your library, to only sort those ones.\nAlso allows you to resume any sorting process you stopped."
         }
+        return nil
     }
 
     /// Populates the table view with cells
