@@ -132,7 +132,7 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
     @IBAction func stop() {
         
         let alert = UIAlertController(title: "Exit Sorting Process?",
-                                      message: "Processed songs are already saved.\nCurrent and next songs won't be added to selected playlists.",
+                                      message: "Processed songs are already saved.\nCurrent song won't be added to selected playlists.\nNext songs have not been processed yet.",
                                       preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Exit", style: .default) { [unowned self] _ in

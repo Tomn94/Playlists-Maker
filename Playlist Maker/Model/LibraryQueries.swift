@@ -59,14 +59,15 @@ class LibraryQueries {
         }
         
         // Exclude selected days
-        startDate = Calendar(identifier: .gregorian).date(bySettingHour: 23,
-                                                          minute:        59,
-                                                          second:        59,
-                                                          of:  startDate) ?? startDate
-        endDate   = Calendar(identifier: .gregorian).date(bySettingHour:  0,
-                                                          minute:         0,
-                                                          second:         0,
-                                                          of:    endDate) ?? endDate
+        let calendar = Calendar(identifier: .gregorian)
+        startDate = calendar.date(bySettingHour:  23,
+                                  minute:         59,
+                                  second:         59,
+                                  of:  startDate) ?? startDate
+        endDate   = calendar.date(bySettingHour:   0,
+                                  minute:          0,
+                                  second:          0,
+                                  of:    endDate) ?? endDate
         
         var librarySongs = Set<MPMediaItem>()
         

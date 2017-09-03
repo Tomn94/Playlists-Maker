@@ -256,7 +256,7 @@ extension SettingsTVC {
                 cell.detailTextLabel?.text = selected ? "✓" : nil
                 cell.detailTextLabel?.textColor = UIButton.appearance().tintColor
             
-                if indexPath.row == 2 {         // Not In Playlists
+                if indexPath.row == 3 {         // Not In Playlists
                     let count = DataStore.shared.library.selectionNotInPlaylists.count
                     if count == 1 {
                         cell.textLabel?.text = "Songs not contained in 1 playlist…"
@@ -264,7 +264,7 @@ extension SettingsTVC {
                         cell.textLabel?.text = "Songs not contained in \(count) playlists…"
                     }
                     
-                } else if indexPath.row == 3 {  // In Playlists
+                } else if indexPath.row == 4 {  // In Playlists
                     let count = DataStore.shared.library.selectionInPlaylists.count
                     if count == 1 {
                         cell.textLabel?.text = "Songs contained in 1 playlist…"
