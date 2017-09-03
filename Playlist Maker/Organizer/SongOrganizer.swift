@@ -313,6 +313,14 @@ class SongOrganizer: UIViewController, SongPlayerDelegate {
             }
         }
         
+        if SongSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.songSelectionMode)) ?? .inNoPlaylist == .addedDate &&
+           DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .after == .after &&
+           UserDefaults.standard.bool(forKey: UserDefaultsKey.dateSelectionUpdates) {
+            
+            // Update date
+            DataStore.shared.dateSelectionModeStart = currentSong.dateAdded
+        }
+        
         // Pass to the next one
         showSong(at: currentIndex + 1)
     }
