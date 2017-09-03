@@ -50,7 +50,7 @@ class LibraryQueries {
         
         // Apply mode
         let rawMode = UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)
-        let dateSelectionMode = DateSelectionMode(rawValue: rawMode) ?? .before
+        let dateSelectionMode = DateSelectionMode(rawValue: rawMode) ?? .after
         if dateSelectionMode == .before {
             startDate = Date.distantPast
         }

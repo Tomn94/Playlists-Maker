@@ -22,7 +22,7 @@ fileprivate extension Selector {
 class DateSettingsTVC: UITableViewController {
     
     /// Current preference for date mode in song selection input
-    var dateSelectionMode = DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .before {
+    var dateSelectionMode = DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .after {
         didSet {
             UserDefaults.standard.set(dateSelectionMode.rawValue,
                                       forKey: UserDefaultsKey.dateSelectionMode)
@@ -215,7 +215,7 @@ extension DateSettingsTVC {
 class DateSettingsPickerCell: UITableViewCell {
     
     /// Mode associated to the picker
-    var pickerMode: DateSelectionMode = .before {
+    var pickerMode: DateSelectionMode = .after {
         didSet {
             /* Save mode so the view controller can
                idenfity it back when saving changes */

@@ -129,7 +129,7 @@ class SettingsTVC: UITableViewController {
         
         /* In Date Range mode, verify range */
         if songSelectionMode == .addedDate &&
-           .range == DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .before &&
+           .range == DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .after &&
            DataStore.shared.dateSelectionModeStart > DataStore.shared.dateSelectionModeEnd {
             
             let alert = UIAlertController(title: "Wrong Date Interval",
