@@ -222,11 +222,11 @@ class PlaylistCell: UICollectionViewCell {
                                                         radius: 5, offset: CGSize(width: 0, height: 4))
         
         /// Cell in selected state
-        static let selected:       PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 0.5041746497, green: 0.6987419724, blue: 0, alpha: 1).cgColor,
+        static let selected:       PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.4862745098, blue: 0.02102187648, alpha: 1).cgColor,
                                                         radius: 8, offset: .zero)
         
         /// Cell in selected state
-        static let selectedFrozen: PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1).cgColor,
+        static let selectedFrozen: PlaylistCellStyle = (opacity: 1, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cgColor,
                                                         radius: 8, offset: .zero)
     }
     
