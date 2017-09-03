@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIButton.appearance().tintColor = tintColor
         UISlider.appearance().tintColor = tintColor
         UINavigationBar.appearance().tintColor = tintColor
+        
+        SKPaymentQueue.default().add(self)
         
         return true
     }
@@ -53,6 +56,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+
+// MARK: - Payment Transaction Observer
+extension AppDelegate: SKPaymentTransactionObserver {
+    
+    func paymentQueue(_ queue: SKPaymentQueue,
+                      updatedTransactions transactions: [SKPaymentTransaction]) {
+        
+        for transaction in transactions {
+            switch transaction.transactionState {
+                
+            case .purchased:
+                SKPaymentQueue.default().finishTransaction(transaction)
+                
+                let alert = UIAlertController(title: "Thank you for your purchase!",
+                                              message: "You are amazing.",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "👏", style: .cancel))
+                window?.rootViewController?.present(alert, animated: true)
+                
+            case .failed:
+                SKPaymentQueue.default().finishTransaction(transaction)
+                
+                var details  = "Don't worry, everything's fine."
+                if let error = transaction.error as? SKError {
+                    switch error.code {
+                    case .paymentCancelled:
+                        break
+                    case .unknown:
+                        details = "Unknown error"
+                    case .clientInvalid:
+                        details = "You were not allowed to make this request."
+                    case .paymentInvalid:
+                        details = "The item you requested had an invalid identifier."
+                    case .paymentNotAllowed:
+                        details = "You were not allowed to pay for the request on this device."
+                    case .storeProductNotAvailable:
+                        details = "The product is not available anymore"
+                    case .cloudServicePermissionDenied:
+                        details = "You don't have access to the service."
+                    case .cloudServiceNetworkConnectionFailed:
+                        details = "Unable to contact the service."
+                    case .cloudServiceRevoked:
+                        details = "Your access has been revoked from the service."
+                    }
+                }
+                let alert = UIAlertController(title: "Your purchase has been cancelled",
+                                              message: details,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                window?.rootViewController?.present(alert, animated: true)
+                
+            case .restored, .purchasing, .deferred:
+                break
+            }
+        }
+    }
+    
+}

@@ -22,6 +22,8 @@
 		64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */; };
 		64900D221F57842100E2F09D /* DismissSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D211F57842100E2F09D /* DismissSegue.swift */; };
 		64900D241F578B2300E2F09D /* QueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64900D231F578B2300E2F09D /* QueueVC.swift */; };
+		649246BD1F5B81D400AE7E47 /* TipMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649246BC1F5B81D300AE7E47 /* TipMachine.swift */; };
+		649246C21F5BA8B400AE7E47 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 649246C11F5BA8B400AE7E47 /* StoreKit.framework */; };
 		64E33BA61F5B2E6F0017AD5A /* DateSettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E33BA51F5B2E6F0017AD5A /* DateSettingsTVC.swift */; };
 		64F0224D1F5884BE00FCA9DE /* SettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */; };
 		64F0224F1F58862200FCA9DE /* AccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F0224E1F58862200FCA9DE /* AccessVC.swift */; };
@@ -47,6 +49,8 @@
 		64900D1F1F57621D00E2F09D /* TNRecessedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TNRecessedButton.swift; sourceTree = "<group>"; };
 		64900D211F57842100E2F09D /* DismissSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissSegue.swift; sourceTree = "<group>"; };
 		64900D231F578B2300E2F09D /* QueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueVC.swift; sourceTree = "<group>"; };
+		649246BC1F5B81D300AE7E47 /* TipMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipMachine.swift; sourceTree = "<group>"; };
+		649246C11F5BA8B400AE7E47 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		64E33BA51F5B2E6F0017AD5A /* DateSettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSettingsTVC.swift; sourceTree = "<group>"; };
 		64F0224C1F5884BE00FCA9DE /* SettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		64F0224E1F58862200FCA9DE /* AccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessVC.swift; sourceTree = "<group>"; };
@@ -59,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649246C21F5BA8B400AE7E47 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,7 @@
 			children = (
 				64547F821EBB245C000ED6B3 /* Playlist Maker */,
 				64547F811EBB245C000ED6B3 /* Products */,
+				649246BE1F5B83BE00AE7E47 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +114,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		649246BE1F5B83BE00AE7E47 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				649246C11F5BA8B400AE7E47 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		64F022511F588CE600FCA9DE /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +130,7 @@
 				64F022531F58934700FCA9DE /* DetailSettingsTVC.swift */,
 				64E33BA51F5B2E6F0017AD5A /* DateSettingsTVC.swift */,
 				64F0224E1F58862200FCA9DE /* AccessVC.swift */,
+				649246BC1F5B81D300AE7E47 /* TipMachine.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -167,6 +182,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 7HW87TV8LC;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -219,6 +239,7 @@
 				64900CE01F562B9C00E2F09D /* Utils.swift in Sources */,
 				64547F841EBB245C000ED6B3 /* AppDelegate.swift in Sources */,
 				64900D201F57621D00E2F09D /* TNRecessedButton.swift in Sources */,
+				649246BD1F5B81D400AE7E47 /* TipMachine.swift in Sources */,
 				64E33BA61F5B2E6F0017AD5A /* DateSettingsTVC.swift in Sources */,
 				64900CDE1F55FE0F00E2F09D /* SongPlayer.swift in Sources */,
 				64900D221F57842100E2F09D /* DismissSegue.swift in Sources */,

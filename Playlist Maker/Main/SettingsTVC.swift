@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 fileprivate extension Selector {
     
@@ -17,6 +18,13 @@ fileprivate extension Selector {
 
 
 class SettingsTVC: UITableViewController {
+    
+    /// it is me
+    static let contactURL = "https://twitter.com/tomn94"
+    
+    /// Shows In-App Purchases
+    lazy var tipMachine: TipMachine = TipMachine()
+    
     
     /// Whether library is currently loading playlists.
     /// Disables table view actions
@@ -39,9 +47,6 @@ class SettingsTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        /* Remove Ads button */
-        navigationItem.leftBarButtonItem = nil
         
         /* Set up loading playlists */
         NotificationCenter.default.addObserver(self, selector: .reloadPlaylists,
@@ -56,12 +61,21 @@ class SettingsTVC: UITableViewController {
     }
 
     /// Ads button tapped
-    @IBAction func showIAP() {
+    @IBAction func showInfo() {
         
-        let alert = UIAlertController(title: "",
-                                      message: "",
+        let alert = UIAlertController(title: "Playlists Maker",
+                                      message: "Made by Thomas Naudet",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if SKPaymentQueue.canMakePayments() {
+            alert.addAction(UIAlertAction(title: "Give a Tip", style: .default) { _ in
+                self.tipMachine.presentOptions(from: self)
+            })
+        }
+        alert.addAction(UIAlertAction(title: "Contact", style: .default) { _ in
+            UIApplication.shared.open(URL(string: SettingsTVC.contactURL)!,
+                                      options: [:])
+        })
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         self.present(alert, animated: true)
     }
     
