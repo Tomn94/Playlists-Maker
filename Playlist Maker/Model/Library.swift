@@ -252,9 +252,20 @@ class Library {
                 songs.append(Song(raw: songItem))
             }
             
-            // Sort by artist
-            songs.sort { song1, song2 in
-                song1.artist.localizedCaseInsensitiveCompare(song2.artist) == .orderedAscending
+            if songSelectionMode == .addedDate &&
+               DateSelectionMode(rawValue: UserDefaults.standard.integer(forKey: UserDefaultsKey.dateSelectionMode)) ?? .after == .after &&
+               UserDefaults.standard.bool(forKey: UserDefaultsKey.dateSelectionUpdates) {
+                // Sort by added date,
+                // so the user gets the same Up Next list when they restart the sorting process
+                songs.sort { song1, song2 in
+                    song1.dateAdded < song2.dateAdded
+                }
+                
+            } else {
+                // Sort by artist
+                songs.sort { song1, song2 in
+                    song1.artist.localizedCaseInsensitiveCompare(song2.artist) == .orderedAscending
+                }
             }
             
             self.songs = songs
@@ -331,6 +342,8 @@ struct Song {
     
     let artwork: UIImage?
     
+    let dateAdded: Date
+    
     let raw: MPMediaItem
     
     
@@ -348,6 +361,7 @@ struct Song {
                                            MPMediaItemPropertyAlbumTitle       : nil,
                                            MPMediaItemPropertyGenre            : nil,
                                            MPMediaItemPropertyPlaybackDuration : nil,
+                                           MPMediaItemPropertyDateAdded        : nil,
                                            MPMediaItemPropertyArtwork          : nil]
         
         item.enumerateValues(forProperties: Set(properties.keys)) { property, value, _ in
@@ -355,17 +369,18 @@ struct Song {
         }
         
         /* Apply properties */
-        self.id      = properties[MPMediaItemPropertyPersistentID] as? MPMediaEntityPersistentID ?? 0
-        self.title   = properties[MPMediaItemPropertyTitle]        as? String ?? "Unknown title"
-        self.artist  = properties[MPMediaItemPropertyArtist]       as? String ?? "Unknown artist"
-        self.album   = properties[MPMediaItemPropertyAlbumTitle]   as? String ?? "Unknown album"
-        if let genre = properties[MPMediaItemPropertyGenre]        as? String {
+        self.id        = properties[MPMediaItemPropertyPersistentID] as? MPMediaEntityPersistentID ?? 0
+        self.title     = properties[MPMediaItemPropertyTitle]        as? String ?? "Unknown title"
+        self.artist    = properties[MPMediaItemPropertyArtist]       as? String ?? "Unknown artist"
+        self.album     = properties[MPMediaItemPropertyAlbumTitle]   as? String ?? "Unknown album"
+        if let genre   = properties[MPMediaItemPropertyGenre]        as? String {
             self.genre = (Genre(fromString: genre), genre)
         } else {
             self.genre = (.unknown, nil)
         }
-        self.length  =  properties[MPMediaItemPropertyPlaybackDuration] as? TimeInterval ?? 0
-        self.artwork = (properties[MPMediaItemPropertyArtwork] as? MPMediaItemArtwork)?.image(at: Song.artworkSize)
+        self.length    =  properties[MPMediaItemPropertyPlaybackDuration] as? TimeInterval ?? 0
+        self.dateAdded =  properties[MPMediaItemPropertyDateAdded] as? Date ?? Date.distantPast
+        self.artwork   = (properties[MPMediaItemPropertyArtwork] as? MPMediaItemArtwork)?.image(at: Song.artworkSize)
     }
     
 }
