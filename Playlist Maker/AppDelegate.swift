@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let tintColor = #colorLiteral(red: 1, green: 0.231372549, blue: 0.1921568627, alpha: 1)
+        let tintColor = #colorLiteral(red: 1, green: 0.4862745098, blue: 0.02102187648, alpha: 1)
         window?.tintColor = tintColor
         UIButton.appearance().tintColor = tintColor
         UISlider.appearance().tintColor = tintColor
