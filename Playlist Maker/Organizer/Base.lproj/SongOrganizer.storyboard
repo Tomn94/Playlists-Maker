@@ -394,7 +394,7 @@ The current track will be added to those colored playlists.
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Stop" id="e7d-qq-TRO">
+                        <barButtonItem key="rightBarButtonItem" title="Stop" style="done" id="e7d-qq-TRO">
                             <connections>
                                 <action selector="stop" destination="BYZ-38-t0r" id="55p-Vy-oU7"/>
                             </connections>
