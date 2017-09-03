@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +36,7 @@
         <scene sceneID="cEg-Vf-NZQ">
             <objects>
                 <tableViewController id="8Qp-k7-gCy" customClass="DateSettingsTVC" customModule="Playlist_Maker" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="yhh-D1-1e3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="yhh-D1-1e3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -272,7 +273,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcU-TT-m7I">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="4eN-bi-COB"/>
                                                     </constraints>
@@ -329,19 +330,29 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-cN-jqZ">
                                             <rect key="frame" x="8" y="94" width="359" height="543"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="250" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-hL-nkD">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="100" horizontalCompressionResistancePriority="100" verticalCompressionResistancePriority="100" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-hL-nkD">
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="269.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="Ccs-hL-nkD" secondAttribute="height" multiplier="4:3" id="WtC-0z-O7y"/>
                                                     </constraints>
+                                                    <variation key="heightClass=compact">
+                                                        <mask key="constraints">
+                                                            <exclude reference="WtC-0z-O7y"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=regular">
+                                                        <mask key="constraints">
+                                                            <exclude reference="WtC-0z-O7y"/>
+                                                        </mask>
+                                                    </variation>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-NV-hrk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" text="All done!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smM-NV-hrk">
                                                     <rect key="frame" x="0.0" y="315.5" width="359" height="62.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="52"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20z-Zc-zEa">
                                                     <rect key="frame" x="0.0" y="424.5" width="359" height="42.5"/>
                                                     <string key="text">42 songs sorted
 Come back regularly!</string>
@@ -349,7 +360,7 @@ Come back regularly!</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
+                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80h-DD-H9E">
                                                     <rect key="frame" x="0.0" y="513" width="359" height="30"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <state key="normal" title="Support the app"/>
@@ -358,6 +369,9 @@ Come back regularly!</string>
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ccs-hL-nkD" firstAttribute="height" relation="lessThanOrEqual" secondItem="Tex-cN-jqZ" secondAttribute="height" multiplier="0.6" id="L6z-6w-DZH"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -412,6 +426,16 @@ Come back regularly!</string>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5AM-2f-dNv" secondAttribute="height" multiplier="4:3" id="5WG-r1-giT"/>
                                         </constraints>
+                                        <variation key="heightClass=compact">
+                                            <mask key="constraints">
+                                                <exclude reference="5WG-r1-giT"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <mask key="constraints">
+                                                <exclude reference="5WG-r1-giT"/>
+                                            </mask>
+                                        </variation>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slI-b1-L8m">
                                         <rect key="frame" x="0.0" y="292" width="343" height="62.5"/>
@@ -437,6 +461,9 @@ To do this, the app requires access to your Music Library.</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="5AM-2f-dNv" firstAttribute="height" relation="lessThanOrEqual" secondItem="TLx-Hd-n3s" secondAttribute="height" multiplier="0.6" id="ISI-NU-BAS"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
